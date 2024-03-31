@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdt8hkpnxs2nd"]
+
+[ext_resource type="Texture2D" uid="uid://cpyq2bssb21e0" path="res://Graphics/Backgrounds/background_glacial_mountains.png" id="1_6dmpi"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/main_menu.gd" id="1_y1ahf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7w22q"]
+font_size = 70
+outline_size = 6
+outline_color = Color(0.129412, 1, 1, 1)
+shadow_size = 14
+shadow_color = Color(0, 0, 0, 0.603922)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y1ahf")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_6dmpi")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="Seperator" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "POLAR ATTACK"
+label_settings = SubResource("LabelSettings_7w22q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="Seperator2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="StartGameButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "START GAME"
+
+[node name="ExitGameButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "EXIT GAME"
