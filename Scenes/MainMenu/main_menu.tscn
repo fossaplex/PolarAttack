@@ -1,14 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdt8hkpnxs2nd"]
+[gd_scene load_steps=5 format=3 uid="uid://bdt8hkpnxs2nd"]
 
 [ext_resource type="Texture2D" uid="uid://cpyq2bssb21e0" path="res://Graphics/Backgrounds/background_glacial_mountains.png" id="1_6dmpi"]
 [ext_resource type="Script" path="res://Scenes/MainMenu/main_menu.gd" id="1_y1ahf"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_7w22q"]
-font_size = 70
-outline_size = 6
-outline_color = Color(0.129412, 1, 1, 1)
-shadow_size = 14
-shadow_color = Color(0, 0, 0, 0.603922)
+[ext_resource type="LabelSettings" uid="uid://766o1nox6n0c" path="res://Graphics/TitleLabelSettings.tres" id="3_rcpk3"]
+[ext_resource type="PackedScene" uid="uid://dfmw6h4velbkk" path="res://Scenes/OptionsMenu/options_menu.tscn" id="4_thmtr"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -51,7 +46,7 @@ layout_mode = 2
 [node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "POLAR ATTACK"
-label_settings = SubResource("LabelSettings_7w22q")
+label_settings = ExtResource("3_rcpk3")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -67,6 +62,9 @@ alignment = 1
 [node name="Seperator2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="Seperator3" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
 [node name="StartGameButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
@@ -75,6 +73,15 @@ theme_override_colors/icon_normal_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 text = "START GAME"
 
+[node name="OptionsGameButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "OPTIONS
+"
+
 [node name="ExitGameButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
@@ -82,3 +89,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_normal_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 text = "EXIT GAME"
+
+[node name="OptionsMenu" parent="." instance=ExtResource("4_thmtr")]
+visible = false
+layout_mode = 1
