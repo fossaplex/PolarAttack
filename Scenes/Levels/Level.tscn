@@ -7,3 +7,4 @@ position = Vector2(1, 0)
 
 [node name="PlayerObject" parent="." instance=ExtResource("1_siijq")]
 position = Vector2(572, 433)
+scale = Vector2(1, 1)
