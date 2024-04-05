@@ -191,7 +191,6 @@ _data = {
 position = Vector2(0, 0.5)
 scale = Vector2(1.51, 1.534)
 script = ExtResource("1_ty1sm")
-SPEED = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_4qb6i")
