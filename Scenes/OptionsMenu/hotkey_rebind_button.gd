@@ -17,14 +17,14 @@ func set_action_name() -> void:
 	label.text = "Unassigned"
 	
 	match action_name:
-		"move_left":
-			label.text = "Move Left"
-		"move_right":
-			label.text = "Move Right"
 		"move_up":
 			label.text = "Move Up"
+		"move_left":
+			label.text = "Move Left"
 		"move_down":
 			label.text = "Move Down"
+		"move_right":
+			label.text = "Move Right"
 		"primary_attack":
 			label.text = "Primary Attack"
 		"secondary_attack":
@@ -43,3 +43,42 @@ func set_text_for_key() -> void:
 		elif action_event is InputEventJoypadMotion:
 			var action_axis = action_event.axis
 			button.text = "%s" % "Joypad Axis: " + str(action_axis)
+
+
+func _on_button_toggled(button_pressed):
+	if button_pressed:
+		button.text = "Press Any Key..."
+		set_process_unhandled_key_input(button_pressed)
+		
+		for i in get_tree().get_nodes_in_group("hotkey_button"):
+			if i.action_name != self.action_name:
+				i.button.toggle_mode = false;
+				i.set_process_unhandled_key_input(false)
+	else:
+		
+		for i in get_tree().get_nodes_in_group("hotkey_button"):
+			if i.action_name != self.action_name:
+				i.button.toggle_mode = true;
+				i.set_process_unhandled_key_input(false)
+		set_text_for_key()
+
+func _unhandled_key_input(event):
+	rebind_action_key(event)
+	button.button_pressed = false
+	
+func rebind_action_key(event):
+	var is_duplicate=false
+	var action_event=event
+	var action_keycode=OS.get_keycode_string(action_event.physical_keycode)
+	for i in get_tree().get_nodes_in_group("hotkey_button"):
+			if i.action_name!=self.action_name:
+				if i.button.text=="%s" %action_keycode:
+					is_duplicate=true
+					break
+	if not is_duplicate:
+		InputMap.action_erase_events(action_name)
+		InputMap.action_add_event(action_name,event)
+		set_process_unhandled_key_input(false)
+		set_text_for_key()
+		set_action_name()
+	
