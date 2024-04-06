@@ -1,11 +1,11 @@
 class_name MainMenu
 extends Control
 
-@onready var start_game_button = $VBoxContainer/StartGameButton as Button
-@onready var exit_game_button = $VBoxContainer/ExitGameButton as Button
-@onready var options_game_button = $VBoxContainer/OptionsGameButton as Button
+@onready var start_game_button = $MarginContainer/HBoxContainer/VBoxContainer/StartGameButton as Button
+@onready var exit_game_button = $MarginContainer/HBoxContainer/VBoxContainer/ExitGameButton as Button
+@onready var options_game_button = $MarginContainer/HBoxContainer/VBoxContainer/OptionsGameButton as Button
 @onready var options_menu = $OptionsMenu as OptionsMenu
-@onready var margin_container = $VBoxContainer as VBoxContainer
+@onready var margin_container = $MarginContainer as MarginContainer
 
 @onready var start_level = preload("res://Scenes/Levels/Level.tscn") as PackedScene
 
