@@ -184,9 +184,7 @@ _data = {
 }
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-z_index = 1
-y_sort_enabled = true
-collision_mask = 5
+collision_mask = 7
 script = ExtResource("1_ty1sm")
 SPEED = 150.0
 

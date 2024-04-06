@@ -4,18 +4,22 @@
 [ext_resource type="Texture2D" uid="uid://s7siu3gjp5xh" path="res://Graphics/Spritesheets/Enemies/Seal.jpg" id="1_wu0ot"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7fa3f"]
-size = Vector2(14, 14)
+size = Vector2(13, 3)
 
 [node name="Seal" type="CharacterBody2D"]
-collision_mask = 5
+z_index = 1
+position = Vector2(0, -1)
+collision_layer = 2
+collision_mask = 7
 script = ExtResource("1_snkuk")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_7fa3f")
+SPEED = null
 
 [node name="Seal" type="Sprite2D" parent="."]
-position = Vector2(-4.23516e-22, 0)
+position = Vector2(0, -6)
 scale = Vector2(0.109619, 0.112867)
 texture = ExtResource("1_wu0ot")
 region_enabled = true
 region_rect = Rect2(52, 25.5, 135, 135)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7fa3f")
