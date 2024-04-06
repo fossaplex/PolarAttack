@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcx3a8idecdv0"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/Enemy 1/Seal.gd" id="1_snkuk"]
+[ext_resource type="Texture2D" uid="uid://s7siu3gjp5xh" path="res://Graphics/Spritesheets/Enemies/Seal.jpg" id="1_wu0ot"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7fa3f"]
+size = Vector2(14, 14)
+
+[node name="Seal" type="CharacterBody2D"]
+collision_mask = 5
+script = ExtResource("1_snkuk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7fa3f")
+
+[node name="Seal" type="Sprite2D" parent="."]
+position = Vector2(-4.23516e-22, 0)
+scale = Vector2(0.109619, 0.112867)
+texture = ExtResource("1_wu0ot")
+region_enabled = true
+region_rect = Rect2(52, 25.5, 135, 135)

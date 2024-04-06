@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://v0wxmchyy8hw"]
+[gd_scene load_steps=6 format=3 uid="uid://v0wxmchyy8hw"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Level.gd" id="1_mxhe7"]
 [ext_resource type="PackedScene" uid="uid://bw72hruorpjco" path="res://Scenes/Player/Player.tscn" id="1_siijq"]
 [ext_resource type="PackedScene" uid="uid://3j3i1mox6gns" path="res://Scenes/Map/map.tscn" id="2_gs7rd"]
 [ext_resource type="AudioStream" uid="uid://dt1cy7i75mhnu" path="res://Sounds/song_1.mp3" id="3_dm7rh"]
+[ext_resource type="PackedScene" uid="uid://b7dv846tam46k" path="res://Scenes/Spawner/Enemy Spawner.tscn" id="5_xa74c"]
 
 [node name="Level" type="Node2D"]
 y_sort_enabled = true
@@ -22,4 +23,8 @@ zoom = Vector2(5.395, 5.395)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_dm7rh")
+volume_db = -16.147
 autoplay = true
+
+[node name="EnemySpawner" parent="." instance=ExtResource("5_xa74c")]
+position = Vector2(-52, 38)
