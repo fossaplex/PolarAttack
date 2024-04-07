@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7fa3f"]
 size = Vector2(14, 14)
 
-[node name="Seal" type="CharacterBody2D"]
+[node name="Seal" type="CharacterBody2D" groups=["enemies"]]
 collision_mask = 5
 script = ExtResource("1_snkuk")
 
