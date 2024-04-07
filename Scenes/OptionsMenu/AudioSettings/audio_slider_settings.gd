@@ -31,4 +31,15 @@ func set_slider_value() -> void:
 func on_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))
 	set_audio_number_label_text()
+	print("Hit on_value_changed")
+	print(bus_index)
+	match bus_index:
+		0:
+			SettingsSignalBus.emit_on_master_sound_set(value)
+		1:
+			SettingsSignalBus.emit_on_music_sound_set(value)
+		2:
+			SettingsSignalBus.emit_on_sfx_sound_set(value)
+		3:
+			SettingsSignalBus.emit_on_ambient_sound_set(value)
 

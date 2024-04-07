@@ -22,5 +22,6 @@ func center_window():
 	get_window().set_position(center_screen - window_size/2)
 
 func on_resolution_selected(index : int) -> void:
+	SettingsSignalBus.emit_on_resolution_selection_toggled(index)
 	DisplayServer.window_set_size(RESOLUTION_DICTIONARY.values()[index])
 	center_window()
