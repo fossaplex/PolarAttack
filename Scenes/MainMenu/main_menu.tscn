@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdt8hkpnxs2nd"]
+[gd_scene load_steps=6 format=3 uid="uid://bdt8hkpnxs2nd"]
 
 [ext_resource type="Texture2D" uid="uid://cpyq2bssb21e0" path="res://Graphics/Backgrounds/background_glacial_mountains.png" id="1_6dmpi"]
 [ext_resource type="Script" path="res://Scenes/MainMenu/main_menu.gd" id="1_y1ahf"]
 [ext_resource type="LabelSettings" uid="uid://766o1nox6n0c" path="res://Graphics/TitleLabelSettings.tres" id="3_rcpk3"]
 [ext_resource type="PackedScene" uid="uid://dfmw6h4velbkk" path="res://Scenes/OptionsMenu/options_menu.tscn" id="4_thmtr"]
+[ext_resource type="AudioStream" uid="uid://dt1cy7i75mhnu" path="res://Sounds/song_1.mp3" id="5_2p5g8"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -94,3 +95,8 @@ text = "EXIT GAME"
 [node name="OptionsMenu" parent="." instance=ExtResource("4_thmtr")]
 visible = false
 layout_mode = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_2p5g8")
+autoplay = true
+bus = &"Music"
