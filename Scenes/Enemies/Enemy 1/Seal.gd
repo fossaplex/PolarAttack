@@ -1,13 +1,14 @@
 extends CharacterBody2D
 
-@export var SPEED = 20.0
+const SPEED = 100.0
 
-@onready var target: CharacterBody2D = get_node('/root/Level/Player')
+var PLAYER
 
-func _physics_process(delta: float):
-	var direction = (target.global_position - global_position)
-	var direction_normalize = direction.normalized()
-	var target_distance = global_position.distance_to(target.global_position)
+func _ready():
+	PLAYER = get_node('/root/Level/Player')
 
-	velocity = direction_normalize * SPEED if target_distance > 10 else Vector2.ZERO
+func _physics_process(delta):
+	#var direction = global_position.direction_to(PLAYER.global_position)
+	#var velocity = direction * SPEED 
+	position += (PLAYER.position - position)/SPEED
 	move_and_slide()
