@@ -7,6 +7,5 @@ script = ExtResource("1_ncui6")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.443
-one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

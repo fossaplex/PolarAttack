@@ -4,8 +4,10 @@ extends CharacterBody2D
 
 @onready var ap = $AnimationPlayer
 @onready var sprite = $Sprite2D
-
-func _physics_process(delta):
+@onready var laserMarker = $LaserMarker2D
+@onready var laser: Node2D = $Beam
+	
+func _physics_process(delta: float):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction * SPEED
 
@@ -14,6 +16,13 @@ func _physics_process(delta):
 
 	move_and_slide()
 	update_animation(direction)
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+			laser.visible = true
+		else:
+			laser.visible = false
 
 func flip_sprite(horizontal_direction: float):
 		if horizontal_direction != 0: sprite.flip_h = horizontal_direction == 1

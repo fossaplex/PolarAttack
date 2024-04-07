@@ -18,10 +18,10 @@ layer_2/tile_data = PackedInt32Array()
 [node name="Player" parent="." instance=ExtResource("1_siijq")]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(-102, -93)
+position = Vector2(-157, -109)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(5.395, 5.395)
+zoom = Vector2(3.41, 3.41)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_dm7rh")
