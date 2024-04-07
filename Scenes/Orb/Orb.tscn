@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5naqof73cu32"]
+
+[ext_resource type="Script" path="res://Scenes/Orb/Orb.gd" id="1_4yaee"]
+[ext_resource type="Texture2D" uid="uid://e4hxlcuau0ik" path="res://Graphics/Spritesheets/Bullets/orb.jpg" id="2_8nhpt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kjkp5"]
+
+[node name="Orb" type="Area2D"]
+z_index = 1
+position = Vector2(0, -1)
+scale = Vector2(0.2, 0.2)
+collision_layer = 8
+collision_mask = 32
+script = ExtResource("1_4yaee")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_kjkp5")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, 5)
+scale = Vector2(0.035, 0.035)
+texture = ExtResource("2_8nhpt")
+region_enabled = true
+region_rect = Rect2(112, 112, 776, 776)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

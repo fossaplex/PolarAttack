@@ -1,11 +1,12 @@
 extends Area2D
+class_name Orb
 
 # Orbiting parameters
-var orbit_speed = 3.6  # How fast the object orbits around the player
-var base_orbit_radius = 35.0  # The base radius of the orbit
-var orbit_radius_variation = 5.0  # The amplitude of the orbit radius oscillation
-var wave_speed = .005  # Speed of the sine wave oscillation
-var orbit_angle = 135.0  # Current angle in the orbit
+@export var orbit_speed = 2.8  # How fast the object orbits around the player
+@export var base_orbit_radius = 35.0  # The base radius of the orbit
+@export var orbit_radius_variation = 5.0  # The amplitude of the orbit radius oscillation
+@export var wave_speed = .005  # Speed of the sine wave oscillation
+@export var orbit_angle = 0.0  # Current angle in the orbit
 
 var player  # Reference to the player node
 
@@ -27,8 +28,10 @@ func _process(delta):
 	position = Vector2(x, y)
 
 
-func _on_body_entered(body):
+func _on_body_entered(body: Node2D):
+	print("enter" + str(body))
 	if body.is_in_group("enemies"):
+		print("enemies" + str(body))
 		body.queue_free() 
 		var audio_player = get_parent().get_node("SoundKill")
 		if audio_player:
