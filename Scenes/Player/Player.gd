@@ -17,6 +17,11 @@ func _physics_process(delta: float):
 	var horizontal_direction = Input.get_axis("move_left", "move_right")
 	flip_sprite(horizontal_direction)
 
+	if velocity.length() != 0:
+		if $Timer.time_left <= 0:
+			$SoundWalk.pitch_scale = randf_range(.4,.6)
+			$SoundWalk.play()
+			$Timer.start(.21)
 	move_and_slide()
 	update_animation(direction)
 
