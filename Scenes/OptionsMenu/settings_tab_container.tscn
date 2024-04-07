@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://3asuopfcmplq"]
+[gd_scene load_steps=7 format=3 uid="uid://3asuopfcmplq"]
 
+[ext_resource type="PackedScene" uid="uid://buvcadcpwrabx" path="res://Scenes/OptionsMenu/audio_slider_settings.tscn" id="1_6lfa0"]
 [ext_resource type="PackedScene" uid="uid://x0v7xw2whipr" path="res://Scenes/OptionsMenu/window_mode_button.tscn" id="1_t4oju"]
 [ext_resource type="PackedScene" uid="uid://box3qopvvcx2h" path="res://Scenes/OptionsMenu/hotkey_rebind_button.tscn" id="1_wiyyd"]
 [ext_resource type="PackedScene" uid="uid://chao0bdsbluv7" path="res://Scenes/OptionsMenu/resolution_mode_button.tscn" id="2_a4par"]
@@ -28,10 +29,8 @@ offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
-current_tab = 1
 
 [node name="Sound" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/Sound"]
@@ -46,32 +45,30 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Sound/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Sound/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Sound/MarginContainer/ScrollContainer"]
 layout_mode = 2
 theme_override_constants/separation = 64
-alignment = 1
 
-[node name="Label" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+[node name="AudioSliderSettings" parent="TabContainer/Sound/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_6lfa0")]
 layout_mode = 2
-text = "Sound 1"
+bus_name = "Master"
 
-[node name="Label2" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+[node name="AudioSliderSettings2" parent="TabContainer/Sound/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_6lfa0")]
 layout_mode = 2
-text = "Sound 2"
 
-[node name="Label3" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+[node name="AudioSliderSettings3" parent="TabContainer/Sound/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_6lfa0")]
 layout_mode = 2
-text = "Sound 3"
+bus_name = "SFX"
 
-[node name="Label4" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
+[node name="AudioSliderSettings4" parent="TabContainer/Sound/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_6lfa0")]
 layout_mode = 2
-text = "Sound 4"
-
-[node name="Label5" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Sound 5"
+bus_name = "Ambient"
 
 [node name="Graphics" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/Graphics"]
