@@ -63,7 +63,8 @@ secondary_attack={
 [layer_names]
 
 2d_physics/layer_1="player"
-2d_physics/layer_2="enemies"
+2d_physics/layer_2="walk"
 2d_physics/layer_3="objects"
 2d_physics/layer_4="projectiles"
 2d_physics/layer_5="items"
+2d_physics/layer_6="enemies"
