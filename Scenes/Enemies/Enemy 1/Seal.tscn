@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://Scenes/Enemies/Enemy 1/Seal.gd" id="1_snkuk"]
 [ext_resource type="Texture2D" uid="uid://s7siu3gjp5xh" path="res://Graphics/Spritesheets/Enemies/Seal.jpg" id="1_wu0ot"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2j43r"]
-size = Vector2(14, 15)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_atblq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5qem2"]
+size = Vector2(14, 14)
 
 [node name="SealCharacterBody2D" type="CharacterBody2D" groups=["enemies"]]
 z_index = 1
@@ -14,14 +14,6 @@ position = Vector2(0, -1)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_snkuk")
-
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 32
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -6)
-shape = SubResource("RectangleShape2D_2j43r")
 
 [node name="Seal" type="Sprite2D" parent="."]
 position = Vector2(0, -6)
@@ -33,3 +25,11 @@ region_rect = Rect2(52, 25.5, 135, 135)
 [node name="WalkCollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.71, 0.135)
 shape = SubResource("RectangleShape2D_atblq")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_5qem2")

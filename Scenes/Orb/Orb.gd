@@ -27,11 +27,18 @@ func _process(delta):
 	position = Vector2(x, y)
 
 func _on_body_entered(body: Node2D):
-	print("enter" + str(body))
 	if body.is_in_group("enemies"):
-		print("enemies" + str(body))
 		body.queue_free() 
 		var audio_player = get_parent().get_node("SoundKill")
 		if audio_player:
 			audio_player.play()
-	pass # Replace with function body.
+
+
+func _on_area_entered(area: Area2D):
+	var parent = area.get_parent()
+	if parent.is_in_group("enemies"):
+		parent.queue_free() 
+		var audio_player = get_parent().get_node("SoundKill")
+		if audio_player:
+			audio_player.play()
+

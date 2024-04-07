@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://diy85w135sgrw"]
+[gd_scene load_steps=9 format=3 uid="uid://diy85w135sgrw"]
 
 [ext_resource type="Script" path="res://Scenes/Beam/beam.gd" id="1_8ffcn"]
 [ext_resource type="Texture2D" uid="uid://bl4pfj6lrl0lk" path="res://Graphics/beam/Begin.png" id="1_hhywt"]
 [ext_resource type="Texture2D" uid="uid://bj8ol0k6rlypm" path="res://Graphics/beam/Beam.png" id="2_2s5hh"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2miau"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rhksx"]
 blend_mode = 1
 
 [sub_resource type="Gradient" id="Gradient_02bc6"]
@@ -23,7 +26,7 @@ scale_max = 0.3
 color_ramp = SubResource("GradientTexture1D_3dcmm")
 
 [node name="LaserBeam" type="Node2D"]
-modulate = Color(1, 0.67451, 0.560784, 1)
+modulate = Color(0.929412, 0, 0.0235294, 1)
 script = ExtResource("1_8ffcn")
 
 [node name="Begin" type="Sprite2D" parent="."]
@@ -35,6 +38,7 @@ texture = ExtResource("1_hhywt")
 [node name="Beam" type="Sprite2D" parent="."]
 z_index = 1
 y_sort_enabled = true
+material = SubResource("CanvasItemMaterial_rhksx")
 scale = Vector2(1, -0.037)
 texture = ExtResource("2_2s5hh")
 centered = false
@@ -53,4 +57,5 @@ preprocess = 0.25
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(100, 0)
-collision_mask = 32
+collision_mask = 36
+collide_with_areas = true

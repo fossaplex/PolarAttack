@@ -9,5 +9,5 @@ func _on_timer_timeout():
 	var enemy_seal = seal_scene.instantiate()
 	var enemy_moab = moab_scene.instantiate()
 	var enemy_list = [enemy_seal, enemy_moab]
-	var r = randi_range(0,1)
-	add_child(enemy_seal)
+	var r = randi_range(0,enemy_list.size() - 1)
+	add_child(enemy_list[r])
