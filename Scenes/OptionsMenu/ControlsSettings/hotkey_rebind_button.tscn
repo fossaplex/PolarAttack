@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://box3qopvvcx2h"]
 
-[ext_resource type="Script" path="res://Scenes/OptionsMenu/hotkey_rebind_button.gd" id="1_fc1nu"]
+[ext_resource type="Script" path="res://Scenes/OptionsMenu/ControlsSettings/hotkey_rebind_button.gd" id="1_fc1nu"]
 
 [node name="Hotkey_Rebind_Button" type="Control" groups=["hotkey_button"]]
 layout_mode = 3

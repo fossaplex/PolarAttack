@@ -14,6 +14,13 @@ config/name="Polar Attack"
 run/main_scene="res://Scenes/MainMenu/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 
+[autoload]
+
+SignalBus="*res://autoloads/SignalBus.gd"
+SettingsDataContainer="*res://autoloads/SettingsDataContainer.gd"
+SettingsSignalBus="*res://autoloads/SettingsSignalBus.gd"
+SaveManager="*res://autoloads/SaveManager.gd"
+
 [display]
 
 window/size/window_width_override=1280
