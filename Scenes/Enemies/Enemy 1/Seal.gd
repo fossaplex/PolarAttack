@@ -3,8 +3,8 @@ extends CharacterBody2D
 @export var SPEED = 20.0
 
 @onready var target: CharacterBody2D = get_node('/root/Level/Player')
-	
-func _physics_process(delta):
+
+func _physics_process(delta: float):
 	var direction = (target.global_position - global_position)
 	var direction_normalize = direction.normalized()
 	var target_distance = global_position.distance_to(target.global_position)
