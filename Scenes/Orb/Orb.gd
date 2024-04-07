@@ -1,5 +1,4 @@
 extends Area2D
-class_name Orb
 
 # Orbiting parameters
 @export var orbit_speed = 2.8  # How fast the object orbits around the player
@@ -26,7 +25,6 @@ func _process(delta):
 	
 	# Update the position of the Area2D to orbit around the player
 	position = Vector2(x, y)
-
 
 func _on_body_entered(body: Node2D):
 	print("enter" + str(body))
