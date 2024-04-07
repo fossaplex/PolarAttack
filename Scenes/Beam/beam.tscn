@@ -33,6 +33,8 @@ scale = Vector2(0.32, 0.32)
 texture = ExtResource("1_hhywt")
 
 [node name="Beam" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 scale = Vector2(1, -0.037)
 texture = ExtResource("2_2s5hh")
 centered = false
@@ -51,4 +53,4 @@ preprocess = 0.25
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(100, 0)
-collision_mask = 6
+collision_mask = 32

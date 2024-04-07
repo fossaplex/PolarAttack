@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://v0wxmchyy8hw"]
+[gd_scene load_steps=7 format=3 uid="uid://v0wxmchyy8hw"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Level.gd" id="1_mxhe7"]
 [ext_resource type="PackedScene" uid="uid://bw72hruorpjco" path="res://Scenes/Player/Player.tscn" id="1_siijq"]
 [ext_resource type="PackedScene" uid="uid://3j3i1mox6gns" path="res://Scenes/Map/map.tscn" id="2_gs7rd"]
 [ext_resource type="AudioStream" uid="uid://dt1cy7i75mhnu" path="res://Sounds/song_1.mp3" id="3_dm7rh"]
 [ext_resource type="PackedScene" uid="uid://b7dv846tam46k" path="res://Scenes/Spawner/Enemy Spawner.tscn" id="5_xa74c"]
+[ext_resource type="PackedScene" uid="uid://bcx3a8idecdv0" path="res://Scenes/Enemies/Enemy 1/Seal.tscn" id="6_s6v02"]
 
 [node name="Level" type="Node2D"]
 y_sort_enabled = true
@@ -18,9 +19,10 @@ layer_2/tile_data = PackedInt32Array()
 [node name="Player" parent="." instance=ExtResource("1_siijq")]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(-157, -109)
+position = Vector2(-77, -71)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+scale = Vector2(21.9447, -0.00869699)
 zoom = Vector2(3.41, 3.41)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -31,3 +33,6 @@ autoplay = true
 [node name="EnemySpawner" parent="." instance=ExtResource("5_xa74c")]
 y_sort_enabled = true
 position = Vector2(-52, 38)
+
+[node name="CharacterBody2D" parent="EnemySpawner" instance=ExtResource("6_s6v02")]
+position = Vector2(20, -80)
