@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dbts7lk5puy4d"
+path="res://.godot/imported/orb buzz.mp3-89a3c82d152240092cdab99f7ad98322.mp3str"
+
+[deps]
+
+source_file="res://Sounds/orb buzz.mp3"
+dest_files=["res://.godot/imported/orb buzz.mp3-89a3c82d152240092cdab99f7ad98322.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
