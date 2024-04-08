@@ -13,8 +13,12 @@ func _ready():
 	add_window_mode_items()
 	select_current_window_mode()
 	option_button.item_selected.connect(on_window_mode_selected)
+	load_data()
 
-
+func load_data() -> void:
+	on_window_mode_selected(SettingsDataContainer.get_window_mode_index())
+	option_button.select(SettingsDataContainer.get_window_mode_index())
+	
 func select_current_window_mode() -> void:
 	var mode = DisplayServer.window_get_mode()
 	var borderless = DisplayServer.window_get_flag(DisplayServer.WINDOW_FLAG_BORDERLESS)
@@ -37,7 +41,7 @@ func add_window_mode_items() -> void:
 		option_button.add_item(window_mode)
 
 func on_window_mode_selected(index : int) -> void:
-	SettingsSignalBus.emit_on_window_mode_toggled(index)
+	SettingsSignalBus.emit_set_window_mode_toggled(index)
 	match index:
 		0: #Full Screen
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)

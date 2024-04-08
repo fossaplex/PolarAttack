@@ -6,6 +6,11 @@ extends Control
 
 func _ready():
 	check_button.toggled.connect(on_subtitles_toggled)
+	load_data()
+	
+func load_data() -> void:
+	check_button.button_pressed = SettingsDataContainer.get_subtitles_toggled()
+	on_subtitles_toggled(SettingsDataContainer.get_subtitles_toggled())
 	
 func set_label_text(button_pressed: bool) -> void:
 	if button_pressed:
@@ -15,5 +20,5 @@ func set_label_text(button_pressed: bool) -> void:
 
 func on_subtitles_toggled(button_pressed: bool) -> void:
 	set_label_text(button_pressed)
-	SettingsSignalBus.emit_on_subtitles_toggled(button_pressed)
+	SettingsSignalBus.emit_set_subtitles_toggled(button_pressed)
 	
