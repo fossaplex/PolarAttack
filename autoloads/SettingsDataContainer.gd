@@ -1,6 +1,7 @@
 extends Node
 
 @onready var DEFAULT_SETTINGS : DefaultSettingsResource = preload("res://Scenes/Resources/DefaultSettings.tres")
+@onready var keybind_resource : PlayerKeybindResource = preload("res://Scenes/Resources/PlayerKeybindDefault.tres")
 #Graphics 
 var window_mode_index : int = 0
 var resolution_index: int = 0
@@ -30,9 +31,18 @@ func create_storage_dictionary() -> Dictionary:
 		"sfx_volume": sfx_volume,
 		"ambient_volume": ambient_volume,
 		"subtitles_set": subtitles_set,
+		"keybinds" : create_keybinds_dictionary()
 	}
 	return settings_container_dict
 
+func create_keybinds_dictionary() -> Dictionary:
+	var keybinds_container_dict : Dictionary = {
+		keybind_resource.MOVE_LEFT : keybind_resource.move_left_key,
+		keybind_resource.MOVE_RIGHT: keybind_resource.move_right_key,
+		keybind_resource.MOVE_UP : keybind_resource.move_up_key,
+		keybind_resource.MOVE_DOWN : keybind_resource.move_down_key
+	}
+	return keybinds_container_dict
 #Getters
 func get_window_mode_index() -> int:
 	if loaded_data == {}:
@@ -62,6 +72,27 @@ func get_ambient_sound() -> float:
 	if loaded_data == {}:
 		return DEFAULT_SETTINGS.DEFAULT_AMBIENT_VOLUME
 	return ambient_volume
+func get_keybinds(action: String):
+	if !loaded_data.has("keybinds"):
+		match action:
+			keybind_resource.MOVE_LEFT:
+				return keybind_resource.DEFAULT_MOVE_LEFT_KEY
+			keybind_resource.MOVE_RIGHT:
+				return keybind_resource.DEFAULT_MOVE_RIGHT_KEY
+			keybind_resource.MOVE_UP:
+				return keybind_resource.DEFAULT_MOVE_UP_KEY
+			keybind_resource.MOVE_DOWN:
+				return keybind_resource.DEFAULT_MOVE_DOWN_KEY
+	else:
+		match action:
+			keybind_resource.MOVE_LEFT:
+				return keybind_resource.move_left_key
+			keybind_resource.MOVE_RIGHT:
+				return keybind_resource.move_right_key
+			keybind_resource.MOVE_UP:
+				return keybind_resource.move_up_key
+			keybind_resource.MOVE_DOWN:
+				return keybind_resource.move_down_key
 
 func set_window_mode_selected(index: int) -> void:
 	window_mode_index = index
@@ -77,6 +108,32 @@ func set_sfx_sound_set(value: float) -> void:
 	sfx_volume = value
 func set_ambient_sound_set(value: float) -> void:
 	ambient_volume = value
+func set_keybind(action: String, event) -> void:
+	match action:
+		keybind_resource.MOVE_LEFT:
+			keybind_resource.move_left_key = event
+		keybind_resource.MOVE_RIGHT:
+			keybind_resource.move_right_key = event
+		keybind_resource.MOVE_UP:
+			keybind_resource.move_up_key = event
+		keybind_resource.MOVE_DOWN:
+			keybind_resource.move_down_key = event
+
+func on_keybinds_loaded(data : Dictionary) -> void:
+	var loaded_move_left = InputEventKey.new()
+	var loaded_move_right = InputEventKey.new()
+	var loaded_move_up = InputEventKey.new()
+	var loaded_move_down = InputEventKey.new()
+	
+	loaded_move_left.set_physical_keycode(int(data.move_left))
+	loaded_move_right.set_physical_keycode(int(data.move_right))
+	loaded_move_up.set_physical_keycode(int(data.move_up))
+	loaded_move_down.set_physical_keycode(int(data.move_down))
+	
+	keybind_resource.move_left_key = loaded_move_left
+	keybind_resource.move_right_key = loaded_move_right
+	keybind_resource.move_up_key = loaded_move_up
+	keybind_resource.move_down_key = loaded_move_down
 	
 func on_settings_data_loaded(data: Dictionary) -> void:
 	loaded_data = data
@@ -87,6 +144,7 @@ func on_settings_data_loaded(data: Dictionary) -> void:
 	set_music_sound_set(loaded_data.music_volume)
 	set_sfx_sound_set(loaded_data.sfx_volume)
 	set_ambient_sound_set(loaded_data.ambient_volume)
+	on_keybinds_loaded(loaded_data.keybinds)
 
 func handle_signals() -> void:
 	SettingsSignalBus.set_window_mode_selected.connect(set_window_mode_selected)
