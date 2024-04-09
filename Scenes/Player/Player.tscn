@@ -1,17 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://bw72hruorpjco"]
+[gd_scene load_steps=13 format=3 uid="uid://bw72hruorpjco"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_ty1sm"]
 [ext_resource type="Texture2D" uid="uid://j72r5deby7vj" path="res://Graphics/Spritesheets/Idle.png" id="2_4qb6i"]
 [ext_resource type="Texture2D" uid="uid://43lfb3lyefnb" path="res://Graphics/Spritesheets/Walk.png" id="3_4y3tl"]
-[ext_resource type="Script" path="res://Scenes/Player/Area2D.gd" id="4_27xju"]
-[ext_resource type="Texture2D" uid="uid://e4hxlcuau0ik" path="res://Graphics/Spritesheets/Bullets/orb.jpg" id="5_u3hyf"]
-[ext_resource type="Script" path="res://Scenes/Player/Area2D2.gd" id="6_g2a3m"]
-[ext_resource type="Script" path="res://Scenes/Player/Area2D3.gd" id="7_s1t17"]
+[ext_resource type="PackedScene" uid="uid://diy85w135sgrw" path="res://Scenes/Beam/beam.tscn" id="4_0ti1t"]
 [ext_resource type="AudioStream" uid="uid://cribpqi2ab5in" path="res://Sounds/step_1.mp3" id="8_cxqis"]
 [ext_resource type="AudioStream" uid="uid://wv21kwdqr8rb" path="res://Sounds/tempdeathsound.wav" id="9_ihtdn"]
+[ext_resource type="PackedScene" uid="uid://b5naqof73cu32" path="res://Scenes/Orb/Orb.tscn" id="12_fk0ho"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m4cf3"]
-size = Vector2(4.61285, 3.04646)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ion7"]
+size = Vector2(4.28336, 2.28484)
 
 [sub_resource type="Animation" id="Animation_hdlye"]
 length = 0.001
@@ -189,12 +187,9 @@ _data = {
 "walk": SubResource("Animation_e4kqs")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_yu12w"]
-
 [node name="CharacterBody2D" type="CharacterBody2D"]
-z_index = 1
-y_sort_enabled = true
-collision_mask = 5
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_ty1sm")
 SPEED = 150.0
 
@@ -206,7 +201,7 @@ hframes = 2
 [node name="PlayerHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
 scale = Vector2(3.035, 1.313)
-shape = SubResource("RectangleShape2D_m4cf3")
+shape = SubResource("RectangleShape2D_1ion7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -214,59 +209,10 @@ libraries = {
 }
 autoplay = "walk"
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Beam" parent="." instance=ExtResource("4_0ti1t")]
+visibility_layer = 33
 z_index = 1
-scale = Vector2(0.2, 0.2)
-collision_layer = 3
-collision_mask = 7
-script = ExtResource("4_27xju")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -30)
-shape = SubResource("CircleShape2D_yu12w")
-
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
-position = Vector2(-1.7053e-13, -30)
-scale = Vector2(0.035, 0.035)
-texture = ExtResource("5_u3hyf")
-region_enabled = true
-region_rect = Rect2(112, 112, 776, 776)
-
-[node name="Area2D2" type="Area2D" parent="."]
-z_index = 1
-scale = Vector2(0.2, 0.2)
-collision_layer = 3
-collision_mask = 7
-script = ExtResource("6_g2a3m")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2(0, -30)
-shape = SubResource("CircleShape2D_yu12w")
-
-[node name="Sprite2D" type="Sprite2D" parent="Area2D2"]
-position = Vector2(-1.7053e-13, -30)
-scale = Vector2(0.035, 0.035)
-texture = ExtResource("5_u3hyf")
-region_enabled = true
-region_rect = Rect2(112, 112, 776, 776)
-
-[node name="Area2D3" type="Area2D" parent="."]
-z_index = 1
-scale = Vector2(0.2, 0.2)
-collision_layer = 3
-collision_mask = 7
-script = ExtResource("7_s1t17")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
-position = Vector2(0, -30)
-shape = SubResource("CircleShape2D_yu12w")
-
-[node name="Sprite2D" type="Sprite2D" parent="Area2D3"]
-position = Vector2(-1.7053e-13, -30)
-scale = Vector2(0.035, 0.035)
-texture = ExtResource("5_u3hyf")
-region_enabled = true
-region_rect = Rect2(112, 112, 776, 776)
+position = Vector2(0, -12)
 
 [node name="SoundWalk" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_cxqis")
@@ -280,6 +226,15 @@ one_shot = true
 stream = ExtResource("9_ihtdn")
 volume_db = -5.621
 
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
-[connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
-[connection signal="body_entered" from="Area2D3" to="Area2D3" method="_on_body_entered"]
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(0, -6)
+
+[node name="Orb" parent="Node2D" instance=ExtResource("12_fk0ho")]
+
+[node name="Orb2" parent="Node2D" instance=ExtResource("12_fk0ho")]
+orbit_speed = 4.5
+orbit_angle = 220.0
+
+[node name="Orb3" parent="Node2D" instance=ExtResource("12_fk0ho")]
+orbit_speed = 3.6
+orbit_angle = 135.0

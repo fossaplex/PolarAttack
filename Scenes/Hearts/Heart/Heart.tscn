@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqk7vvugrnxnu"]
+
+[ext_resource type="Script" path="res://Scenes/Hearts/Heart/Heart.gd" id="1_n77ok"]
+[ext_resource type="Texture2D" uid="uid://bjkcdxkooqr0" path="res://Graphics/Spritesheets/heart_full.png" id="2_1cbur"]
+[ext_resource type="Texture2D" uid="uid://cqcogqcwu2lge" path="res://Graphics/Spritesheets/heart_half_full.png" id="3_h5ojh"]
+[ext_resource type="Texture2D" uid="uid://c11gsfidn5wea" path="res://Graphics/Spritesheets/heart_empty.png" id="4_nhjjh"]
+
+[node name="Node2D" type="Node2D"]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("1_n77ok")
+
+[node name="HeartFull" type="Sprite2D" parent="."]
+texture = ExtResource("2_1cbur")
+region_enabled = true
+region_rect = Rect2(314, 328, 64, 57)
+
+[node name="HeartHalfFull" type="Sprite2D" parent="."]
+texture = ExtResource("3_h5ojh")
+region_enabled = true
+region_rect = Rect2(315, 328, 64, 57)
+
+[node name="HeartEmpty" type="Sprite2D" parent="."]
+texture = ExtResource("4_nhjjh")
+region_enabled = true
+region_rect = Rect2(315, 328, 63, 57)

@@ -1,11 +1,33 @@
-[gd_scene load_steps=7 format=3 uid="uid://v0wxmchyy8hw"]
+[gd_scene load_steps=11 format=3 uid="uid://v0wxmchyy8hw"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Level.gd" id="1_mxhe7"]
 [ext_resource type="PackedScene" uid="uid://bw72hruorpjco" path="res://Scenes/Player/Player.tscn" id="1_siijq"]
 [ext_resource type="PackedScene" uid="uid://3j3i1mox6gns" path="res://Scenes/Map/map.tscn" id="2_gs7rd"]
 [ext_resource type="AudioStream" uid="uid://dt1cy7i75mhnu" path="res://Sounds/song_1.mp3" id="3_dm7rh"]
+[ext_resource type="PackedScene" uid="uid://c4xpq8iffsd5t" path="res://Scenes/Hearts/HeartsContainer.tscn" id="5_d1brm"]
 [ext_resource type="PackedScene" uid="uid://b7dv846tam46k" path="res://Scenes/Spawner/Enemy Spawner.tscn" id="5_xa74c"]
+[ext_resource type="AudioStream" uid="uid://bit6conjtq8a0" path="res://Sounds/blizzard ominous.mp3" id="6_05ye3"]
 [ext_resource type="PackedScene" uid="uid://dyx3kehr12ycl" path="res://Scenes/PauseMenu/pause_menu.tscn" id="6_30ok4"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s2fnj"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(2000, 2000, 1)
+angle_min = -720.0
+angle_max = 720.0
+spread = 133.989
+flatness = 0.697
+initial_velocity_max = 14.22
+gravity = Vector3(-100, 70, 0)
+linear_accel_max = 76.4
+scale_max = 2.0
+color = Color(0.639216, 0.74902, 0.913725, 1)
+hue_variation_min = -0.05
+hue_variation_max = 0.02
+turbulence_noise_strength = 5.26
+turbulence_noise_scale = 3.263
+turbulence_noise_speed_random = 0.0
+turbulence_influence_max = 0.131
 
 [node name="Level" type="Node2D"]
 process_mode = 3
@@ -20,19 +42,50 @@ layer_2/tile_data = PackedInt32Array()
 
 [node name="Player" parent="." instance=ExtResource("1_siijq")]
 process_mode = 1
-position = Vector2(-35, -118)
+z_index = 1
+y_sort_enabled = true
+position = Vector2(50, -9)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(5.395, 5.395)
+z_index = 2
+scale = Vector2(21.9447, -0.00869699)
+zoom = Vector2(3.41, 3.41)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="HeartsContainer" parent="Player/Camera2D" instance=ExtResource("5_d1brm")]
+position = Vector2(-7.38219, 10348.4)
+scale = Vector2(0.0455691, -114.982)
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_dm7rh")
-volume_db = -0.219
+volume_db = -23.357
+pitch_scale = 0.6
 autoplay = true
+mix_target = 2
 
 [node name="EnemySpawner" parent="." instance=ExtResource("5_xa74c")]
+y_sort_enabled = true
 process_mode = 1
 position = Vector2(-52, 38)
+
+[node name="AmbientNoise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_05ye3")
+volume_db = -2.811
+autoplay = true
+bus = &"Ambient"
+
+[node name="Snow" type="GPUParticles2D" parent="."]
+z_index = 2
+position = Vector2(495, 515)
+amount = 4000
+process_material = SubResource("ParticleProcessMaterial_s2fnj")
+lifetime = 5.03
+randomness = 0.23
+visibility_rect = Rect2(-1000, -1000, 1000, 1000)
+local_coords = true
+draw_order = 2
+trail_lifetime = 6.58
+trail_sections = 16
+trail_section_subdivisions = 16
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
