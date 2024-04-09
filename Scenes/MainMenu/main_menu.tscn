@@ -99,3 +99,4 @@ layout_mode = 1
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_2p5g8")
 autoplay = true
+bus = &"Music"
