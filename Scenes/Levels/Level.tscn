@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://v0wxmchyy8hw"]
+[gd_scene load_steps=13 format=3 uid="uid://v0wxmchyy8hw"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Level.gd" id="1_mxhe7"]
 [ext_resource type="PackedScene" uid="uid://bw72hruorpjco" path="res://Scenes/Player/Player.tscn" id="1_siijq"]
@@ -9,6 +9,8 @@
 [ext_resource type="AudioStream" uid="uid://bit6conjtq8a0" path="res://Sounds/blizzard ominous.mp3" id="6_05ye3"]
 [ext_resource type="PackedScene" uid="uid://dyx3kehr12ycl" path="res://Scenes/PauseMenu/pause_menu.tscn" id="6_30ok4"]
 [ext_resource type="PackedScene" uid="uid://dfmw6h4velbkk" path="res://Scenes/OptionsMenu/options_menu.tscn" id="9_e5sju"]
+[ext_resource type="PackedScene" uid="uid://cwejontbuq4sr" path="res://Scenes/Collectables/BaseCollectableEntity/BaseCollectableEntity.tscn" id="10_c23ho"]
+[ext_resource type="PackedScene" uid="uid://dkunpj14gq1t0" path="res://Scenes/Managers/collectable_manager.tscn" id="11_b0gdw"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s2fnj"]
 particle_flag_disable_z = true
@@ -92,6 +94,7 @@ trail_section_subdivisions = 16
 
 [node name="PauseMenu" parent="CanvasLayer" node_paths=PackedStringArray("level") instance=ExtResource("6_30ok4")]
 process_mode = 2
+visible = false
 level = NodePath("../..")
 
 [node name="OptionsMenu" parent="CanvasLayer/PauseMenu" instance=ExtResource("9_e5sju")]
@@ -101,5 +104,24 @@ offset_left = -1.0
 offset_top = 1.0
 offset_right = -1.0
 offset_bottom = 1.0
+
+[node name="Xp5" parent="." instance=ExtResource("10_c23ho")]
+position = Vector2(-84, 107)
+
+[node name="Xp4" parent="." instance=ExtResource("10_c23ho")]
+position = Vector2(285, 111)
+
+[node name="Xp3" parent="." instance=ExtResource("10_c23ho")]
+position = Vector2(118, 99)
+
+[node name="Xp2" parent="." instance=ExtResource("10_c23ho")]
+position = Vector2(-215, 68)
+
+[node name="Xp" parent="." instance=ExtResource("10_c23ho")]
+position = Vector2(-139, 20)
+
+[node name="Manager_Container" type="Node" parent="."]
+
+[node name="Collectable_manager" parent="Manager_Container" instance=ExtResource("11_b0gdw")]
 
 [connection signal="exit_options_menu" from="CanvasLayer/PauseMenu/OptionsMenu" to="CanvasLayer/PauseMenu" method="_on_options_menu_exit_options_menu"]
