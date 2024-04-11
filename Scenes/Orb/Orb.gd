@@ -8,13 +8,9 @@ extends Area2D
 @export var orbit_angle = 0.0  # Current angle in the orbit
 
 var player  # Reference to the player node
-var hud # Reference to HUD
-@onready var hearts = get_node("/root/Level/Player/Camera2D/HeartsContainer")
 
 func _ready():
 	player = get_node("/root/Level/Player")  # Adjust the path to correctly point to your player node
-	hud = get_node("/root/Level/Player/Camera2D/HUD")
-	
 
 func _process(delta):
 	# Update the current angle based on the orbit speed
@@ -35,28 +31,19 @@ func _process(delta):
 	# Update the position of the Area2D to orbit arou nd the player
 	position = Vector2(x, y)
 
-func _on_body_entered(body: Node2D):
-	if body.is_in_group("enemies"):
-		body.queue_free() 
-		hearts.subtract_health(1)
-		$AudioStreamPlayer.play()
-		#hud.update_score(5)
-		var audio_player = get_parent().get_node("SoundKill")
-		if audio_player:
-			audio_player.play()
-
-
 func _on_area_entered(area: Area2D):
 	var parent = area.get_parent()
+	var bar = parent.get_node("GenericProgressBar")
+
 	var pitch_variation_range = 0.3 # Defines how much the pitch can vary
 	var base_pitch = 1.0 # Normal pit
 	if parent.is_in_group("enemies"):
-		parent.queue_free() 
-		hearts.subtract_health(1)
+		bar.decrement(50)
+		if bar.value <= 0:
+			parent.queue_free() 
+		
 		var random_pitch = base_pitch + randf_range(-pitch_variation_range, pitch_variation_range) 
 		$AudioStreamPlayer.pitch_scale = random_pitch
 		$AudioStreamPlayer.play()
-		var audio_player = get_parent().get_node("SoundKill")
-		if audio_player:
-			audio_player.play()
+
 

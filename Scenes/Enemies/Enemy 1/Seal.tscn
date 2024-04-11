@@ -1,7 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bcx3a8idecdv0"]
+[gd_scene load_steps=11 format=3 uid="uid://bcx3a8idecdv0"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/Enemy 1/Seal.gd" id="1_snkuk"]
 [ext_resource type="Texture2D" uid="uid://cpt0kgd14pang" path="res://Graphics/Spritesheets/Enemies/seal/walk.png" id="2_4rlea"]
+[ext_resource type="PackedScene" uid="uid://cw2kwxjvgpec7" path="res://Scenes/ProgressBar/ProgressBar.tscn" id="2_qrnbm"]
+[ext_resource type="Texture2D" uid="uid://qatsyxql6wdw" path="res://Graphics/Spritesheets/HUD UI/ProgressBarUnder_1.png" id="3_x3gn2"]
+[ext_resource type="Texture2D" uid="uid://d4cc3eyopu7vx" path="res://Graphics/Spritesheets/HUD UI/ProgressBarProgress_1.png" id="4_ftjl7"]
 
 [sub_resource type="Animation" id="Animation_gko4g"]
 length = 0.001
@@ -123,6 +126,17 @@ position = Vector2(0, -1)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_snkuk")
+
+[node name="GenericProgressBar" parent="." instance=ExtResource("2_qrnbm")]
+offset_left = -6.0
+offset_top = 2.0
+offset_right = 58.0
+offset_bottom = 12.0
+scale = Vector2(0.2, 0.2)
+value = 100.0
+texture_under = ExtResource("3_x3gn2")
+texture_progress = ExtResource("4_ftjl7")
+progress_color = Color(0, 1, 1, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
