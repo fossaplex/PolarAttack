@@ -3,6 +3,7 @@ class_name BaseCollectableEntity
 
 @export var collectable_resource : BaseCollectableResource
 
+
 @onready var sprite_2d = $Sprite2D
 
 

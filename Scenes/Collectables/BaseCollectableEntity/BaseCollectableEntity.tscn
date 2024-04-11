@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://dnq2rfivot4wy" path="res://Scenes/Resources/collectable/CollectableResources/smallExperience.tres" id="2_ljy2f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_60e1w"]
-radius = 45.0444
+radius = 15.0333
 
 [node name="Collectable_Entity" type="Area2D"]
 collision_layer = 16
