@@ -1,9 +1,10 @@
 extends TextureProgressBar
 class_name Generic_Progress_Bar
 
-var progress_color = Color(0.0, 1.0, 0.0, 1.0) # Default color (Green)
+@export var progress_color = Color(0.0, 1.0, 0.0, 1.0) # Default color (Green)
 
 func _ready():
+	set_progress_color(progress_color)
 	pass
 
 func _process(delta):
