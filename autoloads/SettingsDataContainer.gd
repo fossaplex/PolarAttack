@@ -22,6 +22,17 @@ func _ready():
 	handle_signals()
 	create_storage_dictionary()
 
+func create_keybinds_dictionary() -> Dictionary:
+	var keybinds_container_dict : Dictionary = {
+		keybind_resource.MOVE_LEFT : keybind_resource.move_left_key,
+		keybind_resource.MOVE_RIGHT: keybind_resource.move_right_key,
+		keybind_resource.MOVE_UP : keybind_resource.move_up_key,
+		keybind_resource.MOVE_DOWN : keybind_resource.move_down_key,
+		keybind_resource.PRIMARY_ATTACK : keybind_resource.primary_attack_button,
+		keybind_resource.SECONDARY_ATTACK : keybind_resource.secondary_attack_button,
+	}
+	return keybinds_container_dict
+
 func create_storage_dictionary() -> Dictionary:
 	var settings_container_dict: Dictionary = {
 		"window_mode_index": window_mode_index,
@@ -35,14 +46,6 @@ func create_storage_dictionary() -> Dictionary:
 	}
 	return settings_container_dict
 
-func create_keybinds_dictionary() -> Dictionary:
-	var keybinds_container_dict : Dictionary = {
-		keybind_resource.MOVE_LEFT : keybind_resource.move_left_key,
-		keybind_resource.MOVE_RIGHT: keybind_resource.move_right_key,
-		keybind_resource.MOVE_UP : keybind_resource.move_up_key,
-		keybind_resource.MOVE_DOWN : keybind_resource.move_down_key
-	}
-	return keybinds_container_dict
 #Getters
 func get_window_mode_index() -> int:
 	if loaded_data == {}:
@@ -83,6 +86,10 @@ func get_keybinds(action: String):
 				return keybind_resource.DEFAULT_MOVE_UP_KEY
 			keybind_resource.MOVE_DOWN:
 				return keybind_resource.DEFAULT_MOVE_DOWN_KEY
+			keybind_resource.DEFAULT_PRIMARY_ATTACK_INPUT:
+				return keybind_resource.DEFAULT_PRIMARY_ATTACK_INPUT
+			keybind_resource.DEFAULT_SECONDARY_ATTACK_INPUT:
+				return keybind_resource.DEFAULT_SECONDARY_ATTACK_INPUT
 	else:
 		match action:
 			keybind_resource.MOVE_LEFT:
@@ -93,6 +100,10 @@ func get_keybinds(action: String):
 				return keybind_resource.move_up_key
 			keybind_resource.MOVE_DOWN:
 				return keybind_resource.move_down_key
+			keybind_resource.PRIMARY_ATTACK:
+				return keybind_resource.primary_attack_button
+			keybind_resource.SECONDARY_ATTACK:
+				return keybind_resource.secondary_attack_button
 
 func set_window_mode_selected(index: int) -> void:
 	window_mode_index = index
@@ -118,23 +129,64 @@ func set_keybind(action: String, event) -> void:
 			keybind_resource.move_up_key = event
 		keybind_resource.MOVE_DOWN:
 			keybind_resource.move_down_key = event
+		keybind_resource.PRIMARY_ATTACK:
+			keybind_resource.primary_attack_button = event
+		keybind_resource.SECONDARY_ATTACK:
+			keybind_resource.secondary_attack_button = event
 
 func on_keybinds_loaded(data : Dictionary) -> void:
 	var loaded_move_left = InputEventKey.new()
 	var loaded_move_right = InputEventKey.new()
 	var loaded_move_up = InputEventKey.new()
 	var loaded_move_down = InputEventKey.new()
-	
+	var loaded_primary_attack = InputEventMouseButton.new()
+	var loaded_secondary_attack = InputEventMouseButton.new()
+	print(data)
+	print("Break")
+	print(data.move_left)
+	print(data.secondary_attack)
+	print("Break two")
+	if data != null:
+		var getInputs = set_key_or_mouse_input(data)
+		if getInputs != null:
+			pass
 	loaded_move_left.set_physical_keycode(int(data.move_left))
 	loaded_move_right.set_physical_keycode(int(data.move_right))
 	loaded_move_up.set_physical_keycode(int(data.move_up))
 	loaded_move_down.set_physical_keycode(int(data.move_down))
+	loaded_primary_attack.set
 	
 	keybind_resource.move_left_key = loaded_move_left
 	keybind_resource.move_right_key = loaded_move_right
 	keybind_resource.move_up_key = loaded_move_up
 	keybind_resource.move_down_key = loaded_move_down
 	
+func set_key_or_mouse_input(currentInputs: Dictionary) -> Dictionary:
+	var tempDictionary : Dictionary = {
+		"move_left" : null,
+		"move_right" : null,
+		"move_up" : null,
+		"move_down" : null,
+		"primary_attack" : null,
+		"secondary_attack" : null,
+	}
+	var move_left
+	var move_right
+	var move_up
+	var move_down
+	var primary_attack
+	var secondary_attack
+	for key in currentInputs:
+		print(currentInputs[key])
+		if currentInputs[key].contains("InputEventMouseButton"):
+			tempDictionary[key] = InputEventMouseButton.new()
+		elif currentInputs[key].contains("InputEventMouseButton"):
+			tempDictionary[key] = InputEventKey.new()
+		else:
+			#placeholder for controller support?
+			print("Error, no Keyboard/Mouse detected")
+	return tempDictionary
+
 func on_settings_data_loaded(data: Dictionary) -> void:
 	loaded_data = data
 	set_window_mode_selected(loaded_data.window_mode_index)

@@ -13,12 +13,12 @@ const SECONDARY_ATTACK: String = "secondary_attack"
 @export var DEFAULT_MOVE_UP_KEY = InputEventKey.new()
 @export var DEFAULT_MOVE_DOWN_KEY = InputEventKey.new()
 #TODO v
-@export var DEFAULT_PRIMARY_ATTACK_INPUT = InputEventKey.new()
-@export var DEFAULT_SECONDARY_ATTACK_INPUT = InputEventKey.new()
+@export var DEFAULT_PRIMARY_ATTACK_INPUT = InputEventMouseButton.new()
+@export var DEFAULT_SECONDARY_ATTACK_INPUT = InputEventMouseButton.new()
 
-var move_left_key = InputEventKey.new()
-var move_right_key = InputEventKey.new()
-var move_up_key = InputEventKey.new()
-var move_down_key = InputEventKey.new()
-var primary_attack_key = InputEventKey.new()
-var secondary_attack_key = InputEventKey.new()
+var move_left_key
+var move_right_key
+var move_up_key 
+var move_down_key 
+var primary_attack_button 
+var secondary_attack_button 

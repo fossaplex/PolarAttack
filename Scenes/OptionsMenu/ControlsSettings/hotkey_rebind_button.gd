@@ -8,8 +8,9 @@ extends Control
 
 func _ready():
 	set_process_unhandled_key_input(false)
+	set_process_input(false)
 	set_action_name()
-	set_text_for_key()
+	set_text_for_input()
 	load_keybinds()
 
 func load_keybinds() -> void:
@@ -20,7 +21,6 @@ func load_keybinds() -> void:
 ## I added what I thought we would need for now (Up down left right and two attacks)
 func set_action_name() -> void:
 	label.text = "Unassigned"
-	
 	match action_name:
 		"move_up":
 			label.text = "Move Up"
@@ -35,7 +35,7 @@ func set_action_name() -> void:
 		"secondary_attack":
 			label.text = "Secondary Attack"
 
-func set_text_for_key() -> void:
+func set_text_for_input() -> void:
 	var action_events = InputMap.action_get_events(action_name)
 	if action_events.size() > 0:
 		var action_event = action_events[0]
@@ -43,39 +43,48 @@ func set_text_for_key() -> void:
 			var action_keycode = OS.get_keycode_string(action_event.physical_keycode)
 			button.text = "%s" % action_keycode
 		elif action_event is InputEventMouseButton:
-			var action_mouse = OS.get_keycode_string(action_event.button_index)
-			button.text = "%s" % "Mouse Button" + str(action_mouse)
+			var action_mouse = action_event.button_index
+			match action_mouse:
+				1:
+					button.text = "Left Mouse Button" 
+				2:
+					button.text = "Right Mouse Button"
 		elif action_event is InputEventJoypadMotion:
 			var action_axis = action_event.axis
 			button.text = "%s" % "Joypad Axis: " + str(action_axis)
+	set_process_input(false)
 
 
 func _on_button_toggled(button_pressed):
 	if button_pressed:
-		button.text = "Press Any Key..."
-		set_process_unhandled_key_input(button_pressed)
-		
+		button.text = "Press Any Key/Input..."
+		set_process_unhandled_input(button_pressed)
+		set_process_input(button_pressed)
 		for i in get_tree().get_nodes_in_group("hotkey_button"):
 			if i.action_name != self.action_name:
 				i.button.toggle_mode = false;
 				i.set_process_unhandled_key_input(false)
+				i.set_process_input(false)
 	else:
-		
 		for i in get_tree().get_nodes_in_group("hotkey_button"):
 			if i.action_name != self.action_name:
 				i.button.toggle_mode = true;
 				i.set_process_unhandled_key_input(false)
-		set_text_for_key()
+				i.set_process_input(false)
+		set_text_for_input()
 
-func _unhandled_key_input(event):
-	rebind_action_key(event)
-	button.button_pressed = false
+func _input(event):
+	print(event)
+	if event is InputEventKey or event is InputEventMouseButton:
+		rebind_action_key(event)
+		button.button_pressed = false
 	
 func rebind_action_key(event):
 	InputMap.action_erase_events(action_name)
 	InputMap.action_add_event(action_name,event)
 	SettingsDataContainer.set_keybind(action_name, event)
 	set_process_unhandled_key_input(false)
-	set_text_for_key()
+	set_process_input(false)
+	set_text_for_input()
 	set_action_name()
 	
