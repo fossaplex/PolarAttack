@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsugonyvibcr3"
-path="res://.godot/imported/snowflake.png-20644d4dcbef13b183b2cc0b366c0ade.ctex"
+uid="uid://bs4gv7q1ultpg"
+path="res://.godot/imported/Death.png-1beb2484f6bf193896cfaa02befd647a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Spritesheets/snowflake.png"
-dest_files=["res://.godot/imported/snowflake.png-20644d4dcbef13b183b2cc0b366c0ade.ctex"]
+source_file="res://Graphics/Spritesheets/Penguin/Death.png"
+dest_files=["res://.godot/imported/Death.png-1beb2484f6bf193896cfaa02befd647a.ctex"]
 
 [params]
 

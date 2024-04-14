@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqcogqcwu2lge"
-path="res://.godot/imported/heart_half_full.png-ea3254781ec3bee0e883a97e3a4c751f.ctex"
+uid="uid://c17din1lh04cf"
+path="res://.godot/imported/StateSprite.png-8729defba6b1d3ecd49813f8fc9f34ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Spritesheets/heart_half_full.png"
-dest_files=["res://.godot/imported/heart_half_full.png-ea3254781ec3bee0e883a97e3a4c751f.ctex"]
+source_file="res://Icons/StateSprite.png"
+dest_files=["res://.godot/imported/StateSprite.png-8729defba6b1d3ecd49813f8fc9f34ff.ctex"]
 
 [params]
 

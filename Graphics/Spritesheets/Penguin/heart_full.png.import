@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dj1hh568kmndl"
-path="res://.godot/imported/Fall.png-a946d616d4b55475608e0583ca84a61a.ctex"
+uid="uid://bjkcdxkooqr0"
+path="res://.godot/imported/heart_full.png-cc22ee4e85085b8fe0f819eb91720402.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Spritesheets/Fall.png"
-dest_files=["res://.godot/imported/Fall.png-a946d616d4b55475608e0583ca84a61a.ctex"]
+source_file="res://Graphics/Spritesheets/Penguin/heart_full.png"
+dest_files=["res://.godot/imported/heart_full.png-cc22ee4e85085b8fe0f819eb91720402.ctex"]
 
 [params]
 

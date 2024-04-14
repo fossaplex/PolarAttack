@@ -21,11 +21,25 @@ SettingsDataContainer="*res://autoloads/SettingsDataContainer.gd"
 SettingsSignalBus="*res://autoloads/SettingsSignalBus.gd"
 SaveManager="*res://autoloads/SaveManager.gd"
 
+[debug]
+
+gdscript/warnings/untyped_declaration=1
+
 [display]
 
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
+
+[file_customization]
+
+folder_colors={
+"res://Graphics/": "orange",
+"res://Icons/": "green",
+"res://Scripts/": "yellow",
+"res://Sounds/": "blue",
+"res://autoloads/": "red"
+}
 
 [input]
 

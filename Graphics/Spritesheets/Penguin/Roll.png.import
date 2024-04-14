@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://j72r5deby7vj"
-path="res://.godot/imported/Idle.png-1970e3f0d20a2bd8669797d6e147f459.ctex"
+uid="uid://bslfgkpulb6hm"
+path="res://.godot/imported/Roll.png-217f2573718f5ed7e1d58d8a01174d7c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Spritesheets/Idle.png"
-dest_files=["res://.godot/imported/Idle.png-1970e3f0d20a2bd8669797d6e147f459.ctex"]
+source_file="res://Graphics/Spritesheets/Penguin/Roll.png"
+dest_files=["res://.godot/imported/Roll.png-217f2573718f5ed7e1d58d8a01174d7c.ctex"]
 
 [params]
 

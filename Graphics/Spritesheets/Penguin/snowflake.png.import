@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://43lfb3lyefnb"
-path="res://.godot/imported/Walk.png-f15ccfae9390840afb054cf782cc10df.ctex"
+uid="uid://dsugonyvibcr3"
+path="res://.godot/imported/snowflake.png-f158d7b6625c2426b1d571406c9ae311.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Spritesheets/Walk.png"
-dest_files=["res://.godot/imported/Walk.png-f15ccfae9390840afb054cf782cc10df.ctex"]
+source_file="res://Graphics/Spritesheets/Penguin/snowflake.png"
+dest_files=["res://.godot/imported/snowflake.png-f158d7b6625c2426b1d571406c9ae311.ctex"]
 
 [params]
 

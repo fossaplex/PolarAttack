@@ -1,3 +1,4 @@
+class_name Beam
 extends Node2D
 
 const MAX_LENGTH = 2000
@@ -14,5 +15,6 @@ func _physics_process(delta: float):
 		end.global_position = raycast.get_collision_point()
 	else:
 		end.global_position = raycast.target_position
+
 	beam.rotation = raycast.target_position.angle()
 	beam.region_rect.end.x = end.position.length()

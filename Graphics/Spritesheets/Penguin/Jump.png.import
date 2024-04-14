@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjkcdxkooqr0"
-path="res://.godot/imported/heart_full.png-1c09d130acdaee1fc4bf7cc8e54e0676.ctex"
+uid="uid://cp6xikf5ikby6"
+path="res://.godot/imported/Jump.png-60646f27b7d0dbdd9554382db04de874.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Spritesheets/heart_full.png"
-dest_files=["res://.godot/imported/heart_full.png-1c09d130acdaee1fc4bf7cc8e54e0676.ctex"]
+source_file="res://Graphics/Spritesheets/Penguin/Jump.png"
+dest_files=["res://.godot/imported/Jump.png-60646f27b7d0dbdd9554382db04de874.ctex"]
 
 [params]
 

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ExperienceResource" load_steps=3 format=3 uid="uid://clit8rhmq7f3a"]
 
-[ext_resource type="Texture2D" uid="uid://bjkcdxkooqr0" path="res://Graphics/Spritesheets/heart_full.png" id="1_naiuf"]
+[ext_resource type="Texture2D" uid="uid://bjkcdxkooqr0" path="res://Graphics/Spritesheets/Penguin/heart_full.png" id="1_naiuf"]
 [ext_resource type="Script" path="res://Scenes/Resources/collectable/ExperienceResource.gd" id="2_1840i"]
 
 [resource]

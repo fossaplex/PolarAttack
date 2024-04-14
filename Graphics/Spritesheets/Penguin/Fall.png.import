@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crgwgd3csj7iw"
-path="res://.godot/imported/Turn.png-961cedd78bb4eed714a9a8695dee5a67.ctex"
+uid="uid://dj1hh568kmndl"
+path="res://.godot/imported/Fall.png-6c8276e2533d9c82196c536ee6b8addd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Spritesheets/Turn.png"
-dest_files=["res://.godot/imported/Turn.png-961cedd78bb4eed714a9a8695dee5a67.ctex"]
+source_file="res://Graphics/Spritesheets/Penguin/Fall.png"
+dest_files=["res://.godot/imported/Fall.png-6c8276e2533d9c82196c536ee6b8addd.ctex"]
 
 [params]
 

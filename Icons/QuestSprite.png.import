@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp6xikf5ikby6"
-path="res://.godot/imported/Jump.png-96083fa6463f18698bf3a889d9d80959.ctex"
+uid="uid://bd45h45uxogch"
+path="res://.godot/imported/QuestSprite.png-0aacfe45470dd5577153cdf2c415cbb0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Spritesheets/Jump.png"
-dest_files=["res://.godot/imported/Jump.png-96083fa6463f18698bf3a889d9d80959.ctex"]
+source_file="res://Icons/QuestSprite.png"
+dest_files=["res://.godot/imported/QuestSprite.png-0aacfe45470dd5577153cdf2c415cbb0.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3nedc57qcej4"
-path="res://.godot/imported/Spin Attack.png-44a60411a88a3d6f72f6fa7ebbf72a4e.ctex"
+uid="uid://cra551251lbfb"
+path="res://.godot/imported/FSMSprite.png-e21efbc7dd31295d3be5066b5ecd5676.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Spritesheets/Spin Attack.png"
-dest_files=["res://.godot/imported/Spin Attack.png-44a60411a88a3d6f72f6fa7ebbf72a4e.ctex"]
+source_file="res://Icons/FSMSprite.png"
+dest_files=["res://.godot/imported/FSMSprite.png-e21efbc7dd31295d3be5066b5ecd5676.ctex"]
 
 [params]
 

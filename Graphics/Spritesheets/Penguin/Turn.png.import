@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfprppkimakrt"
-path="res://.godot/imported/Crouch.png-f4843868cbbcb5893f07615748843ec2.ctex"
+uid="uid://crgwgd3csj7iw"
+path="res://.godot/imported/Turn.png-b0b6c859684bc852679618ce5f9b25b8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Spritesheets/Crouch.png"
-dest_files=["res://.godot/imported/Crouch.png-f4843868cbbcb5893f07615748843ec2.ctex"]
+source_file="res://Graphics/Spritesheets/Penguin/Turn.png"
+dest_files=["res://.godot/imported/Turn.png-b0b6c859684bc852679618ce5f9b25b8.ctex"]
 
 [params]
 

@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://dqk7vvugrnxnu"]
 
 [ext_resource type="Script" path="res://Scenes/Hearts/Heart/Heart.gd" id="1_n77ok"]
-[ext_resource type="Texture2D" uid="uid://bjkcdxkooqr0" path="res://Graphics/Spritesheets/heart_full.png" id="2_1cbur"]
-[ext_resource type="Texture2D" uid="uid://cqcogqcwu2lge" path="res://Graphics/Spritesheets/heart_half_full.png" id="3_h5ojh"]
-[ext_resource type="Texture2D" uid="uid://c11gsfidn5wea" path="res://Graphics/Spritesheets/heart_empty.png" id="4_nhjjh"]
+[ext_resource type="Texture2D" uid="uid://bjkcdxkooqr0" path="res://Graphics/Spritesheets/Penguin/heart_full.png" id="2_1cbur"]
+[ext_resource type="Texture2D" uid="uid://cqcogqcwu2lge" path="res://Graphics/Spritesheets/Penguin/heart_half_full.png" id="3_h5ojh"]
+[ext_resource type="Texture2D" uid="uid://c11gsfidn5wea" path="res://Graphics/Spritesheets/Penguin/heart_empty.png" id="4_nhjjh"]
 
 [node name="Node2D" type="Node2D"]
 scale = Vector2(0.1, 0.1)

@@ -25,7 +25,7 @@ scale_min = 0.3
 scale_max = 0.3
 color_ramp = SubResource("GradientTexture1D_3dcmm")
 
-[node name="LaserBeam" type="Node2D"]
+[node name="Beam" type="Node2D"]
 modulate = Color(0.929412, 0, 0.0235294, 1)
 script = ExtResource("1_8ffcn")
 

@@ -1,11 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://bw72hruorpjco"]
+[gd_scene load_steps=14 format=3 uid="uid://bw72hruorpjco"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_ty1sm"]
-[ext_resource type="Texture2D" uid="uid://j72r5deby7vj" path="res://Graphics/Spritesheets/Idle.png" id="2_4qb6i"]
-[ext_resource type="Texture2D" uid="uid://43lfb3lyefnb" path="res://Graphics/Spritesheets/Walk.png" id="3_4y3tl"]
+[ext_resource type="Texture2D" uid="uid://j72r5deby7vj" path="res://Graphics/Spritesheets/Penguin/Idle.png" id="2_po527"]
 [ext_resource type="PackedScene" uid="uid://b60p040e647da" path="res://Scenes/Handlers/connection_handler.tscn" id="3_vam7b"]
 [ext_resource type="PackedScene" uid="uid://diy85w135sgrw" path="res://Scenes/Beam/beam.tscn" id="4_0ti1t"]
+[ext_resource type="Texture2D" uid="uid://43lfb3lyefnb" path="res://Graphics/Spritesheets/Penguin/Walk.png" id="4_8y2ro"]
 [ext_resource type="AudioStream" uid="uid://cribpqi2ab5in" path="res://Sounds/step_1.mp3" id="8_cxqis"]
+[ext_resource type="AudioStream" uid="uid://wv21kwdqr8rb" path="res://Sounds/tempdeathsound.wav" id="9_ihtdn"]
 [ext_resource type="PackedScene" uid="uid://b5naqof73cu32" path="res://Scenes/Orb/Orb.tscn" id="12_fk0ho"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ion7"]
@@ -23,7 +24,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_4qb6i")]
+"values": [ExtResource("2_po527")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -88,7 +89,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_4qb6i")]
+"values": [ExtResource("2_po527")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -141,7 +142,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_4y3tl")]
+"values": [ExtResource("4_8y2ro")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -195,7 +196,7 @@ SPEED = 150.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_4qb6i")
+texture = ExtResource("2_po527")
 hframes = 2
 
 [node name="PlayerHitbox" type="CollisionShape2D" parent="."]
@@ -224,6 +225,10 @@ pitch_scale = 1.22
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="SoundKill" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_ihtdn")
+volume_db = -5.621
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(0, -6)

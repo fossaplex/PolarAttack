@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3jomkavw2l7d"
-path="res://.godot/imported/Flap.png-43e6c47c09afc4aefccf76eef2e556fd.ctex"
+uid="uid://e1qx1oeab31"
+path="res://.godot/imported/icon.svg-ed7653cfceda465bd029c9408192217c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Spritesheets/Flap.png"
-dest_files=["res://.godot/imported/Flap.png-43e6c47c09afc4aefccf76eef2e556fd.ctex"]
+source_file="res://Icons/icon.svg"
+dest_files=["res://.godot/imported/icon.svg-ed7653cfceda465bd029c9408192217c.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false
