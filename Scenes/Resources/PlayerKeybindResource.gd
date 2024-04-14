@@ -12,7 +12,6 @@ const SECONDARY_ATTACK: String = "secondary_attack"
 @export var DEFAULT_MOVE_RIGHT_KEY = InputEventKey.new()
 @export var DEFAULT_MOVE_UP_KEY = InputEventKey.new()
 @export var DEFAULT_MOVE_DOWN_KEY = InputEventKey.new()
-#TODO v
 @export var DEFAULT_PRIMARY_ATTACK_INPUT = InputEventMouseButton.new()
 @export var DEFAULT_SECONDARY_ATTACK_INPUT = InputEventMouseButton.new()
 

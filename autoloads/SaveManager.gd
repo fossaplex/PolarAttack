@@ -9,6 +9,7 @@ func _ready():
 	load_settings_data()
 
 func on_settings_save(data: Dictionary) -> void:
+	print(data)
 	var save_settings_data_file = FileAccess.open(SETTINGS_SAVE_PATH, FileAccess.WRITE)
 	var json_data_string = JSON.stringify(data)
 	save_settings_data_file.store_line(json_data_string)

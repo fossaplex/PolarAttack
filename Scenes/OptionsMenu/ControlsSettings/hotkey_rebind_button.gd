@@ -6,6 +6,9 @@ extends Control
 
 @export var action_name : String = "move_left"
 
+var mouse_button_pressed = false
+var space_or_enter_pressed = false
+
 func _ready():
 	set_process_unhandled_key_input(false)
 	set_process_input(false)
@@ -44,27 +47,18 @@ func set_text_for_input() -> void:
 			button.text = "%s" % action_keycode
 		elif action_event is InputEventMouseButton:
 			var action_mouse = action_event.button_index
-			match action_mouse:
-				1:
-					button.text = "Left Mouse Button" 
-				2:
-					button.text = "Right Mouse Button"
+			button.text = "%s" % action_mouse
 		elif action_event is InputEventJoypadMotion:
 			var action_axis = action_event.axis
 			button.text = "%s" % "Joypad Axis: " + str(action_axis)
 	set_process_input(false)
 
-
 func _on_button_toggled(button_pressed):
+	print(button_pressed)
 	if button_pressed:
 		button.text = "Press Any Key/Input..."
 		set_process_unhandled_input(button_pressed)
 		set_process_input(button_pressed)
-		for i in get_tree().get_nodes_in_group("hotkey_button"):
-			if i.action_name != self.action_name:
-				i.button.toggle_mode = false;
-				i.set_process_unhandled_key_input(false)
-				i.set_process_input(false)
 	else:
 		for i in get_tree().get_nodes_in_group("hotkey_button"):
 			if i.action_name != self.action_name:
@@ -73,12 +67,29 @@ func _on_button_toggled(button_pressed):
 				i.set_process_input(false)
 		set_text_for_input()
 
+#NOTE - This logic works for Space (keycode 32), Enter (keycode 4194309), and Left Clicking.
 func _input(event):
-	print(event)
-	if event is InputEventKey or event is InputEventMouseButton:
-		rebind_action_key(event)
-		button.button_pressed = false
-	
+	if event is InputEventKey:
+		if event.keycode == 32 and space_or_enter_pressed:
+			rebind_action_key(event)
+			button.button_pressed = false
+			space_or_enter_pressed = true
+		elif event.keycode == 4194309 and space_or_enter_pressed:
+			rebind_action_key(event)
+			button.button_pressed = false
+			space_or_enter_pressed = true
+		elif not event.pressed:
+			rebind_action_key(event)
+			space_or_enter_pressed = false
+	elif event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and mouse_button_pressed:
+			rebind_action_key(event)
+			button.button_pressed = false
+			mouse_button_pressed = true
+		elif not event.pressed:
+			rebind_action_key(event)
+			mouse_button_pressed = false
+
 func rebind_action_key(event):
 	InputMap.action_erase_events(action_name)
 	InputMap.action_add_event(action_name,event)

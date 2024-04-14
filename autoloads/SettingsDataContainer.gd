@@ -76,7 +76,7 @@ func get_ambient_sound() -> float:
 		return DEFAULT_SETTINGS.DEFAULT_AMBIENT_VOLUME
 	return ambient_volume
 func get_keybinds(action: String):
-	if !loaded_data.has("keybinds"):
+	if loaded_data == {}:
 		match action:
 			keybind_resource.MOVE_LEFT:
 				return keybind_resource.DEFAULT_MOVE_LEFT_KEY
@@ -86,9 +86,9 @@ func get_keybinds(action: String):
 				return keybind_resource.DEFAULT_MOVE_UP_KEY
 			keybind_resource.MOVE_DOWN:
 				return keybind_resource.DEFAULT_MOVE_DOWN_KEY
-			keybind_resource.DEFAULT_PRIMARY_ATTACK_INPUT:
+			keybind_resource.PRIMARY_ATTACK:
 				return keybind_resource.DEFAULT_PRIMARY_ATTACK_INPUT
-			keybind_resource.DEFAULT_SECONDARY_ATTACK_INPUT:
+			keybind_resource.SECONDARY_ATTACK:
 				return keybind_resource.DEFAULT_SECONDARY_ATTACK_INPUT
 	else:
 		match action:
@@ -135,31 +135,14 @@ func set_keybind(action: String, event) -> void:
 			keybind_resource.secondary_attack_button = event
 
 func on_keybinds_loaded(data : Dictionary) -> void:
-	var loaded_move_left = InputEventKey.new()
-	var loaded_move_right = InputEventKey.new()
-	var loaded_move_up = InputEventKey.new()
-	var loaded_move_down = InputEventKey.new()
-	var loaded_primary_attack = InputEventMouseButton.new()
-	var loaded_secondary_attack = InputEventMouseButton.new()
-	print(data)
-	print("Break")
-	print(data.move_left)
-	print(data.secondary_attack)
-	print("Break two")
 	if data != null:
 		var getInputs = set_key_or_mouse_input(data)
-		if getInputs != null:
-			pass
-	loaded_move_left.set_physical_keycode(int(data.move_left))
-	loaded_move_right.set_physical_keycode(int(data.move_right))
-	loaded_move_up.set_physical_keycode(int(data.move_up))
-	loaded_move_down.set_physical_keycode(int(data.move_down))
-	loaded_primary_attack.set
-	
-	keybind_resource.move_left_key = loaded_move_left
-	keybind_resource.move_right_key = loaded_move_right
-	keybind_resource.move_up_key = loaded_move_up
-	keybind_resource.move_down_key = loaded_move_down
+		keybind_resource.move_left_key = getInputs.move_left
+		keybind_resource.move_right_key = getInputs.move_right
+		keybind_resource.move_up_key = getInputs.move_up
+		keybind_resource.move_down_key = getInputs.move_down
+		keybind_resource.primary_attack_button = getInputs.primary_attack
+		keybind_resource.secondary_attack_button = getInputs.secondary_attack
 	
 func set_key_or_mouse_input(currentInputs: Dictionary) -> Dictionary:
 	var tempDictionary : Dictionary = {
@@ -170,23 +153,30 @@ func set_key_or_mouse_input(currentInputs: Dictionary) -> Dictionary:
 		"primary_attack" : null,
 		"secondary_attack" : null,
 	}
-	var move_left
-	var move_right
-	var move_up
-	var move_down
-	var primary_attack
-	var secondary_attack
 	for key in currentInputs:
-		print(currentInputs[key])
-		if currentInputs[key].contains("InputEventMouseButton"):
-			tempDictionary[key] = InputEventMouseButton.new()
-		elif currentInputs[key].contains("InputEventMouseButton"):
-			tempDictionary[key] = InputEventKey.new()
-		else:
-			#placeholder for controller support?
-			print("Error, no Keyboard/Mouse detected")
+		if currentInputs[key] != null:
+			if currentInputs[key].contains("InputEventKey"):
+				tempDictionary[key] = InputEventKey.new()
+				tempDictionary[key].set_physical_keycode(int(currentInputs[key]))
+			elif currentInputs[key].contains("InputEventMouseButton"):
+				tempDictionary[key] = InputEventMouseButton.new()
+				var mouse_index = get_input_event_mouse_index(currentInputs[key])
+				if mouse_index != -9999:
+					tempDictionary[key].set_button_index(mouse_index)
+			else:
+				#placeholder for controller support?
+				print("Error, no Keyboard/Mouse detected")
 	return tempDictionary
 
+func get_input_event_mouse_index(currentString : String) -> int:
+	var regex = RegEx.new()
+	regex.compile("(\\d+)")
+	var result = regex.search(currentString)
+	if result:
+		return int(result.get_string())
+	else:
+		# Returning this number as a safety check
+		return -9999
 func on_settings_data_loaded(data: Dictionary) -> void:
 	loaded_data = data
 	set_window_mode_selected(loaded_data.window_mode_index)

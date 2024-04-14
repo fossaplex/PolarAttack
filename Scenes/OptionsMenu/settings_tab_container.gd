@@ -10,7 +10,7 @@ func _process(delta):
 	
 func change_tab(currentTab : int) -> void:
 	tab_container.set_current_tab(currentTab)
-	
+
 func options_menu_input() -> void:
 	if Input.is_action_just_pressed("move_right") or Input.is_action_just_pressed("ui_right"):
 		if tab_container.current_tab >= tab_container.get_tab_count() -1:
