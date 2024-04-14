@@ -47,14 +47,34 @@ func set_text_for_input() -> void:
 			button.text = "%s" % action_keycode
 		elif action_event is InputEventMouseButton:
 			var action_mouse = action_event.button_index
-			button.text = "%s" % action_mouse
+			match action_mouse:
+				1:
+					button.text = "Left Click Button"
+				2:
+					button.text = "Right Click Button"
+				3:
+					button.text = "Middle Mouse Button"
+				4:
+					button.text = "Mouse Wheel Up"
+				5:
+					button.text = "Mouse Wheel Down"
+				6:
+					button.text = "Mouse Wheel Left"
+				7:
+					button.text = "Middle Mouse Button"
+				4:
+					button.text = "Mouse Wheel Right"
+				_:
+					button.text = "Mouse Button: %s" % action_mouse
+				
+			
 		elif action_event is InputEventJoypadMotion:
 			var action_axis = action_event.axis
 			button.text = "%s" % "Joypad Axis: " + str(action_axis)
 	set_process_input(false)
 
 func _on_button_toggled(button_pressed):
-	print(button_pressed)
+	SettingsSignalBus.emit_rebind_button_toggled(button_pressed)
 	if button_pressed:
 		button.text = "Press Any Key/Input..."
 		set_process_unhandled_input(button_pressed)
@@ -67,27 +87,33 @@ func _on_button_toggled(button_pressed):
 				i.set_process_input(false)
 		set_text_for_input()
 
-#NOTE - This logic works for Space (keycode 32), Enter (keycode 4194309), and Left Clicking.
+#NOTE - This logic works for Space, Enter, and Left Click
 func _input(event):
 	if event is InputEventKey:
-		if event.keycode == 32 and space_or_enter_pressed:
-			rebind_action_key(event)
-			button.button_pressed = false
-			space_or_enter_pressed = true
-		elif event.keycode == 4194309 and space_or_enter_pressed:
-			rebind_action_key(event)
-			button.button_pressed = false
-			space_or_enter_pressed = true
+		if OS.get_keycode_string(event.key_label) == "Enter" or OS.get_keycode_string(event.key_label) == "Space":
+			if space_or_enter_pressed:
+				rebind_action_key(event)
+				button.button_pressed = false
+				space_or_enter_pressed = true
+			elif not event.pressed:
+				rebind_action_key(event)
+				space_or_enter_pressed = false
 		elif not event.pressed:
 			rebind_action_key(event)
+			button.button_pressed = false
 			space_or_enter_pressed = false
 	elif event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and mouse_button_pressed:
-			rebind_action_key(event)
-			button.button_pressed = false
-			mouse_button_pressed = true
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if mouse_button_pressed:
+				rebind_action_key(event)
+				button.button_pressed = false
+				mouse_button_pressed = true
+			elif not event.pressed:
+				rebind_action_key(event)
+				mouse_button_pressed = false
 		elif not event.pressed:
 			rebind_action_key(event)
+			button.button_pressed = false
 			mouse_button_pressed = false
 
 func rebind_action_key(event):
@@ -98,4 +124,5 @@ func rebind_action_key(event):
 	set_process_input(false)
 	set_text_for_input()
 	set_action_name()
+	SettingsSignalBus.emit_rebind_button_toggled(false)
 	
