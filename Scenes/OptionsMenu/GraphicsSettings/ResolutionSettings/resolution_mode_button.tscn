@@ -8,3 +8,5 @@ script = ExtResource("2_mb7yf")
 
 [node name="Label" parent="HBoxContainer" index="0"]
 text = "Resolution"
+
+[connection signal="toggled" from="HBoxContainer/OptionButton" to="." method="_on_option_button_toggled"]
