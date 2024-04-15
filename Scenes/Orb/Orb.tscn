@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5naqof73cu32"]
+[gd_scene load_steps=6 format=3 uid="uid://b5naqof73cu32"]
 
 [ext_resource type="Script" path="res://Scenes/Orb/Orb.gd" id="1_4fapj"]
 [ext_resource type="Texture2D" uid="uid://e4hxlcuau0ik" path="res://Graphics/Spritesheets/Bullets/orb.jpg" id="2_8nhpt"]
 [ext_resource type="AudioStream" uid="uid://yn48i4i55pcx" path="res://Sounds/pop 3.wav" id="4_om6m4"]
+[ext_resource type="Script" path="res://Scenes/Orb/Attackable.gd" id="4_vcex3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kjkp5"]
 
@@ -14,11 +15,11 @@ collision_layer = 8
 collision_mask = 32
 script = ExtResource("1_4fapj")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_kjkp5")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 5)
 scale = Vector2(0.035, 0.035)
 texture = ExtResource("2_8nhpt")
@@ -35,5 +36,8 @@ bus = &"SFX"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_om6m4")
 
+[node name="Attackable" type="Node" parent="."]
+script = ExtResource("4_vcex3")
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="." to="Attackable" method="_on_orb_area_entered"]

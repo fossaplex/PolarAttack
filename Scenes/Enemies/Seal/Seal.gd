@@ -1,7 +1,7 @@
 extends Character
 
 @onready var walk_state := $FSM/WalkState as SealWlakState
-@onready var attacl_state := $FSM/AttackState as SealAttackState
+@onready var attack_state := $FSM/AttackState as SealAttackState
 @onready var death_state := $FSM/DeathState as State
 
 @export var target: Character = null :
@@ -9,7 +9,7 @@ extends Character
 		target = value
 		if is_node_ready():
 			walk_state.target = value
-			attacl_state.target = value
+			attack_state.target = value
 
 func _ready():
 	super()

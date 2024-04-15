@@ -6,11 +6,8 @@ extends Area2D
 @export var orbit_radius_variation = 5.0  # The amplitude of the orbit radius oscillation
 @export var wave_speed = .005  # Speed of the sine wave oscillation
 @export var orbit_angle = 0.0  # Current angle in the orbit
-
-var player  # Reference to the player node
-
-func _ready():
-	player = get_node("/root/Level/Player")  # Adjust the path to correctly point to your player node
+var pitch_variation_range = 0.3 # Defines how much the pitch can vary
+var base_pitch = 1.0 # Normal pit
 
 func _process(delta):
 	# Update the current angle based on the orbit speed
@@ -32,16 +29,8 @@ func _process(delta):
 	position = Vector2(x, y)
 
 func _on_area_entered(area: Area2D):
-	var parent = area.get_parent()
-	var bar = parent.get_node("GenericProgressBar")
+	if area.is_in_group("player_hitbox"):
 
-	var pitch_variation_range = 0.3 # Defines how much the pitch can vary
-	var base_pitch = 1.0 # Normal pit
-	if parent.is_in_group("enemies"):
-		bar.decrement(50)
-		if bar.value <= 0:
-			parent.queue_free() 
-		
 		var random_pitch = base_pitch + randf_range(-pitch_variation_range, pitch_variation_range) 
 		$AudioStreamPlayer.pitch_scale = random_pitch
 		$AudioStreamPlayer.play()

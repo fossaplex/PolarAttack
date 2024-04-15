@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dpl0mcphj5tk0"]
+[gd_scene load_steps=18 format=3 uid="uid://dpl0mcphj5tk0"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player2/player.gd" id="1_x30hu"]
 [ext_resource type="Texture2D" uid="uid://j72r5deby7vj" path="res://Graphics/Spritesheets/Penguin/Idle.png" id="2_podss"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://diy85w135sgrw" path="res://Scenes/Beam/beam.tscn" id="8_qngc4"]
 [ext_resource type="Script" path="res://Scripts/Attackable.gd" id="9_ettdl"]
 [ext_resource type="Script" path="res://Scripts/CharacterHitbox.gd" id="10_20m7g"]
+[ext_resource type="PackedScene" uid="uid://b5naqof73cu32" path="res://Scenes/Orb/Orb.tscn" id="11_g7o27"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7feck"]
 size = Vector2(15, 3)
@@ -222,7 +223,7 @@ animationPlayer = NodePath("../../AnimationPlayer")
 sprite = NodePath("../../Sprite2D")
 idle_state = NodePath("../IdleState")
 player = NodePath("../..")
-speed = 100.0
+speed = 200.0
 
 [node name="AttackState" type="Node" parent="FSM" node_paths=PackedStringArray("laserBeam", "attackable", "animationPlayer", "sprite", "player")]
 script = ExtResource("7_becx5")
@@ -240,9 +241,10 @@ position = Vector2(1, -4)
 script = ExtResource("9_ettdl")
 damage = 10
 
-[node name="Hitbox" type="Area2D" parent="."]
-collision_mask = 0
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("character")]
+collision_mask = 32
 script = ExtResource("10_20m7g")
+character = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(1, 0)
@@ -256,3 +258,15 @@ offset_right = 16.0
 offset_bottom = -13.0
 value = 100.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Orbs" type="Node" parent="."]
+
+[node name="Orb" parent="Orbs" instance=ExtResource("11_g7o27")]
+position = Vector2(-21, 14)
+
+[node name="Orb3" parent="Orbs" instance=ExtResource("11_g7o27")]
+position = Vector2(0, -32)
+
+[node name="Orb2" parent="Orbs" instance=ExtResource("11_g7o27")]
+position = Vector2(24, 15)

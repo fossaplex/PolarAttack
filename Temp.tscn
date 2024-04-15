@@ -8,11 +8,6 @@
 [node name="Player" parent="." instance=ExtResource("1_n1cr3")]
 position = Vector2(460, 323)
 
-[node name="Seal2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_7m1bi")]
-position = Vector2(670, 392)
-motion_mode = 1
-target = NodePath("../Player")
-
 [node name="Seal" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_7m1bi")]
 motion_mode = 1
 target = NodePath("../Player")
