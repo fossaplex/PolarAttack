@@ -1,19 +1,21 @@
-class_name SealAttackState
+class_name SealWanderState
 extends State
 
 var animation_player: AnimationPlayer
 var seal: Character
-var target: Character
+@onready var timer := $Timer as Timer
+var velocity := Vector2.ZERO
+var speed: int = 100
 
 func enter() -> void:
-	animation_player.stop()
+	timer.start()
+	animation_player.play("walk")
 
-func process_frame(delta: float) -> void:
-	var target_distance := seal.global_position.distance_to(target.global_position)
-
-	if target_distance >= 0:
-		request_transition_to.emit(self, $"../WalkState")
-		return
-
-	seal.velocity = Vector2.ZERO
+func process_physics(delta: float) -> void:
+	seal.velocity = velocity 
 	seal.move_and_slide()
+
+
+func _on_timer_timeout():
+	var random_angle = randf() * 2 * PI
+	velocity = Vector2(cos(random_angle), sin(random_angle)) * speed

@@ -137,6 +137,7 @@ value = 100.0
 texture_under = ExtResource("3_x3gn2")
 texture_progress = ExtResource("4_ftjl7")
 progress_color = Color(0, 1, 1, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

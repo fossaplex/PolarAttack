@@ -35,7 +35,7 @@ func _ready() -> void:
 	#current_state.Enter()
 
 func transition_to(source_state: State, destination_state : State) -> void:
-	if source_state != current_state:
+	if source_state and source_state != current_state:
 		return
 	if destination_state == current_state:
 		return

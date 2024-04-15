@@ -5,15 +5,15 @@ extends FiniteStateMachine
 @onready var seal : = $".." as Character
 @onready var death_state = $DeathState
 @onready var walk_state := $WalkState as SealWlakState
-@onready var attak_state := $AttackState as SealAttackState
-@export var attack_distance: int
+@onready var attak_state := $WanderState as SealWanderState
+@export var attack_distance: int = 0
 
 func _ready():
 	walk_state.animation_player = animation_player
 	walk_state.seal = seal
 	walk_state.attack_distance = attack_distance
 	walk_state.sprite = spirte
-	
+
 	attak_state.animation_player = animation_player
 	attak_state.seal = seal
 	super()

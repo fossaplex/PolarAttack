@@ -57,6 +57,6 @@ preprocess = 0.25
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(100, 0)
-collision_mask = 32
+collision_mask = 36
 hit_from_inside = true
 collide_with_areas = true

@@ -25,10 +25,6 @@ func process_frame(delta: float) -> void:
 func process_physics(delta: float) -> void:
 	var direction := (target.global_position - seal.global_position).normalized()
 	var target_distance := seal.global_position.distance_to(target.global_position)
-
-	if target_distance < attack_distance:
-		request_transition_to.emit(self, $"../AttackState")
-		return
 	
 	seal.velocity = direction * speed
 	seal.move_and_slide()
