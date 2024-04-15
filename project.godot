@@ -20,6 +20,7 @@ SignalBus="*res://autoloads/SignalBus.gd"
 SettingsDataContainer="*res://autoloads/SettingsDataContainer.gd"
 SettingsSignalBus="*res://autoloads/SettingsSignalBus.gd"
 SaveManager="*res://autoloads/SaveManager.gd"
+CollectableSignalBus="*res://autoloads/CollectableSignalBus.gd"
 
 [display]
 

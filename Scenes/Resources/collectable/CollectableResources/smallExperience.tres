@@ -5,6 +5,6 @@
 
 [resource]
 script = ExtResource("1_32e8a")
-experienceValue = 1
+experienceValue = 75
 collectable_texture = ExtResource("1_1bmsk")
 collectable_type = "experience"
