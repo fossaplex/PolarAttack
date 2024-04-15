@@ -1,4 +1,3 @@
-class_name AttackState
 extends State
 
 @export var laserBeam: Beam
@@ -26,5 +25,3 @@ func process_physics(_delta: float) -> void:
 	var node := laserBeam.raycast.get_collider()
 	if node is CharacterHitbox:
 		attackable.deal_damange(node.character)
-		
-

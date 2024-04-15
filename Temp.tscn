@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://eol6awr244tu"]
+
+[ext_resource type="PackedScene" uid="uid://dpl0mcphj5tk0" path="res://Scenes/Player/Player2/player.tscn" id="1_n1cr3"]
+[ext_resource type="PackedScene" uid="uid://cmmq7oc8em3e3" path="res://Scenes/Enemies/Seal/seal.tscn" id="2_7m1bi"]
+
+[node name="Node2D" type="Node"]
+
+[node name="Player" parent="." instance=ExtResource("1_n1cr3")]
+position = Vector2(460, 323)
+
+[node name="Seal2" parent="." instance=ExtResource("2_7m1bi")]
+position = Vector2(670, 392)
+motion_mode = 1
+
+[node name="Seal" parent="." instance=ExtResource("2_7m1bi")]
+motion_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(577, 331)
+zoom = Vector2(1.8, 1.8)

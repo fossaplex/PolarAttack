@@ -1,4 +1,3 @@
-class_name IdleState
 extends State
 
 @export var animationPlayer: AnimationPlayer
@@ -11,4 +10,4 @@ func enter() -> void:
 func process_physics(_delta: float) -> void:
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if direction != Vector2.ZERO:
-		state_transition.emit(walk_state)
+		request_transition_to.emit(self, walk_state)

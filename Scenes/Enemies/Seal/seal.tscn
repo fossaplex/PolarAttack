@@ -1,0 +1,174 @@
+[gd_scene load_steps=13 format=3 uid="uid://cmmq7oc8em3e3"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/Seal/Seal.gd" id="1_lo2th"]
+[ext_resource type="Texture2D" uid="uid://cpt0kgd14pang" path="res://Graphics/Spritesheets/Enemies/seal/walk.png" id="2_jr3dq"]
+[ext_resource type="Script" path="res://Scenes/Enemies/Seal/FSM.gd" id="3_s2wuv"]
+[ext_resource type="Script" path="res://Scenes/Enemies/Seal/WalkState.gd" id="4_tuxco"]
+[ext_resource type="Script" path="res://Scenes/Enemies/Seal/AttackState.gd" id="5_h17m1"]
+[ext_resource type="Script" path="res://Scenes/Enemies/Seal/DeathState.gd" id="6_x1viu"]
+[ext_resource type="Script" path="res://Scripts/CharacterHitbox.gd" id="10_4uh5q"]
+
+[sub_resource type="Animation" id="Animation_ity1r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_3bdat"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8vg10"]
+_data = {
+"RESET": SubResource("Animation_ity1r"),
+"walk": SubResource("Animation_3bdat")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7feck"]
+size = Vector2(15, 3)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hprcg"]
+radius = 8.0
+height = 16.0
+
+[node name="Seal" type="CharacterBody2D" node_paths=PackedStringArray("progress_bar", "fsm")]
+position = Vector2(335, 196)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_lo2th")
+total_health = null
+health = null
+progress_bar = NodePath("ProgressBar")
+fsm = NodePath("FSM")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1, 0)
+texture = ExtResource("2_jr3dq")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_8vg10")
+}
+autoplay = "walk"
+
+[node name="WalkHitBox" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 5.5)
+shape = SubResource("RectangleShape2D_7feck")
+
+[node name="FSM" type="Node" parent="." node_paths=PackedStringArray("animation_player", "spirte", "seal", "initial_state")]
+script = ExtResource("3_s2wuv")
+animation_player = NodePath("../AnimationPlayer")
+spirte = NodePath("../Sprite2D")
+seal = NodePath("..")
+initial_state = NodePath("WalkState")
+
+[node name="WalkState" type="Node" parent="FSM" node_paths=PackedStringArray("animation_player", "sprite", "seal")]
+script = ExtResource("4_tuxco")
+animation_player = NodePath("../../AnimationPlayer")
+sprite = NodePath("../../Sprite2D")
+seal = NodePath("../..")
+
+[node name="AttackState" type="Node" parent="FSM" node_paths=PackedStringArray("animation_player", "spirte", "seal")]
+script = ExtResource("5_h17m1")
+animation_player = NodePath("../../AnimationPlayer")
+spirte = NodePath("../../Sprite2D")
+seal = NodePath("../..")
+
+[node name="DeathState" type="Node" parent="FSM" node_paths=PackedStringArray("animation_player", "spirte", "seal")]
+script = ExtResource("6_x1viu")
+animation_player = NodePath("../../AnimationPlayer")
+spirte = NodePath("../../Sprite2D")
+seal = NodePath("../..")
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("character")]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("10_4uh5q")
+character = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_hprcg")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -14.0
+offset_top = -19.0
+offset_right = 16.0
+offset_bottom = -13.0
+value = 100.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
