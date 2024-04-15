@@ -1,13 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://v0wxmchyy8hw"]
+[gd_scene load_steps=12 format=3 uid="uid://v0wxmchyy8hw"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Level.gd" id="1_mxhe7"]
 [ext_resource type="PackedScene" uid="uid://3j3i1mox6gns" path="res://Scenes/Map/map.tscn" id="2_gs7rd"]
 [ext_resource type="AudioStream" uid="uid://dt1cy7i75mhnu" path="res://Sounds/song_1.mp3" id="3_dm7rh"]
 [ext_resource type="AudioStream" uid="uid://bit6conjtq8a0" path="res://Sounds/blizzard ominous.mp3" id="6_05ye3"]
 [ext_resource type="PackedScene" uid="uid://dyx3kehr12ycl" path="res://Scenes/PauseMenu/pause_menu.tscn" id="6_30ok4"]
-[ext_resource type="PackedScene" uid="uid://dpl0mcphj5tk0" path="res://Scenes/Player/Player2/player.tscn" id="9_cmjan"]
 [ext_resource type="PackedScene" uid="uid://dfmw6h4velbkk" path="res://Scenes/OptionsMenu/options_menu.tscn" id="9_e5sju"]
+[ext_resource type="PackedScene" uid="uid://dpl0mcphj5tk0" path="res://Scenes/Player/player.tscn" id="9_mbrx2"]
 [ext_resource type="Script" path="res://Scenes/Levels/EnemySpawner.gd" id="9_uw663"]
+[ext_resource type="PackedScene" uid="uid://cmmq7oc8em3e3" path="res://Scenes/Enemies/Seal/seal.tscn" id="9_vxc7i"]
 [ext_resource type="PackedScene" uid="uid://dkunpj14gq1t0" path="res://Scenes/Managers/collectable_manager.tscn" id="11_b0gdw"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s2fnj"]
@@ -88,80 +89,92 @@ offset_bottom = 1.0
 
 [node name="Collectable_manager" parent="Manager_Container" instance=ExtResource("11_b0gdw")]
 
-[node name="EnemySpawner2" type="Timer" parent="."]
-process_mode = 1
-wait_time = 0.071
-one_shot = true
-autostart = true
+[node name="EnemySpawner" type="Node2D" parent="."]
 script = ExtResource("9_uw663")
 
-[node name="SpawnPoints" type="Node2D" parent="EnemySpawner2"]
-position = Vector2(58, 1)
-
-[node name="Marker2D" type="Marker2D" parent="EnemySpawner2/SpawnPoints"]
-position = Vector2(109, 123)
-
-[node name="Marker2D2" type="Marker2D" parent="EnemySpawner2/SpawnPoints"]
-position = Vector2(108, 162)
-
-[node name="Marker2D3" type="Marker2D" parent="EnemySpawner2/SpawnPoints"]
-position = Vector2(108, 207)
-
-[node name="Marker2D4" type="Marker2D" parent="EnemySpawner2/SpawnPoints"]
-position = Vector2(108, 275)
-
-[node name="Marker2D5" type="Marker2D" parent="EnemySpawner2/SpawnPoints"]
-position = Vector2(107, 314)
-
-[node name="Marker2D6" type="Marker2D" parent="EnemySpawner2/SpawnPoints"]
-position = Vector2(107, 359)
-
-[node name="Marker2D7" type="Marker2D" parent="EnemySpawner2/SpawnPoints"]
-position = Vector2(108, 429)
-
-[node name="Marker2D8" type="Marker2D" parent="EnemySpawner2/SpawnPoints"]
-position = Vector2(107, 468)
-
-[node name="Marker2D9" type="Marker2D" parent="EnemySpawner2/SpawnPoints"]
-position = Vector2(107, 513)
-
-[node name="Marker2D10" type="Marker2D" parent="EnemySpawner2/SpawnPoints"]
-position = Vector2(796, 124)
-
-[node name="Marker2D11" type="Marker2D" parent="EnemySpawner2/SpawnPoints"]
-position = Vector2(795, 163)
-
-[node name="Marker2D12" type="Marker2D" parent="EnemySpawner2/SpawnPoints"]
-position = Vector2(795, 208)
-
-[node name="Marker2D13" type="Marker2D" parent="EnemySpawner2/SpawnPoints"]
-position = Vector2(795, 276)
-
-[node name="Marker2D14" type="Marker2D" parent="EnemySpawner2/SpawnPoints"]
-position = Vector2(794, 315)
-
-[node name="Marker2D15" type="Marker2D" parent="EnemySpawner2/SpawnPoints"]
-position = Vector2(794, 360)
-
-[node name="Marker2D16" type="Marker2D" parent="EnemySpawner2/SpawnPoints"]
-position = Vector2(795, 430)
-
-[node name="Marker2D17" type="Marker2D" parent="EnemySpawner2/SpawnPoints"]
-position = Vector2(794, 469)
-
-[node name="Marker2D18" type="Marker2D" parent="EnemySpawner2/SpawnPoints"]
-position = Vector2(794, 514)
-
-[node name="Player" parent="." instance=ExtResource("9_cmjan")]
+[node name="Timer" type="Timer" parent="EnemySpawner"]
 process_mode = 1
-position = Vector2(15, 24)
-orb_damage = 1.0
-beam_damage = 1.0
+wait_time = 10.0
+autostart = true
+
+[node name="SpawnPoints" type="Node2D" parent="EnemySpawner"]
+position = Vector2(-437, -337)
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(131, 129)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(132, 171)
+
+[node name="Marker2D3" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(130, 217)
+
+[node name="Marker2D4" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(129, 269)
+
+[node name="Marker2D5" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(128, 308)
+
+[node name="Marker2D6" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(128, 353)
+
+[node name="Marker2D7" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(127, 412)
+
+[node name="Marker2D8" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(127, 447)
+
+[node name="Marker2D9" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(132, 485)
+
+[node name="Marker2D10" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(769, 133)
+
+[node name="Marker2D11" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(768, 172)
+
+[node name="Marker2D12" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(768, 217)
+
+[node name="Marker2D13" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(771, 269)
+
+[node name="Marker2D14" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(770, 308)
+
+[node name="Marker2D15" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(770, 353)
+
+[node name="Marker2D16" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(771, 406)
+
+[node name="Marker2D17" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(770, 445)
+
+[node name="Marker2D18" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(770, 490)
+
+[node name="Seals" type="Node2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(-437, -337)
+
+[node name="Seal" parent="Seals" node_paths=PackedStringArray("target") instance=ExtResource("9_vxc7i")]
+position = Vector2(168, 295)
+target = NodePath("../../Player")
+
+[node name="Player" parent="." instance=ExtResource("9_mbrx2")]
+process_mode = 1
+position = Vector2(-124, -44)
+orb_damage = 20.0
+beam_damage = 20.0
+total_health = 1000
+health = 1000
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, 6)
-zoom = Vector2(2.345, 2.345)
 
 [connection signal="exit_options_menu" from="CanvasLayer/PauseMenu/OptionsMenu" to="CanvasLayer/PauseMenu" method="_on_options_menu_exit_options_menu"]
-[connection signal="timeout" from="EnemySpawner2" to="EnemySpawner2" method="_on_timeout"]
-[connection signal="is_dead" from="Player" to="EnemySpawner2" method="_on_player_is_dead"]
+[connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
+[connection signal="is_dead" from="Player" to="." method="_on_player_is_dead"]
+[connection signal="is_dead" from="Player" to="EnemySpawner/Timer" method="_on_player_is_dead"]

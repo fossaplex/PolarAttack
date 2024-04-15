@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://eol6awr244tu"]
 
-[ext_resource type="PackedScene" uid="uid://dpl0mcphj5tk0" path="res://Scenes/Player/Player2/player.tscn" id="1_n1cr3"]
+[ext_resource type="PackedScene" uid="uid://dpl0mcphj5tk0" path="res://Scenes/Player/player.tscn" id="1_n1cr3"]
 [ext_resource type="PackedScene" uid="uid://cmmq7oc8em3e3" path="res://Scenes/Enemies/Seal/seal.tscn" id="2_7m1bi"]
 
 [node name="Node2D" type="Node"]

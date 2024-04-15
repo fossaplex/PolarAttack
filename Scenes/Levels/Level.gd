@@ -3,6 +3,8 @@ extends Node2D
 class_name Level
 
 signal toggle_game_paused(is_paused : bool)
+@onready var timer = $EnemySpawner/Timer
+@onready var seals = $Seals
 
 var game_paused : bool = false:
 	get:
@@ -19,8 +21,14 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float):
 	pass
-
+ 
 func _input(event : InputEvent):
 	if event.is_action_pressed("esc"):
 		game_paused = !game_paused
+
+func _on_player_is_dead():
+	timer.stop()
+	for seal in seals.get_children():
+		if seal is Seal:
+			seal.target = null
 
