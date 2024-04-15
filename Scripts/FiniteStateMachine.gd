@@ -17,23 +17,6 @@ func _ready() -> void:
 		current_state = initial_state
 		initial_state.enter()
 
-#Call the current states update function continuosly
-
-
-#region State Management
-#Use force_change_state cautiously, it immediately switches to a state regardless of any transitions.
-#This is used to force us into a 'death state' when killed
-#func force_transition_to(new_state : State) -> void:
-	#
-	##NOTE Calling exit like so: (current_state.Exit()) may cause warnings when flushing queries, like when the enemy is being removed after death. 
-	##call_deferred is safe and prevents this from occuring. We get the Exit function from the state as a callable and then call it in a thread-safe manner
-	#
-	#var exit_callable := Callable(current_state, "Exit")
-	#exit_callable.call_deferred()
-	#
-	#current_state = new_state
-	#current_state.Enter()
-
 func transition_to(source_state: State, destination_state : State) -> void:
 	if source_state and source_state != current_state:
 		return

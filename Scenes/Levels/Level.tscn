@@ -33,12 +33,13 @@ turbulence_influence_max = 0.131
 [node name="Level" type="Node2D"]
 process_mode = 3
 y_sort_enabled = true
-position = Vector2(665, 468)
+position = Vector2(495, 338)
 script = ExtResource("1_mxhe7")
 
 [node name="TileMap" parent="." instance=ExtResource("2_gs7rd")]
 process_mode = 1
 texture_filter = 1
+position = Vector2(-5, -25)
 layer_2/tile_data = PackedInt32Array()
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
@@ -88,12 +89,14 @@ offset_bottom = 1.0
 [node name="Collectable_manager" parent="Manager_Container" instance=ExtResource("11_b0gdw")]
 
 [node name="EnemySpawner2" type="Timer" parent="."]
-wait_time = 10.0
+process_mode = 1
+wait_time = 0.071
+one_shot = true
 autostart = true
 script = ExtResource("9_uw663")
 
 [node name="SpawnPoints" type="Node2D" parent="EnemySpawner2"]
-position = Vector2(228, 131)
+position = Vector2(58, 1)
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawner2/SpawnPoints"]
 position = Vector2(109, 123)
@@ -149,10 +152,11 @@ position = Vector2(794, 469)
 [node name="Marker2D18" type="Marker2D" parent="EnemySpawner2/SpawnPoints"]
 position = Vector2(794, 514)
 
-[node name="Seals" type="Node" parent="."]
-
 [node name="Player" parent="." instance=ExtResource("9_cmjan")]
-position = Vector2(-9, 12)
+process_mode = 1
+position = Vector2(15, 24)
+orb_damage = 1.0
+beam_damage = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, 6)

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Orb/Orb.gd" id="1_4fapj"]
 [ext_resource type="Texture2D" uid="uid://e4hxlcuau0ik" path="res://Graphics/Spritesheets/Bullets/orb.jpg" id="2_8nhpt"]
 [ext_resource type="AudioStream" uid="uid://yn48i4i55pcx" path="res://Sounds/pop 3.wav" id="4_om6m4"]
-[ext_resource type="Script" path="res://Scenes/Orb/Attackable.gd" id="4_vcex3"]
+[ext_resource type="Script" path="res://Scripts/Attackable.gd" id="4_w1mxh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kjkp5"]
 
@@ -37,8 +37,6 @@ bus = &"SFX"
 stream = ExtResource("4_om6m4")
 
 [node name="Attackable" type="Node" parent="."]
-script = ExtResource("4_vcex3")
-damage = 10
+script = ExtResource("4_w1mxh")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="area_entered" from="." to="Attackable" method="_on_orb_area_entered"]

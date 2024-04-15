@@ -21,7 +21,7 @@ func process_frame(delta: float) -> void:
 	var direction := laserBeam.raycast.target_position.direction_to(player.global_position).normalized()
 	sprite.flip_h = direction.x < 0
 		
-func process_physics(_delta: float) -> void:
+func process_physics(delta: float) -> void:
 	var node := laserBeam.raycast.get_collider()
 	if node is CharacterHitbox:
-		attackable.deal_damange(node.character)
+		attackable.deal_damange_delta(node.character, delta)

@@ -6,6 +6,7 @@ const MAX_LENGTH = 2000
 @onready var beam = $Beam
 @onready var end = $End
 @onready var raycast: RayCast2D = $RayCast2D
+@onready var attackable = $Attackable
 
 func _physics_process(delta: float):
 	var mouse_position = get_local_mouse_position()

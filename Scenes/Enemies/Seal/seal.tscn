@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cmmq7oc8em3e3"]
+[gd_scene load_steps=15 format=3 uid="uid://cmmq7oc8em3e3"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/Seal/Seal.gd" id="1_lo2th"]
 [ext_resource type="Texture2D" uid="uid://cpt0kgd14pang" path="res://Graphics/Spritesheets/Enemies/seal/walk.png" id="2_jr3dq"]
@@ -6,8 +6,9 @@
 [ext_resource type="Script" path="res://Scenes/Enemies/Seal/WalkState.gd" id="4_tuxco"]
 [ext_resource type="Script" path="res://Scenes/Enemies/Seal/AttackState.gd" id="5_h17m1"]
 [ext_resource type="Script" path="res://Scenes/Enemies/Seal/DeathState.gd" id="6_x1viu"]
+[ext_resource type="Script" path="res://Scenes/Enemies/Seal/Hitbox.gd" id="7_jtobf"]
 [ext_resource type="Script" path="res://Scenes/Enemies/Seal/HitboxAttackable.gd" id="8_7ojd3"]
-[ext_resource type="Script" path="res://Scripts/CharacterHitbox.gd" id="10_4uh5q"]
+[ext_resource type="Texture2D" uid="uid://d4cc3eyopu7vx" path="res://Graphics/Spritesheets/HUD UI/ProgressBarProgress_1.png" id="11_6ks4b"]
 
 [sub_resource type="Animation" id="Animation_ity1r"]
 length = 0.001
@@ -102,14 +103,15 @@ size = Vector2(15, 3)
 radius = 9.0
 height = 18.0
 
-[node name="Seal" type="CharacterBody2D" node_paths=PackedStringArray("progress_bar", "fsm")]
+[node name="Seal" type="CharacterBody2D" node_paths=PackedStringArray("texture_progress_bar", "fsm")]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(-1, -6)
+position = Vector2(-1, -5)
 collision_layer = 64
-collision_mask = 84
+collision_mask = 208
 script = ExtResource("1_lo2th")
-progress_bar = NodePath("ProgressBar")
+speed = 100
+texture_progress_bar = NodePath("TextureProgressBar")
 fsm = NodePath("FSM")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -131,7 +133,6 @@ shape = SubResource("RectangleShape2D_7feck")
 
 [node name="FSM" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_s2wuv")
-attack_distance = null
 initial_state = NodePath("WalkState")
 
 [node name="WalkState" type="Node" parent="FSM"]
@@ -150,7 +151,7 @@ seal = NodePath("../..")
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("character") groups=["enemy_hitbox"]]
 collision_layer = 32
-script = ExtResource("10_4uh5q")
+script = ExtResource("7_jtobf")
 character = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
@@ -160,18 +161,18 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="Attackable" type="Node" parent="Hitbox"]
 script = ExtResource("8_7ojd3")
-damage = 19
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-z_index = 2
-offset_left = -14.0
-offset_top = -19.0
-offset_right = 16.0
-offset_bottom = -13.0
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = -8.0
+offset_top = -13.0
+offset_right = 56.0
+offset_bottom = 27.0
+scale = Vector2(0.27, 0.27)
+min_value = 1.0
 value = 100.0
-show_percentage = false
-metadata/_edit_use_anchors_ = true
+texture_progress = ExtResource("11_6ks4b")
+tint_progress = Color(0.878431, 0.0235294, 0.0862745, 1)
 
 [connection signal="timeout" from="FSM/WanderState/Timer" to="FSM/WanderState" method="_on_timer_timeout"]
-[connection signal="area_entered" from="Hitbox" to="Hitbox/Attackable" method="_on_hitbox_area_entered"]
-[connection signal="area_exited" from="Hitbox" to="Hitbox/Attackable" method="_on_hitbox_area_exited"]
+[connection signal="area_entered" from="Hitbox" to="Hitbox" method="_on_area_entered"]
+[connection signal="area_exited" from="Hitbox" to="Hitbox" method="_on_area_exited"]

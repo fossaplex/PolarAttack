@@ -236,9 +236,5 @@ position = Vector2(0, -6)
 [node name="Orb" parent="Node2D" instance=ExtResource("12_fk0ho")]
 
 [node name="Orb2" parent="Node2D" instance=ExtResource("12_fk0ho")]
-orbit_speed = 4.5
-orbit_angle = 220.0
 
 [node name="Orb3" parent="Node2D" instance=ExtResource("12_fk0ho")]
-orbit_speed = 3.6
-orbit_angle = 135.0

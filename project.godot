@@ -88,3 +88,4 @@ esc={
 2d_physics/layer_5="items"
 2d_physics/layer_6="enemy hitbox"
 2d_physics/layer_7="enemy walk"
+2d_physics/layer_8="wall walk"
