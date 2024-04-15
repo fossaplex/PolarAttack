@@ -90,6 +90,7 @@ offset_bottom = 1.0
 [node name="Collectable_manager" parent="Manager_Container" instance=ExtResource("11_b0gdw")]
 
 [node name="EnemySpawner" type="Node2D" parent="."]
+process_mode = 1
 script = ExtResource("9_uw663")
 
 [node name="Timer" type="Timer" parent="EnemySpawner"]
@@ -155,6 +156,7 @@ position = Vector2(770, 445)
 position = Vector2(770, 490)
 
 [node name="Seals" type="Node2D" parent="."]
+process_mode = 1
 z_index = 1
 y_sort_enabled = true
 position = Vector2(-437, -337)
@@ -173,6 +175,7 @@ health = 1000
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, 6)
+zoom = Vector2(2.585, 2.585)
 
 [connection signal="exit_options_menu" from="CanvasLayer/PauseMenu/OptionsMenu" to="CanvasLayer/PauseMenu" method="_on_options_menu_exit_options_menu"]
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
