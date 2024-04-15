@@ -74,7 +74,7 @@ func set_text_for_input() -> void:
 	set_process_input(false)
 
 func _on_button_toggled(button_pressed):
-	SettingsSignalBus.emit_rebind_button_toggled(button_pressed)
+	SettingsSignalBus.emit_button_toggled(button_pressed)
 	if button_pressed:
 		button.text = "Press Any Key/Input..."
 		set_process_unhandled_input(button_pressed)
@@ -124,5 +124,5 @@ func rebind_action_key(event):
 	set_process_input(false)
 	set_text_for_input()
 	set_action_name()
-	SettingsSignalBus.emit_rebind_button_toggled(false)
+	SettingsSignalBus.emit_button_toggled(false)
 	

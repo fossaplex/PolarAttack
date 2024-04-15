@@ -8,3 +8,5 @@ script = ExtResource("2_l8kee")
 
 [node name="Label" parent="HBoxContainer" index="0"]
 text = "Window Mode"
+
+[connection signal="toggled" from="HBoxContainer/OptionButton" to="." method="_on_option_button_toggled"]

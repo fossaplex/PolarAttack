@@ -130,7 +130,7 @@ func set_keybind(action: String, event) -> void:
 		keybind_resource.MOVE_DOWN:
 			keybind_resource.move_down_key = event
 		keybind_resource.PRIMARY_ATTACK:
-			keybind_resource.primary_attack_button = event
+			keybind_resource.primary_attack_button = event 
 		keybind_resource.SECONDARY_ATTACK:
 			keybind_resource.secondary_attack_button = event
 

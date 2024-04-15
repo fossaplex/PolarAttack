@@ -41,6 +41,7 @@ func add_window_mode_items() -> void:
 		option_button.add_item(window_mode)
 
 func on_window_mode_selected(index : int) -> void:
+	SettingsSignalBus.emit_button_toggled(false)
 	SettingsSignalBus.emit_set_window_mode_toggled(index)
 	match index:
 		0: #Full Screen
@@ -55,3 +56,6 @@ func on_window_mode_selected(index : int) -> void:
 		3: # Borderless Full Screen
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
+
+func _on_option_button_toggled(toggled_on):
+	SettingsSignalBus.emit_button_toggled(toggled_on)

@@ -1,7 +1,7 @@
 extends Node
 
-signal rebind_button_toggled(value: bool)
-var rebind_button_active : bool = false;
+signal button_toggled(value: bool)
+var button_toggled_active : bool = false;
 signal set_subtitles_toggled(value: bool)
 
 signal set_window_mode_selected(index: int)
@@ -22,9 +22,9 @@ func emit_load_settings_data(settings_dict: Dictionary) -> void:
 func emit_set_settings_dictionary(settings_dict: Dictionary) -> void:
 	set_settings_dictionary.emit(settings_dict)
 
-func emit_rebind_button_toggled(value: bool) -> void:
-	rebind_button_toggled.emit(value)
-	rebind_button_active = value
+func emit_button_toggled(value: bool) -> void:
+	button_toggled.emit(value)
+	button_toggled_active = value
 func emit_set_subtitles_toggled(value: bool) -> void:
 	set_subtitles_toggled.emit(value)
 
