@@ -137,6 +137,7 @@ z_index = 1
 position = Vector2(-43, 16)
 
 [node name="Seals" type="Node2D" parent="."]
+process_mode = 1
 y_sort_enabled = true
 position = Vector2(14, 23)
 
