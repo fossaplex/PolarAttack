@@ -10,6 +10,19 @@ signal on_total_health_change(total_health: int, prev_total_health: int)
 signal on_health_change(health: int, prev_health: int)
 signal on_speed_change(speed: int, prev_spreed: int)
 
+func _process(delta):
+	if fsm: fsm.process_frame(delta)
+
+func _physics_process(delta: float) -> void:
+	if fsm: fsm.process_physics(delta)
+
+func _input(event: InputEvent) -> void:
+	if fsm: fsm.process_input(event)
+
+func charachter_queue_free():
+	fsm = null
+	queue_free()
+	
 func _set_total_health(value: int) -> void:
 	var prev = total_health
 	total_health = value
@@ -37,16 +50,3 @@ func _ready():
 	total_health = total_health
 	health = health
 	speed = speed
-
-func _process(delta):
-	if fsm: fsm.process_frame(delta)
-
-func _physics_process(delta: float) -> void:
-	if fsm: fsm.process_physics(delta)
-
-func _input(event: InputEvent) -> void:
-	if fsm: fsm.process_input(event)
-
-func charachter_queue_free():
-	fsm = null
-	queue_free()

@@ -1,25 +1,43 @@
-extends CharacterBody2D
+class_name Seal
+extends CharacterBase
 
 const SPEED = 100.0
 
-@onready var player = get_node('/root/Level/Player')
+#region Members
 @onready var ap: AnimationPlayer = $AnimationPlayer
-@onready var sprite: Sprite2D = $Seal
+@onready var sprite := $Sprite2D as Sprite2D
+@onready var walk_state := $FiniteStateMachine/WalkState as State
+@onready var wander_state := $FiniteStateMachine/WanderState as State
+@onready var finite_state_machine := $FiniteStateMachine as SingleFiniteStateMachine
+@onready var death_state := $FiniteStateMachine/DeathState as SealDeathState
+@onready var texture_progress_bar := $TextureProgressBar as TextureProgressBar
+@onready var hit_box = $HitBox as CharacterHitbox
+@onready var target = get_node('/root/Level/Player'):
+	set(value):
+		target = value
+		if !is_node_ready(): return
+		if !finite_state_machine or !finite_state_machine.has_current_state(): return
+		if target:
+			finite_state_machine.transition(walk_state)
+		else:
+			finite_state_machine.transition(wander_state)
+#endregion
 
-func _process(delta: float):
-	var direction_normalize = velocity.normalized()
-	if velocity.x != 0:
-		sprite.flip_h = velocity.x > 0
-	update_animation(velocity.normalized())
-	
-	
-func _physics_process(delta: float):
-	var direction = (player.global_position - global_position)
-	var direction_normalize = direction.normalized()
-	var target_distance = global_position.distance_to(player.global_position)
+func _ready():
+	target = target
+	fsm = finite_state_machine
+	hit_box.character = self
+	fsm.transition(walk_state)
 
-	velocity = direction_normalize * SPEED if target_distance > 20 else Vector2.ZERO
-	move_and_slide()
+func _set_total_health(value: int) -> void:
+	super(value)
+	texture_progress_bar.max_value = value
+
+func _set_health(value: int) -> void:
+	super(value)
+	texture_progress_bar.value = value
+	if (fsm and value <= 0):
+		fsm.transition(death_state)
 
 func flip_sprite(horizontal_direction: float):
 		if horizontal_direction != 0: sprite.flip_h = horizontal_direction == 1

@@ -1,6 +1,9 @@
 class_name FiniteStateMachine
 extends State
 
+func has_current_state() -> bool:
+	return false
+
 func transition(destination_state : State) -> State:
 	return null
 
