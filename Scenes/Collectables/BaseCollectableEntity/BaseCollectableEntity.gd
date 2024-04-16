@@ -16,6 +16,6 @@ func _ready():
 	sprite_2d.texture = collectable_resource.collectable_texture
 	
 func on_collect() -> void:
-	SignalBus.emit_collect_entity(collectable_resource)
+	CollectableSignalBus.emit_collect_entity(collectable_resource)
 	queue_free()
 	

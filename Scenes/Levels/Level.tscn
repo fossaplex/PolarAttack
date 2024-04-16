@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://v0wxmchyy8hw"]
+[gd_scene load_steps=17 format=3 uid="uid://v0wxmchyy8hw"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Level.gd" id="1_mxhe7"]
 [ext_resource type="PackedScene" uid="uid://bw72hruorpjco" path="res://Scenes/Player/Player.tscn" id="1_siijq"]
@@ -8,8 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://b7dv846tam46k" path="res://Scenes/Spawner/Enemy Spawner.tscn" id="5_xa74c"]
 [ext_resource type="AudioStream" uid="uid://bit6conjtq8a0" path="res://Sounds/blizzard ominous.mp3" id="6_05ye3"]
 [ext_resource type="PackedScene" uid="uid://dyx3kehr12ycl" path="res://Scenes/PauseMenu/pause_menu.tscn" id="6_30ok4"]
+[ext_resource type="Texture2D" uid="uid://qatsyxql6wdw" path="res://Graphics/Spritesheets/HUD UI/ProgressBarUnder_1.png" id="6_p8w0s"]
+[ext_resource type="Script" path="res://Scenes/Levels/XpProgressBar.gd" id="7_02coe"]
+[ext_resource type="Texture2D" uid="uid://d4cc3eyopu7vx" path="res://Graphics/Spritesheets/HUD UI/ProgressBarProgress_1.png" id="7_yn16o"]
 [ext_resource type="PackedScene" uid="uid://dfmw6h4velbkk" path="res://Scenes/OptionsMenu/options_menu.tscn" id="9_e5sju"]
+[ext_resource type="PackedScene" uid="uid://xgs1q0wrl51a" path="res://Scenes/HUD/Player_Level_UI.tscn" id="11_3iven"]
 [ext_resource type="PackedScene" uid="uid://dkunpj14gq1t0" path="res://Scenes/Managers/collectable_manager.tscn" id="11_b0gdw"]
+[ext_resource type="PackedScene" uid="uid://cwejontbuq4sr" path="res://Scenes/Collectables/BaseCollectableEntity/BaseCollectableEntity.tscn" id="14_ewg1e"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s2fnj"]
 particle_flag_disable_z = true
@@ -46,16 +51,12 @@ layer_2/tile_data = PackedInt32Array()
 process_mode = 1
 z_index = 1
 y_sort_enabled = true
-position = Vector2(50, -9)
+position = Vector2(44, -26)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 z_index = 2
 scale = Vector2(21.9447, -0.00869699)
 zoom = Vector2(3.41, 3.41)
-
-[node name="HeartsContainer" parent="Player/Camera2D" instance=ExtResource("5_d1brm")]
-position = Vector2(-7.38219, 10348.4)
-scale = Vector2(0.0455691, -114.982)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_dm7rh")
@@ -91,6 +92,27 @@ trail_section_subdivisions = 16
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="XpProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
+z_index = 10
+offset_left = -1.0
+offset_top = 3.0
+offset_right = 63.0
+offset_bottom = 13.0
+scale = Vector2(18, 1.92)
+texture_under = ExtResource("6_p8w0s")
+texture_progress = ExtResource("7_yn16o")
+script = ExtResource("7_02coe")
+
+[node name="HeartsContainer" parent="CanvasLayer" instance=ExtResource("5_d1brm")]
+position = Vector2(12, 36)
+scale = Vector2(3.26, 3.26)
+
+[node name="PlayerLevelUI" parent="CanvasLayer" instance=ExtResource("11_3iven")]
+offset_left = 543.0
+offset_top = 15.0
+offset_right = 543.0
+offset_bottom = 15.0
+
 [node name="PauseMenu" parent="CanvasLayer" node_paths=PackedStringArray("level") instance=ExtResource("6_30ok4")]
 process_mode = 2
 visible = false
@@ -107,5 +129,14 @@ offset_bottom = 1.0
 [node name="Manager_Container" type="Node" parent="."]
 
 [node name="Collectable_manager" parent="Manager_Container" instance=ExtResource("11_b0gdw")]
+
+[node name="TEMP_XP_COLLECTABLE" parent="." instance=ExtResource("14_ewg1e")]
+position = Vector2(306, 47)
+
+[node name="TEMP_XP_COLLECTABLE2" parent="." instance=ExtResource("14_ewg1e")]
+position = Vector2(115, 71)
+
+[node name="TEMP_XP_COLLECTABLE3" parent="." instance=ExtResource("14_ewg1e")]
+position = Vector2(-43, 16)
 
 [connection signal="exit_options_menu" from="CanvasLayer/PauseMenu/OptionsMenu" to="CanvasLayer/PauseMenu" method="_on_options_menu_exit_options_menu"]

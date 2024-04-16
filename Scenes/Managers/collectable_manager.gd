@@ -3,9 +3,11 @@ class_name CollectableManager
 
 var current_experience_count: int = 0
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	SignalBus.connect("collect_entity", on_entity_collected)
+	CollectableSignalBus.connect("collect_entity", on_entity_collected)
 	
 	
 func on_entity_collected(collectable_resource: BaseCollectableResource):
@@ -13,5 +15,7 @@ func on_entity_collected(collectable_resource: BaseCollectableResource):
 		"":
 			return
 		"experience":
-			current_experience_count += collectable_resource.experienceValue
-			print("Experience value: " + str(current_experience_count))
+			#current_experience_count += collectable_resource.experienceValue
+			CollectableSignalBus.emit_on_xp_collected(collectable_resource)
+
+			
