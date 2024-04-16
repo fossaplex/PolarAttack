@@ -1,8 +1,6 @@
 class_name SealWanderState
 extends State
 
-
-
 @onready var animation_player := $"../../AnimationPlayer" as AnimationPlayer
 @onready var seal := $"../.." as Seal
 @onready var timer := $Timer as Timer
@@ -12,8 +10,12 @@ extends State
 var velocity := Vector2.ZERO
 
 func enter() -> void:
+	timer.timeout.connect(_on_timer_timeout)
 	timer.start()
 	animation_player.play("walk")
+
+func exit() -> void:
+	timer.timeout.disconnect(_on_timer_timeout)
 
 func process_physics(delta: float) -> void:
 	seal.velocity = velocity 

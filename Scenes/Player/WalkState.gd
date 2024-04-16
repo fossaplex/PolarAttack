@@ -6,12 +6,13 @@ extends State
 @onready var idle_state := $"../IdleState" as PlayerIdleState
 @onready var player := $"../.." as CharacterBase
 @onready  var speed: float = player.speed:
-	get:
-		return player.speed
+	get: return player.speed
 @onready var sound_walk := $"../../SoundWalk" as AudioStreamPlayer2D
 @onready var timer := $Timer as Timer
 
 func enter() -> void:
+	timer.timeout.connect(_on_timer_timeout)
+	timer.wait_time = .2
 	sound_walk.play()
 	animation_player.play("walk")
 	timer.start()
@@ -19,6 +20,7 @@ func enter() -> void:
 func exit() -> void:
 	animation_player.stop()
 	timer.stop()
+	timer.timeout.disconnect(_on_timer_timeout)
 
 func process_frame(delta: float) -> void:
 	var horizontal_direction := Input.get_axis("move_left", "move_right")

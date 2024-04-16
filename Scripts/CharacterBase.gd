@@ -44,7 +44,8 @@ func _set_health(value: int) -> void:
 	
 	if prev != health:
 		on_health_change.emit(prev, health)
-		if health <= 0: on_dead.emit(prev)
+		if health <= 0: 
+			on_dead.emit(prev)
 
 func _set_speed(value: int) -> void:
 	var prev = speed

@@ -10,7 +10,8 @@ extends CharacterBase
 @onready var death_state := $FiniteStateMachine/DeathState as SealDeathState
 @onready var texture_progress_bar := $TextureProgressBar as TextureProgressBar
 @onready var hit_box := $HitBox as CharacterHitbox
-@onready var target = get_node('/root/Level/Player'):
+@onready var attackable := $FiniteStateMachine/WalkState/Attackable as Attackable
+@onready var target: CharacterBase = null:
 	set(value):
 		target = value
 		if !is_node_ready(): return
@@ -30,7 +31,7 @@ func _ready():
 	target = target
 	fsm = finite_state_machine
 	hit_box.character = self
-	fsm.transition(walk_state)
+	fsm.transition(walk_state if target else wander_state)
 
 func _set_total_health(value: int) -> void:
 	super(value)

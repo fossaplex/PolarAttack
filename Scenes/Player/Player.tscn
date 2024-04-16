@@ -294,7 +294,7 @@ autoplay = "walk"
 
 [node name="SoundWalk" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_cxqis")
-volume_db = -10.275
+volume_db = 18.216
 pitch_scale = 1.22
 
 [node name="Timer" type="Timer" parent="."]

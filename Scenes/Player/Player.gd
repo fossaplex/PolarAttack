@@ -31,7 +31,6 @@ func _ready():
 	super()
 	on_dead.connect(_on_dead)
 	fsm = finite_state_machine
-
 	orb_damage = orb_damage
 	beam_damage = beam_damage
 	beam.visible = false
@@ -55,5 +54,5 @@ func _set_speed(value: int) -> void:
 	walk_state.speed = speed
 
 #endregion
-func _on_dead():
+func _on_dead(prev_health: int) -> void:
 	projectiles.queue_free()

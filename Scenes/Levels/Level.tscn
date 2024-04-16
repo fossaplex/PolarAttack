@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://3j3i1mox6gns" path="res://Scenes/Map/map.tscn" id="2_gs7rd"]
 [ext_resource type="AudioStream" uid="uid://dt1cy7i75mhnu" path="res://Sounds/song_1.mp3" id="3_dm7rh"]
 [ext_resource type="PackedScene" uid="uid://c4xpq8iffsd5t" path="res://Scenes/Hearts/HeartsContainer.tscn" id="5_d1brm"]
-[ext_resource type="PackedScene" uid="uid://b7dv846tam46k" path="res://Scenes/Spawner/Enemy Spawner.tscn" id="5_xa74c"]
 [ext_resource type="AudioStream" uid="uid://bit6conjtq8a0" path="res://Sounds/blizzard ominous.mp3" id="6_05ye3"]
 [ext_resource type="PackedScene" uid="uid://dyx3kehr12ycl" path="res://Scenes/PauseMenu/pause_menu.tscn" id="6_30ok4"]
 [ext_resource type="Texture2D" uid="uid://qatsyxql6wdw" path="res://Graphics/Spritesheets/HUD UI/ProgressBarUnder_1.png" id="6_p8w0s"]
@@ -15,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://xgs1q0wrl51a" path="res://Scenes/HUD/Player_Level_UI.tscn" id="11_3iven"]
 [ext_resource type="PackedScene" uid="uid://dkunpj14gq1t0" path="res://Scenes/Managers/collectable_manager.tscn" id="11_b0gdw"]
 [ext_resource type="PackedScene" uid="uid://cwejontbuq4sr" path="res://Scenes/Collectables/BaseCollectableEntity/BaseCollectableEntity.tscn" id="14_ewg1e"]
+[ext_resource type="Script" path="res://Scenes/Levels/EnemySpawner.gd" id="15_6hlx1"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s2fnj"]
 particle_flag_disable_z = true
@@ -64,11 +64,6 @@ volume_db = -23.357
 pitch_scale = 0.6
 autoplay = true
 mix_target = 2
-
-[node name="EnemySpawner" parent="." instance=ExtResource("5_xa74c")]
-process_mode = 1
-y_sort_enabled = true
-position = Vector2(-52, 38)
 
 [node name="AmbientNoise" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_05ye3")
@@ -134,9 +129,70 @@ offset_bottom = 1.0
 position = Vector2(306, 47)
 
 [node name="TEMP_XP_COLLECTABLE2" parent="." instance=ExtResource("14_ewg1e")]
+z_index = 1
 position = Vector2(115, 71)
 
 [node name="TEMP_XP_COLLECTABLE3" parent="." instance=ExtResource("14_ewg1e")]
+z_index = 1
 position = Vector2(-43, 16)
+
+[node name="Seals" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(14, 23)
+
+[node name="EnemySpawner" type="Node2D" parent="."]
+script = ExtResource("15_6hlx1")
+
+[node name="Timer" type="Timer" parent="EnemySpawner"]
+
+[node name="SpawnPoints" type="Node2D" parent="EnemySpawner"]
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(-316, -184)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(-316, -143)
+
+[node name="Marker2D3" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(-316, -100)
+
+[node name="Marker2D4" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(-316, -59)
+
+[node name="Marker2D5" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(-316, 46)
+
+[node name="Marker2D6" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(-316, 87)
+
+[node name="Marker2D7" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(-316, 130)
+
+[node name="Marker2D8" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(-316, 171)
+
+[node name="Marker2D9" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(349, -181)
+
+[node name="Marker2D10" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(349, -140)
+
+[node name="Marker2D11" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(349, -97)
+
+[node name="Marker2D12" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(349, -56)
+
+[node name="Marker2D13" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(349, 49)
+
+[node name="Marker2D14" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(349, 90)
+
+[node name="Marker2D15" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(349, 133)
+
+[node name="Marker2D16" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(349, 174)
 
 [connection signal="exit_options_menu" from="CanvasLayer/PauseMenu/OptionsMenu" to="CanvasLayer/PauseMenu" method="_on_options_menu_exit_options_menu"]
