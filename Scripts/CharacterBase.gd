@@ -23,8 +23,8 @@ func _set_health(value: int) -> void:
 	var prev = health
 	health = value
 	
-	if prev != total_health:
-		on_health_change.emit(prev, total_health)
+	if prev != health:
+		on_health_change.emit(prev, health)
 
 func _set_speed(value: int) -> void:
 	var prev = speed

@@ -9,5 +9,3 @@ func transition_to(source_state: State, destination_state : State) -> State:
 
 func add_transition_to(source_state: State, destination_state: State, append: bool, remove_source: bool) -> State:
 	return null
-	
-
