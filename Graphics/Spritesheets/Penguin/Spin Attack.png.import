@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bs4gv7q1ultpg"
-path="res://.godot/imported/Death.png-9e940d0152a5bbd540f0f552f46d7b08.ctex"
+uid="uid://d3nedc57qcej4"
+path="res://.godot/imported/Spin Attack.png-464c6d90dd412dfdb752b13d34d57d2e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Spritesheets/Death.png"
-dest_files=["res://.godot/imported/Death.png-9e940d0152a5bbd540f0f552f46d7b08.ctex"]
+source_file="res://Graphics/Spritesheets/Penguin/Spin Attack.png"
+dest_files=["res://.godot/imported/Spin Attack.png-464c6d90dd412dfdb752b13d34d57d2e.ctex"]
 
 [params]
 

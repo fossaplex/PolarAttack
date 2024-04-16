@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dm18p15gqjq63"
-path="res://.godot/imported/Land.png-354efee8278c13df3928271b471604f6.ctex"
+uid="uid://bs4gv7q1ultpg"
+path="res://.godot/imported/Death.png-1beb2484f6bf193896cfaa02befd647a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Spritesheets/Land.png"
-dest_files=["res://.godot/imported/Land.png-354efee8278c13df3928271b471604f6.ctex"]
+source_file="res://Graphics/Spritesheets/Penguin/Death.png"
+dest_files=["res://.godot/imported/Death.png-1beb2484f6bf193896cfaa02befd647a.ctex"]
 
 [params]
 

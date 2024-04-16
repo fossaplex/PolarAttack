@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crgwgd3csj7iw"
-path="res://.godot/imported/Turn.png-961cedd78bb4eed714a9a8695dee5a67.ctex"
+uid="uid://c11gsfidn5wea"
+path="res://.godot/imported/heart_empty.png-ac2bcad8175e049a1efacb97d4508088.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Spritesheets/Turn.png"
-dest_files=["res://.godot/imported/Turn.png-961cedd78bb4eed714a9a8695dee5a67.ctex"]
+source_file="res://Graphics/Spritesheets/Heart/heart_empty.png"
+dest_files=["res://.godot/imported/heart_empty.png-ac2bcad8175e049a1efacb97d4508088.ctex"]
 
 [params]
 

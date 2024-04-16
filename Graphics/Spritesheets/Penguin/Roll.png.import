@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://43lfb3lyefnb"
-path="res://.godot/imported/Walk.png-f15ccfae9390840afb054cf782cc10df.ctex"
+uid="uid://bslfgkpulb6hm"
+path="res://.godot/imported/Roll.png-217f2573718f5ed7e1d58d8a01174d7c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Spritesheets/Walk.png"
-dest_files=["res://.godot/imported/Walk.png-f15ccfae9390840afb054cf782cc10df.ctex"]
+source_file="res://Graphics/Spritesheets/Penguin/Roll.png"
+dest_files=["res://.godot/imported/Roll.png-217f2573718f5ed7e1d58d8a01174d7c.ctex"]
 
 [params]
 

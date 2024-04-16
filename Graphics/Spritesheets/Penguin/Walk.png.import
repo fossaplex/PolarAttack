@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c11gsfidn5wea"
-path="res://.godot/imported/heart_empty.png-4b71a48e62ebb530840b195f79f4881f.ctex"
+uid="uid://43lfb3lyefnb"
+path="res://.godot/imported/Walk.png-ba9622e9f71fefdaa21efd4a3ec08ad6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Spritesheets/heart_empty.png"
-dest_files=["res://.godot/imported/heart_empty.png-4b71a48e62ebb530840b195f79f4881f.ctex"]
+source_file="res://Graphics/Spritesheets/Penguin/Walk.png"
+dest_files=["res://.godot/imported/Walk.png-ba9622e9f71fefdaa21efd4a3ec08ad6.ctex"]
 
 [params]
 

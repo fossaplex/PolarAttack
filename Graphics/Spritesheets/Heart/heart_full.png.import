@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3nedc57qcej4"
-path="res://.godot/imported/Spin Attack.png-44a60411a88a3d6f72f6fa7ebbf72a4e.ctex"
+uid="uid://bjkcdxkooqr0"
+path="res://.godot/imported/heart_full.png-76c326c1f88df0e5fcf07a5b2f9c3db1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Spritesheets/Spin Attack.png"
-dest_files=["res://.godot/imported/Spin Attack.png-44a60411a88a3d6f72f6fa7ebbf72a4e.ctex"]
+source_file="res://Graphics/Spritesheets/Heart/heart_full.png"
+dest_files=["res://.godot/imported/heart_full.png-76c326c1f88df0e5fcf07a5b2f9c3db1.ctex"]
 
 [params]
 

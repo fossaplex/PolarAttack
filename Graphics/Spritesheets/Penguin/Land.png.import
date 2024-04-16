@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://j72r5deby7vj"
-path="res://.godot/imported/Idle.png-1970e3f0d20a2bd8669797d6e147f459.ctex"
+uid="uid://dm18p15gqjq63"
+path="res://.godot/imported/Land.png-4a95496df9956bd4e338aca3b5d8496d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Spritesheets/Idle.png"
-dest_files=["res://.godot/imported/Idle.png-1970e3f0d20a2bd8669797d6e147f459.ctex"]
+source_file="res://Graphics/Spritesheets/Penguin/Land.png"
+dest_files=["res://.godot/imported/Land.png-4a95496df9956bd4e338aca3b5d8496d.ctex"]
 
 [params]
 
