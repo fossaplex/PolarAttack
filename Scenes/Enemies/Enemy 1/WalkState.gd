@@ -47,4 +47,4 @@ func _on_hit_box_area_entered(area: Area2D):
 
 func _on_hit_box_area_exited(area):
 	if !area.is_in_group(GROUPS.PLAYER_HITBOX): return
-	_is_damaging = true
+	_is_damaging = false
