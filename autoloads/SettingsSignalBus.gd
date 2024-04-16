@@ -1,5 +1,7 @@
 extends Node
 
+signal button_toggled(value: bool)
+var button_toggled_active : bool = false;
 signal set_subtitles_toggled(value: bool)
 
 signal set_window_mode_selected(index: int)
@@ -14,11 +16,15 @@ signal set_settings_dictionary(settings_dict : Dictionary)
 
 signal load_settings_data(settings_dict : Dictionary)
 
+
 func emit_load_settings_data(settings_dict: Dictionary) -> void:
 	load_settings_data.emit(settings_dict)
 func emit_set_settings_dictionary(settings_dict: Dictionary) -> void:
 	set_settings_dictionary.emit(settings_dict)
-	
+
+func emit_button_toggled(value: bool) -> void:
+	button_toggled.emit(value)
+	button_toggled_active = value
 func emit_set_subtitles_toggled(value: bool) -> void:
 	set_subtitles_toggled.emit(value)
 
