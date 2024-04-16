@@ -18,6 +18,7 @@ var subtitles_set: bool = false
 #Menu Save Data
 var loaded_data : Dictionary = {}
 
+
 func _ready():
 	handle_signals()
 	create_storage_dictionary()
@@ -48,35 +49,35 @@ func create_storage_dictionary() -> Dictionary:
 
 #Getters
 func get_window_mode_index() -> int:
-	if loaded_data == {}:
+	if !loaded_data.has("window_mode_index"):
 		return DEFAULT_SETTINGS.DEFAULT_WINDOW_MODE_INDEX
 	return window_mode_index
 func get_resolution_index() -> int:
-	if loaded_data == {}:
+	if !loaded_data.has("resolution_index"):
 		return DEFAULT_SETTINGS.DEFAULT_RESOLUTION_INDEX
 	return resolution_index
 func get_subtitles_toggled() -> bool:
-	if loaded_data == {}:
+	if !loaded_data.has("subtitles_set"):
 		return DEFAULT_SETTINGS.DEFAULT_SUBTITLES_SET
 	return subtitles_set
 func get_master_sound() -> float:
-	if loaded_data == {}:
+	if !loaded_data.has("master_volume"):
 		return DEFAULT_SETTINGS.DEFAULT_MASTER_VOLUME
 	return master_volume
 func get_music_sound() -> float:
-	if loaded_data == {}:
+	if !loaded_data.has("music_volume"):
 		return DEFAULT_SETTINGS.DEFAULT_MUSIC_VOLUME
 	return music_volume
 func get_sfx_sound() -> float:
-	if loaded_data == {}:
+	if !loaded_data.has("sfx_volume"):
 		return DEFAULT_SETTINGS.DEFAULT_SFX_VOLUME
 	return sfx_volume
 func get_ambient_sound() -> float:
-	if loaded_data == {}:
+	if !loaded_data.has("ambient_volume"):
 		return DEFAULT_SETTINGS.DEFAULT_AMBIENT_VOLUME
 	return ambient_volume
 func get_keybinds(action: String):
-	if loaded_data == {}:
+	if !loaded_data.has("keybinds"):
 		match action:
 			keybind_resource.MOVE_LEFT:
 				return keybind_resource.DEFAULT_MOVE_LEFT_KEY
