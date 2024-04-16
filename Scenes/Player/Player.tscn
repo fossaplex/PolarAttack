@@ -1,14 +1,24 @@
-[gd_scene load_steps=15 format=3 uid="uid://bw72hruorpjco"]
+[gd_scene load_steps=22 format=3 uid="uid://bw72hruorpjco"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_ty1sm"]
 [ext_resource type="Texture2D" uid="uid://j72r5deby7vj" path="res://Graphics/Spritesheets/Penguin/Idle.png" id="2_8ii8i"]
 [ext_resource type="PackedScene" uid="uid://cxgowuwg7ndyx" path="res://Scenes/Handlers/Player_Stat_Handler/player_stat_handler.tscn" id="3_l85k4"]
+[ext_resource type="Script" path="res://Scenes/Player/HitBox.gd" id="3_tf4dq"]
 [ext_resource type="PackedScene" uid="uid://b60p040e647da" path="res://Scenes/Handlers/Connection_Handler/connection_handler.tscn" id="3_vam7b"]
 [ext_resource type="PackedScene" uid="uid://diy85w135sgrw" path="res://Scenes/Beam/beam.tscn" id="4_0ti1t"]
 [ext_resource type="Script" path="res://Scenes/Handlers/Player_Stat_Handler/player_stat_handler.gd" id="4_epkad"]
 [ext_resource type="Texture2D" uid="uid://43lfb3lyefnb" path="res://Graphics/Spritesheets/Penguin/Walk.png" id="6_kyxeo"]
 [ext_resource type="AudioStream" uid="uid://cribpqi2ab5in" path="res://Sounds/step_1.mp3" id="8_cxqis"]
-[ext_resource type="PackedScene" uid="uid://b5naqof73cu32" path="res://Scenes/Orb/Orb.tscn" id="12_fk0ho"]
+[ext_resource type="Script" path="res://Scenes/Player/Orbs.gd" id="9_nilup"]
+[ext_resource type="Script" path="res://Scenes/Player/SingleFiniteStateMachine.gd" id="10_3mdsy"]
+[ext_resource type="Script" path="res://Scenes/Player/IdleState.gd" id="11_6wq3b"]
+[ext_resource type="Script" path="res://Scenes/Player/WalkState.gd" id="12_xaajb"]
+[ext_resource type="Script" path="res://Scenes/Player/AttackState.gd" id="13_anuk2"]
+[ext_resource type="Script" path="res://Scenes/Player/DeathState.gd" id="14_216an"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wfubi"]
+radius = 8.0
+height = 16.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ion7"]
 size = Vector2(4.28336, 2.28484)
@@ -189,18 +199,24 @@ _data = {
 "walk": SubResource("Animation_e4kqs")
 }
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_ty1sm")
-SPEED = 150.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_8ii8i")
 hframes = 2
 
-[node name="PlayerHitbox" type="CollisionShape2D" parent="."]
+[node name="HitBox" type="Area2D" parent="." groups=["player_hitbox"]]
+script = ExtResource("3_tf4dq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -7)
+shape = SubResource("CapsuleShape2D_wfubi")
+
+[node name="WalkHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
 scale = Vector2(3.035, 1.313)
 shape = SubResource("RectangleShape2D_1ion7")
@@ -221,12 +237,7 @@ libraries = {
 }
 autoplay = "walk"
 
-[node name="Beam" parent="." instance=ExtResource("4_0ti1t")]
-visibility_layer = 33
-z_index = 1
-position = Vector2(0, -12)
-
-[node name="SoundWalk" type="AudioStreamPlayer" parent="."]
+[node name="SoundWalk" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_cxqis")
 volume_db = -10.275
 pitch_scale = 1.22
@@ -234,11 +245,38 @@ pitch_scale = 1.22
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="ProgressBar" type="ProgressBar" parent="."]
+texture_filter = 1
+offset_left = -11.0
+offset_top = -23.0
+offset_right = 11.0
+offset_bottom = -18.0
+show_percentage = false
+
+[node name="Projectiles" type="Node2D" parent="."]
+
+[node name="Beam" parent="Projectiles" instance=ExtResource("4_0ti1t")]
+visibility_layer = 33
+z_index = 1
+position = Vector2(0, -12)
+
+[node name="Orbs" type="Node2D" parent="Projectiles"]
 position = Vector2(0, -6)
+script = ExtResource("9_nilup")
 
-[node name="Orb" parent="Node2D" instance=ExtResource("12_fk0ho")]
+[node name="SingleFiniteStateMachine" type="Node" parent="."]
+script = ExtResource("10_3mdsy")
 
-[node name="Orb2" parent="Node2D" instance=ExtResource("12_fk0ho")]
+[node name="IdleState" type="Node" parent="SingleFiniteStateMachine"]
+script = ExtResource("11_6wq3b")
 
-[node name="Orb3" parent="Node2D" instance=ExtResource("12_fk0ho")]
+[node name="WalkState" type="Node" parent="SingleFiniteStateMachine"]
+script = ExtResource("12_xaajb")
+
+[node name="Timer" type="Timer" parent="SingleFiniteStateMachine/WalkState"]
+
+[node name="AttackState" type="Node" parent="SingleFiniteStateMachine"]
+script = ExtResource("13_anuk2")
+
+[node name="DeathState" type="Node" parent="SingleFiniteStateMachine"]
+script = ExtResource("14_216an")

@@ -8,7 +8,13 @@ extends CharacterBody2D
 
 signal on_total_health_change(total_health: int, prev_total_health: int)
 signal on_health_change(health: int, prev_health: int)
+signal on_dead(prev_health: int)
 signal on_speed_change(speed: int, prev_spreed: int)
+
+func _ready():
+	total_health = total_health
+	health = health
+	speed = speed
 
 func _process(delta):
 	if fsm: fsm.process_frame(delta)
@@ -38,6 +44,7 @@ func _set_health(value: int) -> void:
 	
 	if prev != health:
 		on_health_change.emit(prev, health)
+		if health <= 0: on_dead.emit(prev)
 
 func _set_speed(value: int) -> void:
 	var prev = speed
@@ -46,7 +53,4 @@ func _set_speed(value: int) -> void:
 	if prev != speed:
 		on_speed_change.emit(prev, speed)
 
-func _ready():
-	total_health = total_health
-	health = health
-	speed = speed
+

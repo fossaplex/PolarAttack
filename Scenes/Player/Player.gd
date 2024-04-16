@@ -1,42 +1,59 @@
-extends CharacterBody2D
+class_name Player
+extends CharacterBase
 
-@export var SPEED = 300.0
+@onready var sprite := $Sprite2D as Sprite2D
+@onready var animation_player := $AnimationPlayer as AnimationPlayer
+@onready var finite_state_machine := $SingleFiniteStateMachine as SingleFiniteStateMachine
+@onready var hit_box := $HitBox as CharacterHitbox
 
-@onready var ap = $AnimationPlayer
-@onready var sprite = $Sprite2D
-@onready var laserMarker = $LaserMarker2D
-@onready var laser: Node2D = $Beam
+@onready var death_state := $SingleFiniteStateMachine/DeathState as PlayerDeathState
+@onready var idle_state := $SingleFiniteStateMachine/IdleState as PlayerIdleState
+@onready var walk_state := $SingleFiniteStateMachine/WalkState as PlayerWalkState
+
+@onready var projectiles = $Projectiles
+@onready var orbs := $Projectiles/Orbs as Orbs
+@onready var beam := $Projectiles/Beam as Beam
+@onready var progress_bar := $ProgressBar as ProgressBar
+
+@export var orb_damage: float = 10:
+	set(value):
+		orb_damage = value
+		if !is_node_ready(): return
+		orbs.damage = orb_damage
+
+@export var beam_damage: float = 10:
+	set(value):
+		beam_damage = value
+		if !is_node_ready(): return
+		beam.attackable.damage = beam_damage
 
 func _ready():
-	laser.visible = false
+	super()
+	on_dead.connect(_on_dead)
+	fsm = finite_state_machine
 
-func _physics_process(delta: float):
-	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * SPEED
+	orb_damage = orb_damage
+	beam_damage = beam_damage
+	beam.visible = false
+	hit_box.character = self
+	fsm.transition(idle_state)
 
-	var horizontal_direction = Input.get_axis("move_left", "move_right")
-	flip_sprite(horizontal_direction)
+func _set_total_health(value: int) -> void:
+	super(value)
+	progress_bar.max_value = value
 
-	if velocity.length() != 0:
-		if $Timer.time_left <= 0:
-			$SoundWalk.pitch_scale = randf_range(.4,.6)
-			$SoundWalk.play()
-			$Timer.start(.21)
-	move_and_slide()
-	update_animation(direction)
+func _set_health(value: int) -> void:
+	super(value)
+	progress_bar.value = value
+	if health <= 0:
+		var concreate_fsm := fsm as FiniteStateMachine
+		concreate_fsm.transition(death_state)
 
-func _input(event: InputEvent):
-	if event is InputEventMouseButton:
-		if event.is_action_pressed("primary_attack") and event.is_pressed():
-			laser.visible = true
-		else:
-			laser.visible = false
+func _set_speed(value: int) -> void:
+	super(value)
+	if !is_node_ready(): return
+	walk_state.speed = speed
 
-func flip_sprite(horizontal_direction: float):
-		if horizontal_direction != 0: sprite.flip_h = horizontal_direction == 1
-
-func update_animation(direction: Vector2):
-	if direction == Vector2.ZERO:
-		ap.play("idle")
-	else:
-		ap.play("walk")
+#endregion
+func _on_dead():
+	projectiles.queue_free()

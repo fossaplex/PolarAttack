@@ -5,13 +5,12 @@ class_name State
 #NOTE This is the State base-class, all our specific states inherits this logic
 # DO NOT CHANGE THIS unless you know what you are doing
 
-signal request_transition(destination_state: State)
-signal request_transition_to(source_state: State, destination_state: State)
-signal request_add_transition_to(source_state: State, destination_state: State, append: bool, remove: bool)
+var fsm: FiniteStateMachine = null:
+	get: return get_parent()
 
 func enter() -> void:
 	pass
-	
+
 func exit() -> void:
 	pass
 

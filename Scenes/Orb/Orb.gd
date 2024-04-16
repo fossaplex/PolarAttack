@@ -1,3 +1,4 @@
+class_name Orb
 extends Area2D
 
 const GROUPS = preload("res://Constants/Groups.gd")

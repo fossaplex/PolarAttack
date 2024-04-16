@@ -1,8 +1,6 @@
 class_name Seal
 extends CharacterBase
 
-const SPEED = 100.0
-
 #region Members
 @onready var ap: AnimationPlayer = $AnimationPlayer
 @onready var sprite := $Sprite2D as Sprite2D
@@ -11,7 +9,7 @@ const SPEED = 100.0
 @onready var finite_state_machine := $FiniteStateMachine as SingleFiniteStateMachine
 @onready var death_state := $FiniteStateMachine/DeathState as SealDeathState
 @onready var texture_progress_bar := $TextureProgressBar as TextureProgressBar
-@onready var hit_box = $HitBox as CharacterHitbox
+@onready var hit_box := $HitBox as CharacterHitbox
 @onready var target = get_node('/root/Level/Player'):
 	set(value):
 		target = value
@@ -23,6 +21,11 @@ const SPEED = 100.0
 			finite_state_machine.transition(wander_state)
 #endregion
 
+#region Signals
+signal on_death
+#endregion
+
+#region Override
 func _ready():
 	target = target
 	fsm = finite_state_machine
@@ -37,7 +40,9 @@ func _set_health(value: int) -> void:
 	super(value)
 	texture_progress_bar.value = value
 	if (fsm and value <= 0):
-		fsm.transition(death_state)
+		if fsm.transition(death_state):
+			on_death.emit()
+#endregion
 
 func flip_sprite(horizontal_direction: float):
 		if horizontal_direction != 0: sprite.flip_h = horizontal_direction == 1

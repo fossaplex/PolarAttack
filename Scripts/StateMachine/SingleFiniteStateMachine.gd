@@ -1,14 +1,8 @@
-@icon("res://Icons/FSMSprite.png")
+@icon("res://Graphics/Icons/FSMSprite.png")
 class_name SingleFiniteStateMachine
 extends FiniteStateMachine
 
 @export var _current_state : State
-
-func _ready() -> void:
-	for child in get_children():
-		if child is State:
-			child.request_transition_to.connect(transition_to)
-			child.request_transition.connect(transition_to)
 
 func transition_to(source_state: State, destination_state : State) -> State:
 	if source_state and source_state != _current_state:
