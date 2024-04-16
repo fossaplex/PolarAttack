@@ -90,18 +90,19 @@ func _on_button_toggled(button_pressed):
 #NOTE - This logic works for Space, Enter, and Left Click
 func _input(event):
 	if event is InputEventKey:
-		if OS.get_keycode_string(event.key_label) == "Enter" or OS.get_keycode_string(event.key_label) == "Space":
-			if space_or_enter_pressed:
-				rebind_action_key(event)
-				button.button_pressed = false
-				space_or_enter_pressed = true
+		if OS.get_keycode_string(event.key_label) != "Escape":
+			if OS.get_keycode_string(event.key_label) == "Enter" or OS.get_keycode_string(event.key_label) == "Space":
+				if space_or_enter_pressed:
+					rebind_action_key(event)
+					button.button_pressed = false
+					space_or_enter_pressed = true
+				elif not event.pressed:
+					rebind_action_key(event)
+					space_or_enter_pressed = false
 			elif not event.pressed:
 				rebind_action_key(event)
+				button.button_pressed = false
 				space_or_enter_pressed = false
-		elif not event.pressed:
-			rebind_action_key(event)
-			button.button_pressed = false
-			space_or_enter_pressed = false
 	elif event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if mouse_button_pressed:

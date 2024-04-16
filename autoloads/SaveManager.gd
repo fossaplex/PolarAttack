@@ -26,6 +26,9 @@ func load_settings_data() -> void:
 		var _parsed_result = json.parse(json_string)
 		
 		loaded_data = json.get_data()
-		
-	SettingsSignalBus.emit_load_settings_data(loaded_data)
-	loaded_data = {}
+	if loaded_data.has_all(["window_mode_index","resolution_index","master_volume","music_volume","sfx_volume","ambient_volume","subtitles_set","keybinds"]):
+		SettingsSignalBus.emit_load_settings_data(loaded_data)
+	else:
+		loaded_data = {} 
+		return
+	
