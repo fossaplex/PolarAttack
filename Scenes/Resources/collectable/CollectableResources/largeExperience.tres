@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ExperienceResource" load_steps=3 format=3 uid="uid://b5svfmg6ejxi7"]
 
-[ext_resource type="Texture2D" uid="uid://dj1hh568kmndl" path="res://Graphics/Spritesheets/Fall.png" id="1_iqyx7"]
+[ext_resource type="Texture2D" uid="uid://dj1hh568kmndl" path="res://Graphics/Spritesheets/Penguin/Fall.png" id="1_iqyx7"]
 [ext_resource type="Script" path="res://Scenes/Resources/collectable/ExperienceResource.gd" id="2_fifbf"]
 
 [resource]

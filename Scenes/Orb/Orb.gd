@@ -1,49 +1,39 @@
+class_name Orb
 extends Area2D
 
-# Orbiting parameters
-@export var orbit_speed = 2.8  # How fast the object orbits around the player
-@export var base_orbit_radius = 35.0  # The base radius of the orbit
-@export var orbit_radius_variation = 5.0  # The amplitude of the orbit radius oscillation
-@export var wave_speed = .005  # Speed of the sine wave oscillation
-@export var orbit_angle = 0.0  # Current angle in the orbit
+const GROUPS = preload("res://Constants/Groups.gd")
 
-var player  # Reference to the player node
+@export var radius: float = 30
+@export var speed: float = 200
+@export var angle_offset := 0.0
+
+@onready var attackable := $Attackable as Attackable
+@onready var audio_stream_player_2d := $AudioStreamPlayer2D as AudioStreamPlayer2D
+@onready var audio_stream_player := $AudioStreamPlayer as AudioStreamPlayer
+
+const pitch_variation_range = 0.3
+const base_pitch = 1.0
+var angle_degrees = 0
 
 func _ready():
-	player = get_node("/root/Level/Player")  # Adjust the path to correctly point to your player node
+	area_entered.connect(_on_area_entered)
 
-func _process(delta):
-	# Update the current angle based on the orbit speed
-	
-	orbit_angle += orbit_speed * delta
-	# Ensure the angle wraps around correctly (optional, keeps the number manageable)
-	orbit_angle = fmod(orbit_angle,2 * PI)
-	var time = Time.get_ticks_msec()
-	var orbit_radius = base_orbit_radius + sin(time * wave_speed) * orbit_radius_variation
-	var max_orbit_radius = base_orbit_radius + orbit_radius_variation
-	$AudioStreamPlayer2D.volume_db = linear_to_db(1 - orbit_radius / max_orbit_radius)
-	$AudioStreamPlayer2D.pitch_scale = 1.0 + (max_orbit_radius - orbit_radius) / max_orbit_radius
+func _process(delta: float):
+	angle_degrees += speed * delta
+	angle_degrees = fmod(angle_degrees, 360)
 
-	# Calculate the new position using trigonometry
-	var x = cos(orbit_angle) * orbit_radius
-	var y = sin(orbit_angle) * orbit_radius
-	
-	# Update the position of the Area2D to orbit arou nd the player
+	var angle := deg_to_rad(angle_degrees + angle_offset)
+	var x = radius * cos(angle)
+	var y = radius * sin(angle)
 	position = Vector2(x, y)
+	audio_stream_player_2d.volume_db = linear_to_db(1)
+	audio_stream_player_2d.pitch_scale = 1.0  / radius
 
 func _on_area_entered(area: Area2D):
-	var parent = area.get_parent()
-	var bar = parent.get_node("GenericProgressBar")
-
-	var pitch_variation_range = 0.3 # Defines how much the pitch can vary
-	var base_pitch = 1.0 # Normal pit
-	if parent.is_in_group("enemies"):
-		bar.decrement(50)
-		if bar.value <= 0:
-			parent.queue_free() 
-		
-		var random_pitch = base_pitch + randf_range(-pitch_variation_range, pitch_variation_range) 
-		$AudioStreamPlayer.pitch_scale = random_pitch
-		$AudioStreamPlayer.play()
-
-
+	var groups = area.get_groups()
+	if area.is_in_group(GROUPS.ENEMY_HITBOX):
+		if area is CharacterHitbox:
+			attackable.deal_damange(area.character)
+			var random_pitch = base_pitch + randf_range(-pitch_variation_range, pitch_variation_range) 
+			audio_stream_player.pitch_scale = random_pitch
+			audio_stream_player.play()

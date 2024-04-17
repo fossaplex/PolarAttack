@@ -1,10 +1,14 @@
+class_name Beam
 extends Node2D
+
+const GROUPS = preload("res://Constants/Groups.gd")
 
 const MAX_LENGTH = 2000
 
-@onready var beam = $Beam
-@onready var end = $End
-@onready var raycast: RayCast2D = $RayCast2D
+@onready var beam := $Beam as Sprite2D
+@onready var end := $End as Node2D
+@onready var raycast := $RayCast2D as RayCast2D
+@onready var attackable := $Attackable as Attackable
 
 func _physics_process(delta: float):
 	var mouse_position = get_local_mouse_position()
@@ -16,3 +20,8 @@ func _physics_process(delta: float):
 		end.global_position = raycast.target_position
 	beam.rotation = raycast.target_position.angle()
 	beam.region_rect.end.x = end.position.length()
+
+func _process(delta):
+	var node := raycast.get_collider()
+	if node is CharacterHitbox and node.is_in_group(GROUPS.ENEMY_HITBOX):
+		attackable.deal_damange_delta(node.character, delta)
