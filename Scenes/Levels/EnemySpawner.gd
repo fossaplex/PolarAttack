@@ -24,5 +24,7 @@ func _on_timer_timeout():
 			
 			seals.add_child(seal)
 			seal.target = player
-			seal.attackable.damage = 1
+			seal.base_damage = 10
+			seal.damage_multiplier = 1
+			seal.attackable.damage  = seal.damage
 			seal.global_position = spawn_point.global_position

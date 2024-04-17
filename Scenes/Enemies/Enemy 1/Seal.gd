@@ -22,15 +22,22 @@ extends CharacterBase
 			finite_state_machine.transition(wander_state)
 #endregion
 
+@export var base_damage: float = 10
+@export var damage_multiplier := 1
+var damage: float = base_damage * damage_multiplier:
+	get: return base_damage * damage_multiplier
+
 #region Signals
 signal on_death
 #endregion
 
 #region Override
 func _ready():
+	super()
 	target = target
 	fsm = finite_state_machine
 	hit_box.character = self
+	attackable.damage = damage
 	fsm.transition(walk_state if target else wander_state)
 
 func _set_total_health(value: int) -> void:

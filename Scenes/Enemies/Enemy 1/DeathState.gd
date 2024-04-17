@@ -13,5 +13,5 @@ func enter() -> void:
 func process_frame(delta: float) -> void:
 	seal.velocity = Vector2.ZERO
 	if death_sound.playing: return
-	seal.charachter_queue_free()
+	seal.character_queue_free()
 	

@@ -15,35 +15,41 @@ extends CharacterBase
 @onready var beam := $Projectiles/Beam as Beam
 @onready var progress_bar := $ProgressBar as ProgressBar
 
-@export var orb_damage: float = 10:
-	set(value):
-		orb_damage = value
-		if !is_node_ready(): return
-		orbs.damage = orb_damage
+#region Orb damamge
+@export var base_orb_damage := 10
+@export var orb_damage_multiplier := 1
+var orb_damage: float = 10:
+	get: return base_orb_damage * orb_damage_multiplier
+#endregion
 
-@export var beam_damage: float = 10:
-	set(value):
-		beam_damage = value
-		if !is_node_ready(): return
-		beam.attackable.damage = beam_damage
+#region beam damage
+@export var base_beam_damage: float = 10
+@export var beam_damage_multiplier := 1
+var beam_damage: float = 10:
+	get: return base_beam_damage * beam_damage_multiplier
+#endregion
 
 func _ready():
 	super()
 	on_dead.connect(_on_dead)
 	fsm = finite_state_machine
-	orb_damage = orb_damage
-	beam_damage = beam_damage
 	beam.visible = false
 	hit_box.character = self
 	fsm.transition(idle_state)
+	
+func _process(delta):
+	super(delta)
+	if !beam or !orbs: return
+	beam.attackable.damage = beam_damage
+	orbs.damage = orb_damage
 
 func _set_total_health(value: int) -> void:
 	super(value)
-	progress_bar.max_value = value
+	if progress_bar: progress_bar.max_value = value
 
 func _set_health(value: int) -> void:
 	super(value)
-	progress_bar.value = value
+	if progress_bar: progress_bar.value = value
 	if health <= 0:
 		var concreate_fsm := fsm as FiniteStateMachine
 		concreate_fsm.transition(death_state)

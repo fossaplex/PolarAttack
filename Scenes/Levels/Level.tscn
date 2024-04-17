@@ -52,11 +52,14 @@ process_mode = 1
 z_index = 1
 y_sort_enabled = true
 position = Vector2(44, -26)
+orb_damage_multiplier = 5
+beam_damage_multiplier = 10
+total_health_multiplier = 2.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 z_index = 2
 scale = Vector2(21.9447, -0.00869699)
-zoom = Vector2(3.41, 3.41)
+zoom = Vector2(2.475, 2.475)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_dm7rh")
