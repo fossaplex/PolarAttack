@@ -193,6 +193,7 @@ stream = ExtResource("8_7pct6")
 volume_db = 24.0
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = -13.0
 offset_top = -40.0
 offset_right = 27.0

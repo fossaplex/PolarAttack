@@ -145,6 +145,7 @@ y_sort_enabled = true
 position = Vector2(14, 23)
 
 [node name="EnemySpawner" type="Node2D" parent="."]
+process_mode = 1
 script = ExtResource("15_6hlx1")
 
 [node name="Timer" type="Timer" parent="EnemySpawner"]
