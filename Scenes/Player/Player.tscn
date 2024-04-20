@@ -316,6 +316,7 @@ position = Vector2(0, -12)
 [node name="Orbs" type="Node2D" parent="Projectiles"]
 position = Vector2(0, -6)
 script = ExtResource("9_nilup")
+count = 6
 
 [node name="SingleFiniteStateMachine" type="Node" parent="."]
 script = ExtResource("10_3mdsy")
