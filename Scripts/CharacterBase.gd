@@ -71,5 +71,5 @@ func _set_speed(value: int) -> void:
 		on_speed_change.emit(prev, speed)
 
 func _get_speed() -> int:
-	return int(base_speed) * int(speed_multiplier)
+	return int(base_speed * speed_multiplier)
 
