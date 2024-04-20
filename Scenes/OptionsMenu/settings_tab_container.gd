@@ -1,11 +1,11 @@
 class_name SettingsTabContainer
 extends Control
 
-@onready var tab_container = $TabContainer as TabContainer
+@onready var tab_container := $TabContainer as TabContainer
 
 signal Exit_Options_Menu
 
-func _process(delta):
+func _process(_delta: float) -> void:
 	options_menu_input()
 	
 func change_tab(currentTab : int) -> void:

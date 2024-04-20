@@ -5,14 +5,12 @@ const xp_scene = preload("res://Scenes/Collectables/BaseCollectableEntity/BaseCo
 
 var markers: Array[Marker2D] = []
 
-@onready var timer = $Timer
-@onready var spawn_points = $SpawnPoints
+@onready var timer := $Timer
+@onready var spawn_points := $SpawnPoints
 @onready var player := $"../Player" as Player
-@onready var seals = $"../Seals"
-@onready var collectables = $"../Collectables"
-
-
-func _ready():
+@onready var seals := $"../Seals"
+@onready var collectables := $"../Collectables"
+func _ready() -> void:
 	timer.timeout.connect(_on_timer_timeout)
 	timer.start()
 	timer.wait_time = 10
@@ -20,7 +18,7 @@ func _ready():
 		if (spawn_point is Marker2D):
 			markers.append(spawn_point)
 
-func _on_timer_timeout():
+func _on_timer_timeout() -> void:
 	for spawn_point in spawn_points.get_children():
 		if spawn_point is Marker2D:
 			var seal := seal_scenes.instantiate()
@@ -32,12 +30,10 @@ func _on_timer_timeout():
 			seal.damage_multiplier = 1
 			seal.attackable.damage  = seal.damage
 			seal.global_position = spawn_point.global_position
-			
-func spawnXp(sealLocation: Vector2, xpResource: ExperienceResource):
-	var xp := xp_scene.instantiate()
-	collectables.add_child(xp)
-	xp.collectable_resource = xpResource
-	xp.global_position = sealLocation
 
-	
-	
+func spawnXp(sealLocation: Vector2, xp_resource: ExperienceResource) -> void:
+	var xp := xp_scene.instantiate()
+	collectables.call_deferred("add_child", xp)
+	xp.set_deferred("collectable_resource", xp_resource)
+	xp.set_deferred("global_position", sealLocation)
+

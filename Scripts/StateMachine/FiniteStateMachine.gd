@@ -4,11 +4,11 @@ extends State
 func has_current_state() -> bool:
 	return false
 
-func transition(destination_state : State) -> State:
+func transition(_destination_state : State) -> State:
 	return null
 
-func transition_to(source_state: State, destination_state : State) -> State:
+func transition_to(_source_state: State, _destination_state : State) -> State:
 	return null
 
-func add_transition_to(source_state: State, destination_state: State, append: bool, remove_source: bool) -> State:
+func add_transition_to(_source_state: State, _destination_state: State, _append: bool, _remove_source: bool) -> State:
 	return null

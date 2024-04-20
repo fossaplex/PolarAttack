@@ -22,6 +22,10 @@ SettingsSignalBus="*res://autoloads/SettingsSignalBus.gd"
 SaveManager="*res://autoloads/SaveManager.gd"
 CollectableSignalBus="*res://autoloads/CollectableSignalBus.gd"
 
+[debug]
+
+gdscript/warnings/untyped_declaration=1
+
 [display]
 
 window/size/window_width_override=1280

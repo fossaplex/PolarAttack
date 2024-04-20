@@ -39,7 +39,7 @@ signal on_death(sealLocation: Vector2, xpResource: ExperienceResource)
 
 
 #region Override
-func _ready():
+func _ready() -> void:
 	super()
 	target = target
 	fsm = finite_state_machine
@@ -62,10 +62,10 @@ func _set_health(value: int) -> void:
 			on_death.emit(self.global_position, SMALL_EXPERIENCE)
 #endregion
 
-func flip_sprite(horizontal_direction: float):
+func flip_sprite(horizontal_direction: float) -> void:
 		if horizontal_direction != 0: sprite.flip_h = horizontal_direction == 1
 
-func update_animation(direction: Vector2):
+func update_animation(direction: Vector2) -> void:
 	if direction == Vector2.ZERO:
 		ap.stop()
 	else:

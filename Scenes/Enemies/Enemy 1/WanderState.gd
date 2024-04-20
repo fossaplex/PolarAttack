@@ -17,10 +17,10 @@ func enter() -> void:
 func exit() -> void:
 	timer.timeout.disconnect(_on_timer_timeout)
 
-func process_physics(delta: float) -> void:
+func process_physics(_delta: float) -> void:
 	seal.velocity = velocity 
 	seal.move_and_slide()
 
-func _on_timer_timeout():
-	var random_angle = randf() * 2 * PI
+func _on_timer_timeout() -> void:
+	var random_angle := randf() * 2 * PI
 	velocity = Vector2(cos(random_angle), sin(random_angle)) * speed
