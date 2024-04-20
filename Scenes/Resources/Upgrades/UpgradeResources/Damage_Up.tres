@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BaseUpgradeResource" load_steps=3 format=3 uid="uid://dlu4iepn2un0m"]
+
+[ext_resource type="Script" path="res://Scenes/Resources/Upgrades/base_upgrade_resource.gd" id="1_e76pi"]
+[ext_resource type="Texture2D" uid="uid://e1qx1oeab31" path="res://Graphics/Icons/icon.svg" id="2_7k7pp"]
+
+[resource]
+script = ExtResource("1_e76pi")
+texture = ExtResource("2_7k7pp")
+title = "Damage Up"
+description = "+10 damge"
+value = 10

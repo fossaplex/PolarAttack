@@ -2,7 +2,7 @@ extends Node2D
 
 #region current values
 @export var current_xp : int = 0
-@export var current_level : int = 0
+@export var current_level : int = 1
 #endregion
 
 #region max values
@@ -22,7 +22,7 @@ func xp_collected(resource : BaseCollectableResource):
 		current_level += 1
 		current_xp -= max_xp
 		max_xp += (max_xp_intervel * max_xp)
-		CollectableSignalBus.emit_player_leveled_up(max_xp, current_level)
+		SignalBus.emit_player_leveled_up(max_xp, current_level)
 		
 	CollectableSignalBus.emit_update_xp_bar(current_xp)
 	

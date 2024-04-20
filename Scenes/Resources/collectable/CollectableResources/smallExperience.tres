@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="ExperienceResource" load_steps=3 format=3 uid="uid://dnq2rfivot4wy"]
 
-[ext_resource type="Texture2D" uid="uid://d4mlellw6oj62" path="res://Graphics/Experience_Meat/MeatUI.png" id="1_1bmsk"]
 [ext_resource type="Script" path="res://Scenes/Resources/collectable/ExperienceResource.gd" id="1_32e8a"]
+[ext_resource type="SpriteFrames" uid="uid://c0h7rli7d04kh" path="res://Graphics/coins/Silver_Xp_Animation.tres" id="1_axalx"]
 
 [resource]
 script = ExtResource("1_32e8a")
 experienceValue = 75
-collectable_texture = ExtResource("1_1bmsk")
+collectable_texture = ExtResource("1_axalx")
 collectable_type = "experience"

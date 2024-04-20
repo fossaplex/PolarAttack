@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BaseUpgradeResource" load_steps=3 format=3 uid="uid://bb5u40u156s3r"]
+
+[ext_resource type="Script" path="res://Scenes/Resources/Upgrades/base_upgrade_resource.gd" id="1_qqghd"]
+[ext_resource type="Texture2D" uid="uid://e1qx1oeab31" path="res://Graphics/Icons/icon.svg" id="2_f0jws"]
+
+[resource]
+script = ExtResource("1_qqghd")
+texture = ExtResource("2_f0jws")
+title = "Xp up"
+description = "+10 xp"
+value = 10

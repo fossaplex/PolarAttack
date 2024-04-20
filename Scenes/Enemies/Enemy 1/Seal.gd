@@ -1,6 +1,11 @@
 class_name Seal
 extends CharacterBase
 
+const SMALL_EXPERIENCE = preload("res://Scenes/Resources/collectable/CollectableResources/smallExperience.tres")
+const GOLD_XP_ANIMATION = preload("res://Graphics/coins/Gold_Xp_Animation.tres")
+const SILVER_XP_ANIMATION = preload("res://Graphics/coins/Silver_Xp_Animation.tres")
+
+
 #region Members
 @onready var ap: AnimationPlayer = $AnimationPlayer
 @onready var sprite := $Sprite2D as Sprite2D
@@ -28,8 +33,10 @@ var damage: float = base_damage * damage_multiplier:
 	get: return base_damage * damage_multiplier
 
 #region Signals
-signal on_death
+signal on_death(sealLocation: Vector2, xpResource: ExperienceResource)
 #endregion
+
+
 
 #region Override
 func _ready():
@@ -49,7 +56,10 @@ func _set_health(value: int) -> void:
 	texture_progress_bar.value = value
 	if (fsm and value <= 0):
 		if fsm.transition(death_state):
-			on_death.emit()
+			SMALL_EXPERIENCE.collectable_texture = GOLD_XP_ANIMATION
+			SMALL_EXPERIENCE.collectable_type = "experience"
+			SMALL_EXPERIENCE.experienceValue = 20
+			on_death.emit(self.global_position, SMALL_EXPERIENCE)
 #endregion
 
 func flip_sprite(horizontal_direction: float):

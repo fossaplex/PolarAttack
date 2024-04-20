@@ -4,7 +4,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	CollectableSignalBus.on_update_current_level_label.connect(update_level_ui)
+	SignalBus.on_update_current_level_label.connect(update_level_ui)
 
 
 

@@ -1,6 +1,7 @@
 extends Node2D
 
 const seal_scenes =  preload("res://Scenes/Enemies/Enemy 1/Seal.tscn")
+const xp_scene = preload("res://Scenes/Collectables/BaseCollectableEntity/BaseCollectableEntity.tscn")
 
 var markers: Array[Marker2D] = []
 
@@ -8,6 +9,8 @@ var markers: Array[Marker2D] = []
 @onready var spawn_points = $SpawnPoints
 @onready var player := $"../Player" as Player
 @onready var seals = $"../Seals"
+@onready var collectables = $"../Collectables"
+
 
 func _ready():
 	timer.timeout.connect(_on_timer_timeout)
@@ -23,8 +26,18 @@ func _on_timer_timeout():
 			var seal := seal_scenes.instantiate()
 			
 			seals.add_child(seal)
+			seal.on_death.connect(spawnXp)
 			seal.target = player
 			seal.base_damage = 10
 			seal.damage_multiplier = 1
 			seal.attackable.damage  = seal.damage
 			seal.global_position = spawn_point.global_position
+			
+func spawnXp(sealLocation: Vector2, xpResource: ExperienceResource):
+	var xp := xp_scene.instantiate()
+	collectables.add_child(xp)
+	xp.collectable_resource = xpResource
+	xp.global_position = sealLocation
+
+	
+	
