@@ -18,7 +18,7 @@ func _ready():
 	
 func xp_collected(resource : BaseCollectableResource):
 	current_xp += resource.experienceValue
-	if current_xp > max_xp:
+	if current_xp >= max_xp:
 		current_level += 1
 		current_xp -= max_xp
 		max_xp += (max_xp_intervel * max_xp)
