@@ -3,8 +3,7 @@ extends Node2D
 # Export an integer property that will represent the HeartState enum in the editor.
 var heart_state = 0 : set = set_heart_state, get = get_heart_state
 var is_ready = false
-
-func _ready():
+func _ready() -> void:
 	is_ready = true
 	# Any other ready-time initializations.
 # Use a separate variable to hold the health state as a string, if necessary.

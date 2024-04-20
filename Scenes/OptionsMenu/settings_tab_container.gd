@@ -5,7 +5,7 @@ extends Control
 
 signal Exit_Options_Menu
 
-func _process(delta):
+func _process(_delta: float) -> void:
 	options_menu_input()
 	
 func change_tab(currentTab : int) -> void:

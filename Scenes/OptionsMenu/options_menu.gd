@@ -5,8 +5,7 @@ extends Control
 @onready var settings_tab_container = $MarginContainer/VBoxContainer/SettingsTabContainer as SettingsTabContainer
 
 signal exit_options_menu
-
-func _ready():
+func _ready() -> void:
 	exit_settings_button.button_down.connect(on_exit_pressed)
 	settings_tab_container.Exit_Options_Menu.connect(on_exit_pressed)
 	set_process(false)

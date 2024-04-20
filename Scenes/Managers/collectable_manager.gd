@@ -5,8 +5,7 @@ var current_experience_count: int = 0
 
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	CollectableSignalBus.connect("collect_entity", on_entity_collected)
 	
 	

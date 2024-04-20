@@ -9,7 +9,7 @@ const WINDOW_MODE_ARRAY: Array[String] = [
 	"Borderless Full-Screen"
 ]
 
-func _ready():
+func _ready() -> void:
 	add_window_mode_items()
 	select_current_window_mode()
 	option_button.item_selected.connect(on_window_mode_selected)

@@ -2,8 +2,8 @@ extends Label
 
 @onready var player := $".." as Player
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+
+func _ready() -> void:
 	pass # Replace with function body.
 
 

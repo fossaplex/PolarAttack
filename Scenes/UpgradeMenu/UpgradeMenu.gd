@@ -13,7 +13,7 @@ var upgradeCount = 3
 var upgradeOptions = []
 
 
-func _ready():
+func _ready() -> void:
 	hide()
 	SignalBus.on_open_upgrade_menu.connect(open_upgrade_menu)
 
@@ -31,7 +31,7 @@ func pick_upgrades():
 
 	
 
-func get_random_upgrades(upgradeCount: int):
+func get_random_upgrades(_upgradeCount: int):
 	var currentUpgradeList = []
 	currentUpgradeList.append_array(upgradeList)
 	var pickedUpgrades = []
@@ -59,7 +59,7 @@ func _on_option_3_button_up():
 
 
 
-func _on_v_box_container_gui_input(event):
+func _on_v_box_container_gui_input(_event):
 	print("This is a test")
 
 

@@ -7,8 +7,7 @@ extends Control
 @export_enum("Master", "Music", "SFX", "Ambient") var bus_name : String
 
 var bus_index : int = 0
-
-func _ready():
+func _ready() -> void:
 	h_slider.value_changed.connect(on_value_changed)
 	get_bus_name_by_index()
 	load_data()

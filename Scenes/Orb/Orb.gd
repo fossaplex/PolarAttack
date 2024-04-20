@@ -15,7 +15,7 @@ const pitch_variation_range = 0.3
 const base_pitch = 1.0
 var angle_degrees = 0
 
-func _ready():
+func _ready() -> void:
 	area_entered.connect(_on_area_entered)
 
 func _process(delta: float):
@@ -30,7 +30,6 @@ func _process(delta: float):
 	audio_stream_player_2d.pitch_scale = 1.0  / radius
 
 func _on_area_entered(area: Area2D):
-	var groups = area.get_groups()
 	if area.is_in_group(GROUPS.ENEMY_HITBOX):
 		if area is CharacterHitbox:
 			attackable.deal_damange(area.character)

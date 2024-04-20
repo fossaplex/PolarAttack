@@ -1,9 +1,8 @@
 class_name SealFiniteStateMachine
 extends SingleFiniteStateMachine
 
-@onready var seal = $"../Seal"
-@onready var animation_player = $"../AnimationPlayer"
-@onready var death_state = $DeathState
+@onready var animation_player := $"../AnimationPlayer"
+@onready var death_state := $DeathState
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func transition_to(source_state: State, destination_state : State) -> State:

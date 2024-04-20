@@ -9,7 +9,7 @@ extends Control
 var mouse_button_pressed = false
 var space_or_enter_pressed = false
 
-func _ready():
+func _ready() -> void:
 	set_process_unhandled_key_input(false)
 	set_process_input(false)
 	set_action_name()
@@ -88,7 +88,7 @@ func _on_button_toggled(button_pressed):
 		set_text_for_input()
 
 #NOTE - This logic works for Space, Enter, and Left Click
-func _input(event):
+func _input(event: InputEvent):
 	if event is InputEventKey:
 		if OS.get_keycode_string(event.key_label) != "Escape":
 			if OS.get_keycode_string(event.key_label) == "Enter" or OS.get_keycode_string(event.key_label) == "Space":

@@ -3,8 +3,7 @@ extends TextureProgressBar
 
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	visible = true
 	CollectableSignalBus.on_update_xp_bar.connect(update_xp_bar)
 	SignalBus.on_update_max_xp_bar.connect(update_max_xp_bar)

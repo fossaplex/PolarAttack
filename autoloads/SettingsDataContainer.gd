@@ -19,7 +19,7 @@ var subtitles_set: bool = false
 var loaded_data : Dictionary = {}
 
 
-func _ready():
+func _ready() -> void:
 	handle_signals()
 	create_storage_dictionary()
 
@@ -76,7 +76,7 @@ func get_ambient_sound() -> float:
 	if !loaded_data.has("ambient_volume"):
 		return DEFAULT_SETTINGS.DEFAULT_AMBIENT_VOLUME
 	return ambient_volume
-func get_keybinds(action: String):
+func get_keybinds(action: String) -> InputEvent:
 	if !loaded_data.has("keybinds"):
 		match action:
 			keybind_resource.MOVE_LEFT:
@@ -105,6 +105,7 @@ func get_keybinds(action: String):
 				return keybind_resource.primary_attack_button
 			keybind_resource.SECONDARY_ATTACK:
 				return keybind_resource.secondary_attack_button
+	return null
 
 func set_window_mode_selected(index: int) -> void:
 	window_mode_index = index
@@ -120,7 +121,7 @@ func set_sfx_sound_set(value: float) -> void:
 	sfx_volume = value
 func set_ambient_sound_set(value: float) -> void:
 	ambient_volume = value
-func set_keybind(action: String, event) -> void:
+func set_keybind(action: String, event: InputEvent) -> void:
 	match action:
 		keybind_resource.MOVE_LEFT:
 			keybind_resource.move_left_key = event
@@ -137,7 +138,7 @@ func set_keybind(action: String, event) -> void:
 
 func on_keybinds_loaded(data : Dictionary) -> void:
 	if data != null:
-		var getInputs = set_key_or_mouse_input(data)
+		var getInputs := set_key_or_mouse_input(data)
 		keybind_resource.move_left_key = getInputs.move_left
 		keybind_resource.move_right_key = getInputs.move_right
 		keybind_resource.move_up_key = getInputs.move_up
@@ -154,14 +155,14 @@ func set_key_or_mouse_input(currentInputs: Dictionary) -> Dictionary:
 		"primary_attack" : null,
 		"secondary_attack" : null,
 	}
-	for key in currentInputs:
+	for key: String in currentInputs:
 		if currentInputs[key] != null:
 			if currentInputs[key].contains("InputEventKey"):
 				tempDictionary[key] = InputEventKey.new()
 				tempDictionary[key].set_physical_keycode(int(currentInputs[key]))
 			elif currentInputs[key].contains("InputEventMouseButton"):
 				tempDictionary[key] = InputEventMouseButton.new()
-				var mouse_index = get_input_event_mouse_index(currentInputs[key])
+				var mouse_index := get_input_event_mouse_index(currentInputs[key])
 				if mouse_index != -9999:
 					tempDictionary[key].set_button_index(mouse_index)
 			else:
@@ -170,9 +171,9 @@ func set_key_or_mouse_input(currentInputs: Dictionary) -> Dictionary:
 	return tempDictionary
 
 func get_input_event_mouse_index(currentString : String) -> int:
-	var regex = RegEx.new()
+	var regex := RegEx.new()
 	regex.compile("(\\d+)")
-	var result = regex.search(currentString)
+	var result := regex.search(currentString)
 	if result:
 		return int(result.get_string())
 	else:

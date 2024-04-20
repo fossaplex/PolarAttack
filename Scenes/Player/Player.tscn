@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_ty1sm"]
 [ext_resource type="Texture2D" uid="uid://j72r5deby7vj" path="res://Graphics/Spritesheets/Penguin/Idle.png" id="2_8ii8i"]
+[ext_resource type="Script" path="res://Scripts/CharacterHitbox.gd" id="3_318sf"]
 [ext_resource type="PackedScene" uid="uid://cxgowuwg7ndyx" path="res://Scenes/Handlers/Player_Stat_Handler/player_stat_handler.tscn" id="3_l85k4"]
-[ext_resource type="Script" path="res://Scenes/Player/HitBox.gd" id="3_tf4dq"]
 [ext_resource type="PackedScene" uid="uid://b60p040e647da" path="res://Scenes/Handlers/Connection_Handler/connection_handler.tscn" id="3_vam7b"]
 [ext_resource type="PackedScene" uid="uid://diy85w135sgrw" path="res://Scenes/Beam/beam.tscn" id="4_0ti1t"]
 [ext_resource type="Script" path="res://Scenes/Handlers/Player_Stat_Handler/player_stat_handler.gd" id="4_epkad"]
@@ -266,7 +266,7 @@ texture = ExtResource("2_8ii8i")
 hframes = 2
 
 [node name="HitBox" type="Area2D" parent="." groups=["player_hitbox"]]
-script = ExtResource("3_tf4dq")
+script = ExtResource("3_318sf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(0, -7)

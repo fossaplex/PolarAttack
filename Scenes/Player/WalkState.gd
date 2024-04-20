@@ -22,7 +22,7 @@ func exit() -> void:
 	timer.stop()
 	timer.timeout.disconnect(_on_timer_timeout)
 
-func process_frame(delta: float) -> void:
+func process_frame(_delta: float) -> void:
 	var horizontal_direction := Input.get_axis("move_left", "move_right")
 	flip_sprite(horizontal_direction)
 

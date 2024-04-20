@@ -1,23 +1,22 @@
 extends Node2D
 
-@export var total_health = 16
-@export var heart_width = 5
-@export var padding = 2
-var current_health = total_health
-var total_hearts = ceil(total_health / 2.0)
-var heart_scene = preload("res://Scenes/Hearts/Heart/Heart.tscn")
+@export var total_health := 16
+@export var heart_width := 5
+@export var padding := 2
+var current_health := total_health
+var total_hearts := ceil(total_health / 2.0) as float
+var heart_scene := preload("res://Scenes/Hearts/Heart/Heart.tscn")
 
 var hearts = []
 
 	
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	for i in range(total_hearts):
-			var heart_instance = heart_scene.instantiate()
+			var heart_instance := heart_scene.instantiate()
 			add_child(heart_instance)
 			hearts.append(heart_instance)
-			var x_position = i * (heart_width + padding)
+			var x_position := i * (heart_width + padding)
 			heart_instance.position = Vector2(x_position, 0)
 	set_health(total_health)
 		# Position the hearts appropriately here
@@ -45,5 +44,5 @@ func add_health(value):
 	current_health += value 
 	set_health(current_health)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass

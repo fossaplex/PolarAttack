@@ -6,13 +6,11 @@ const xp_scene = preload("res://Scenes/Collectables/BaseCollectableEntity/BaseCo
 var markers: Array[Marker2D] = []
 
 @onready var timer = $Timer
-@onready var spawn_points = $SpawnPoints
+@onready var spawn_points := $SpawnPoints
 @onready var player := $"../Player" as Player
-@onready var seals = $"../Seals"
-@onready var collectables = $"../Collectables"
-
-
-func _ready():
+@onready var seals := $"../Seals"
+@onready var collectables := $"../Collectables"
+func _ready() -> void:
 	timer.timeout.connect(_on_timer_timeout)
 	timer.start()
 	timer.wait_time = 10
@@ -35,9 +33,8 @@ func _on_timer_timeout():
 			
 func spawnXp(sealLocation: Vector2, xpResource: ExperienceResource):
 	var xp := xp_scene.instantiate()
-	collectables.add_child(xp)
-	xp.collectable_resource = xpResource
-	xp.global_position = sealLocation
-
+	collectables.call_deferred("add_child", xp)
+	xp.set_deferred("collectable_resource", xpResource)
+	xp.set_deferred("global_position", sealLocation)
 	
 	

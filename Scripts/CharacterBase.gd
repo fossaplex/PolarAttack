@@ -4,7 +4,6 @@ extends CharacterBody2D
 #region Base Stat
 @export var base_total_health: int = 100
 @export var base_speed: int = 100
-
 #endregion
 
 #region stats
@@ -25,12 +24,12 @@ signal on_health_change(health: int, prev_health: int)
 signal on_dead(prev_health: int)
 signal on_speed_change(speed: int, prev_spreed: int)
 
-func _ready():
+func _ready() -> void:
 	total_health = total_health
 	health = total_health
 	speed = speed
 
-func _process(delta):
+func _process(delta: float) -> void:
 	if fsm: fsm.process_frame(delta)
 
 func _physics_process(delta: float) -> void:
@@ -53,7 +52,7 @@ func _set_total_health(value: int) -> void:
 		health = total_health
 
 func _get_total_health() -> int:
-	return base_total_health * total_health_multiplier
+	return int(base_total_health) * int(total_health_multiplier)
 
 func _set_health(value: int) -> void:
 	var prev = health
@@ -72,5 +71,5 @@ func _set_speed(value: int) -> void:
 		on_speed_change.emit(prev, speed)
 
 func _get_speed() -> int:
-	return base_speed * speed_multiplier
+	return int(base_speed) * int(speed_multiplier)
 

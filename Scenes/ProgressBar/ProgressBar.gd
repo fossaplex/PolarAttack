@@ -3,7 +3,7 @@ class_name Generic_Progress_Bar
 
 @export var progress_color = Color(0.0, 1.0, 0.0, 1.0) # Default color (Green)
 
-func _ready():
+func _ready() -> void:
 	set_progress_color(progress_color)
 	pass
 

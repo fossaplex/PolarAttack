@@ -29,7 +29,7 @@ var beam_damage: float = 10:
 	get: return base_beam_damage * beam_damage_multiplier
 #endregion
 
-func _ready():
+func _ready() -> void:
 	super()
 	on_dead.connect(_on_dead)
 	fsm = finite_state_machine
@@ -60,5 +60,5 @@ func _set_speed(value: int) -> void:
 	walk_state.speed = speed
 
 #endregion
-func _on_dead(prev_health: int) -> void:
+func _on_dead(_prev_health: int) -> void:
 	projectiles.queue_free()
