@@ -13,9 +13,8 @@ class_name BaseCollectableEntity
 
 signal collect_entity
 
-
 func _ready() -> void:
-	connect("collect_entity", on_collect)
+	collect_entity.connect(on_collect)
 
 func on_collect() -> void:
 	CollectableSignalBus.emit_collect_entity(collectable_resource)

@@ -6,9 +6,8 @@ var current_experience_count: int = 0
 
 
 func _ready() -> void:
-	CollectableSignalBus.connect("collect_entity", on_entity_collected)
-	
-	
+	CollectableSignalBus.collect_entity.connect(on_entity_collected)
+
 func on_entity_collected(collectable_resource: BaseCollectableResource) -> void:
 	match collectable_resource.collectable_type:
 		"":
