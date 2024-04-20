@@ -1,8 +1,8 @@
 class_name OptionsMenu
 extends Control
 
-@onready var exit_settings_button = $MarginContainer/VBoxContainer/ExitSettingsButton as Button
-@onready var settings_tab_container = $MarginContainer/VBoxContainer/SettingsTabContainer as SettingsTabContainer
+@onready var exit_settings_button := $MarginContainer/VBoxContainer/ExitSettingsButton as Button
+@onready var settings_tab_container := $MarginContainer/VBoxContainer/SettingsTabContainer as SettingsTabContainer
 
 signal exit_options_menu
 func _ready() -> void:

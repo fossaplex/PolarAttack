@@ -9,7 +9,7 @@ func _ready() -> void:
 	CollectableSignalBus.connect("collect_entity", on_entity_collected)
 	
 	
-func on_entity_collected(collectable_resource: BaseCollectableResource):
+func on_entity_collected(collectable_resource: BaseCollectableResource) -> void:
 	match collectable_resource.collectable_type:
 		"":
 			return

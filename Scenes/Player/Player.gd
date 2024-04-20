@@ -10,7 +10,7 @@ extends CharacterBase
 @onready var idle_state := $SingleFiniteStateMachine/IdleState as PlayerIdleState
 @onready var walk_state := $SingleFiniteStateMachine/WalkState as PlayerWalkState
 
-@onready var projectiles = $Projectiles
+@onready var projectiles := $Projectiles
 @onready var orbs := $Projectiles/Orbs as Orbs
 @onready var beam := $Projectiles/Beam as Beam
 @onready var progress_bar := $ProgressBar as ProgressBar
@@ -37,7 +37,7 @@ func _ready() -> void:
 	hit_box.character = self
 	fsm.transition(idle_state)
 	
-func _process(delta):
+func _process(delta: float) -> void:
 	super(delta)
 	if !beam or !orbs: return
 	beam.attackable.damage = beam_damage

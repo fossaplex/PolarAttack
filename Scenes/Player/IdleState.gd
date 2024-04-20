@@ -1,8 +1,8 @@
 class_name PlayerIdleState
 extends State
 
-@onready var animation_player = $"../../AnimationPlayer"
-@onready var walk_state = $"../WalkState"
+@onready var animation_player := $"../../AnimationPlayer"
+@onready var walk_state := $"../WalkState"
 
 func enter() -> void:
 	animation_player.play("idle")

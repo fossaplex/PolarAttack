@@ -1,7 +1,7 @@
 extends Control
 
-@onready var state_label = $HBoxContainer/State_Label as Label
-@onready var check_button = $HBoxContainer/CheckButton as CheckButton
+@onready var state_label := $HBoxContainer/State_Label as Label
+@onready var check_button := $HBoxContainer/CheckButton as CheckButton
 
 func _ready() -> void:
 	check_button.toggled.connect(on_subtitles_toggled)

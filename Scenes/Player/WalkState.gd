@@ -38,5 +38,5 @@ func flip_sprite(horizontal_direction: float) -> void:
 	if horizontal_direction != 0: sprite.flip_h = horizontal_direction == 1
 
 
-func _on_timer_timeout():
+func _on_timer_timeout() -> void:
 	sound_walk.play()

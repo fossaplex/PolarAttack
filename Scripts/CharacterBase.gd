@@ -38,12 +38,12 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if fsm: fsm.process_input(event)
 
-func character_queue_free():
+func character_queue_free() -> void:
 	fsm = null
 	queue_free()
 
 func _set_total_health(value: int) -> void:
-	var prev = total_health
+	var prev := total_health
 	total_health = value
 
 	if prev != total_health:
@@ -55,7 +55,7 @@ func _get_total_health() -> int:
 	return int(base_total_health) * int(total_health_multiplier)
 
 func _set_health(value: int) -> void:
-	var prev = health
+	var prev := health
 	health = value
 	
 	if prev != health:
@@ -64,7 +64,7 @@ func _set_health(value: int) -> void:
 			on_dead.emit(prev)
 
 func _set_speed(value: int) -> void:
-	var prev = speed
+	var prev := speed
 	speed = value
 	
 	if prev != speed:

@@ -1,9 +1,9 @@
 class_name Orbs
 extends Node2D
 
-const orb_scenes = preload("res://Scenes/Orb/Orb.tscn")
-@export var count = 3
-@export var speed = 200
+const orb_scenes := preload("res://Scenes/Orb/Orb.tscn")
+@export var count := 3
+@export var speed := 200
 
 @export var damage: float = 10:
 	set(value):
