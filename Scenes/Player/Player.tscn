@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bw72hruorpjco"]
+[gd_scene load_steps=23 format=3 uid="uid://bw72hruorpjco"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_ty1sm"]
 [ext_resource type="Texture2D" uid="uid://j72r5deby7vj" path="res://Graphics/Spritesheets/Penguin/Idle.png" id="2_8ii8i"]
@@ -15,7 +15,6 @@
 [ext_resource type="Script" path="res://Scenes/Player/IdleState.gd" id="11_6wq3b"]
 [ext_resource type="Script" path="res://Scenes/Player/WalkState.gd" id="12_xaajb"]
 [ext_resource type="Script" path="res://Scenes/Player/DeathState.gd" id="14_216an"]
-[ext_resource type="Script" path="res://Scenes/Player/Label.gd" id="16_ptyyp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wfubi"]
 radius = 8.0
@@ -258,6 +257,7 @@ _data = {
 collision_layer = 2
 collision_mask = 128
 script = ExtResource("1_ty1sm")
+base_total_health = 100000
 base_speed = 150
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -279,10 +279,6 @@ shape = SubResource("RectangleShape2D_1ion7")
 
 [node name="Player_Stat_Handler" parent="." instance=ExtResource("3_l85k4")]
 script = ExtResource("4_epkad")
-current_xp = null
-current_level = null
-max_xp = null
-max_xp_intervel = null
 
 [node name="Connection_Handler" parent="." instance=ExtResource("3_vam7b")]
 position = Vector2(0, -6)
@@ -308,6 +304,7 @@ offset_top = -23.0
 offset_right = 11.0
 offset_bottom = -18.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="Projectiles" type="Node2D" parent="."]
 
@@ -333,16 +330,3 @@ script = ExtResource("12_xaajb")
 
 [node name="DeathState" type="Node" parent="SingleFiniteStateMachine"]
 script = ExtResource("14_216an")
-
-[node name="Label" type="Label" parent="."]
-visible = false
-z_index = 2
-texture_filter = 1
-offset_left = 8.0
-offset_top = -73.0
-offset_right = 48.0
-offset_bottom = -50.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 10
-text = "asds"
-script = ExtResource("16_ptyyp")

@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="ExperienceResource" load_steps=3 format=3 uid="uid://clit8rhmq7f3a"]
 
-[ext_resource type="Texture2D" uid="uid://bjkcdxkooqr0" path="res://Graphics/Spritesheets/Heart/heart_full.png" id="1_naiuf"]
+[ext_resource type="SpriteFrames" uid="uid://c0h7rli7d04kh" path="res://Graphics/coins/Silver_Xp_Animation.tres" id="1_bql35"]
 [ext_resource type="Script" path="res://Scenes/Resources/collectable/ExperienceResource.gd" id="2_1840i"]
 
 [resource]
 script = ExtResource("2_1840i")
-experienceValue = 10
-collectable_texture = ExtResource("1_naiuf")
+experienceValue = 20
+collectable_texture = ExtResource("1_bql35")
 collectable_type = "experience"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BaseUpgradeResource" load_steps=3 format=3 uid="uid://bn63e5dqdx27l"]
+
+[ext_resource type="Script" path="res://Scenes/Resources/Upgrades/base_upgrade_resource.gd" id="1_m2vac"]
+[ext_resource type="Texture2D" uid="uid://e1qx1oeab31" path="res://Graphics/Icons/icon.svg" id="2_5kpgi"]
+
+[resource]
+script = ExtResource("1_m2vac")
+texture = ExtResource("2_5kpgi")
+title = "Health Up"
+description = "+10 Health"
+value = 10
