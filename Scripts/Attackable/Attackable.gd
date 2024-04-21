@@ -3,7 +3,14 @@ extends Node
 
 signal on_damage_dealt(character: CharacterBase, damage: float)
 
-@export var damage := 10.0
+@export var base_damage := 10.0
+@export var multiplier := 1.0
+var damage := base_damage * multiplier:
+	get: return base_damage * multiplier
+
+func update(_base_damage: float, _multiplier: float) -> void:
+	self.base_damage = _base_damage
+	self.multiplier = _multiplier
 
 func deal_damange(character: CharacterBase) -> void:
 	var previous_health := character.health

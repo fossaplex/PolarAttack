@@ -18,15 +18,11 @@ extends CharacterBase
 #region Orb damamge
 @export var base_orb_damage := 10
 @export var orb_damage_multiplier := 1
-var orb_damage: float = 10:
-	get: return base_orb_damage * orb_damage_multiplier
 #endregion
 
 #region beam damage
 @export var base_beam_damage: float = 10
 @export var beam_damage_multiplier := 1
-var beam_damage: float = 10:
-	get: return base_beam_damage * beam_damage_multiplier
 #endregion
 
 func _ready() -> void:
@@ -36,12 +32,12 @@ func _ready() -> void:
 	beam.visible = false
 	hit_box.character = self
 	fsm.transition(idle_state)
-	
+
 func _process(delta: float) -> void:
 	super(delta)
 	if !beam or !orbs: return
-	beam.attackable.damage = beam_damage
-	orbs.damage = orb_damage
+	beam.attackable.update(base_beam_damage, beam_damage_multiplier)
+	orbs.attackable.update(base_orb_damage, orb_damage_multiplier)
 
 func _set_total_health(value: int) -> void:
 	super(value)

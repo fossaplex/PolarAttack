@@ -24,4 +24,3 @@ func xp_collected(resource : BaseCollectableResource) -> void:
 		SignalBus.emit_player_leveled_up(max_xp, current_level)
 		
 	CollectableSignalBus.emit_update_xp_bar(current_xp)
-	

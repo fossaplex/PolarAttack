@@ -14,6 +14,7 @@ var game_paused : bool = false:
 		game_paused = value
 		get_tree().paused = game_paused
 		emit_signal("toggle_game_paused", game_paused)
+
 func _ready() -> void:
 	player.on_dead.connect(_on_player_on_dead)
 

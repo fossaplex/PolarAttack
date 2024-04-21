@@ -1,10 +1,26 @@
 class_name Seal
 extends CharacterBase
+const SEAL_SCENE = preload("res://Scenes/Enemies/Enemy 1/Seal.tscn")
+
+static func instanciate_seal(
+	_target: CharacterBase,
+	_base_damage: float,
+	_damage_multiplier: float,
+	_global_position: Vector2,
+	parent: Node,
+	_on_death: Callable
+) -> Seal:
+	var seal := SEAL_SCENE.instantiate() as Seal
+	parent.add_child(seal)
+	seal.target = _target
+	(seal.attackable as Attackable).update(_base_damage, _damage_multiplier)
+	seal.global_position = _global_position
+	seal.on_death.connect(_on_death)
+	return seal
 
 const SMALL_EXPERIENCE = preload("res://Scenes/Resources/collectable/CollectableResources/smallExperience.tres")
 const GOLD_XP_ANIMATION = preload("res://Graphics/coins/Gold_Xp_Animation.tres")
 const SILVER_XP_ANIMATION = preload("res://Graphics/coins/Silver_Xp_Animation.tres")
-
 
 #region Members
 @onready var ap: AnimationPlayer = $AnimationPlayer
@@ -15,7 +31,13 @@ const SILVER_XP_ANIMATION = preload("res://Graphics/coins/Silver_Xp_Animation.tr
 @onready var death_state := $FiniteStateMachine/DeathState as SealDeathState
 @onready var texture_progress_bar := $TextureProgressBar as TextureProgressBar
 @onready var hit_box := $HitBox as CharacterHitbox
-@onready var attackable := $FiniteStateMachine/WalkState/Attackable as Attackable
+@onready var attackable: Attackable = $Attackable as Attackable
+@export var _attackable_resource : AttackableResource = AttackableResource.new():
+	set(value):
+		if !is_node_ready(): return
+		attackable.base_damage = value.base_damage
+		attackable.multiplier = value.multiplier
+
 @onready var target: CharacterBase = null:
 	set(value):
 		target = value
@@ -36,12 +58,11 @@ var damage: float = base_damage * damage_multiplier:
 signal on_death(sealLocation: Vector2, xpResource: ExperienceResource)
 #endregion
 
-
-
 #region Override
 func _ready() -> void:
 	super()
 	target = target
+	_attackable_resource = _attackable_resource
 	fsm = finite_state_machine
 	hit_box.character = self
 	attackable.damage = damage

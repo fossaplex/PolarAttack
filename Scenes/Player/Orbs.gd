@@ -4,19 +4,12 @@ extends Node2D
 const orb_scenes := preload("res://Scenes/Orb/Orb.tscn")
 @export var count := 3
 @export var speed := 200
-
-@export var damage: float = 10:
-	set(value):
-		damage = value
-		if !is_node_ready(): return
-		for orb in get_children():
-			if orb is Orb:
-				orb.attackable.damage = damage
+@onready var attackable: Attackable = $Attackable
 
 func _ready() -> void:
-	damage = damage
 	for i in range(count):
 		var orb := orb_scenes.instantiate()
+		orb.attackable = attackable
 		orb.angle_offset = i * (360.0 / count)
 		orb.speed = speed
 		add_child(orb)

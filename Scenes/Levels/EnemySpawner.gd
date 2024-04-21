@@ -1,7 +1,7 @@
 extends Node2D
 
-const seal_scenes =  preload("res://Scenes/Enemies/Enemy 1/Seal.tscn")
-const xp_scene = preload("res://Scenes/Collectables/BaseCollectableEntity/BaseCollectableEntity.tscn")
+const SEAL_SCENE :=  preload("res://Scenes/Enemies/Enemy 1/Seal.tscn")
+const XP_SCENE := preload("res://Scenes/Collectables/BaseCollectableEntity/BaseCollectableEntity.tscn")
 
 var markers: Array[Marker2D] = []
 
@@ -10,6 +10,7 @@ var markers: Array[Marker2D] = []
 @onready var player := $"../Player" as Player
 @onready var seals := $"../Seals"
 @onready var collectables := $"../Collectables"
+
 func _ready() -> void:
 	timer.timeout.connect(_on_timer_timeout)
 	timer.start()
@@ -21,18 +22,17 @@ func _ready() -> void:
 func _on_timer_timeout() -> void:
 	for spawn_point in spawn_points.get_children():
 		if spawn_point is Marker2D:
-			var seal := seal_scenes.instantiate()
-			
-			seals.add_child(seal)
-			seal.on_death.connect(spawnXp)
-			seal.target = player
-			seal.base_damage = 10
-			seal.damage_multiplier = 1
-			seal.attackable.damage  = seal.damage
-			seal.global_position = spawn_point.global_position
+			Seal.instanciate_seal(
+				player,
+				10,
+				1,
+				spawn_point.global_position,
+				seals,
+				spawn_xp
+			)
 
-func spawnXp(sealLocation: Vector2, xp_resource: ExperienceResource) -> void:
-	var xp := xp_scene.instantiate()
+func spawn_xp(sealLocation: Vector2, xp_resource: ExperienceResource) -> void:
+	var xp := XP_SCENE.instantiate()
 	collectables.call_deferred("add_child", xp)
 	xp.set_deferred("collectable_resource", xp_resource)
 	xp.set_deferred("global_position", sealLocation)
