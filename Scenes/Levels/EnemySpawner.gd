@@ -14,7 +14,8 @@ var markers: Array[Marker2D] = []
 func _ready() -> void:
 	timer.timeout.connect(_on_timer_timeout)
 	timer.start()
-	timer.wait_time = 10
+	SignalBus.on_update_current_level_label.connect(on_update_current_level_label)
+	timer.wait_time =  20
 	for spawn_point in spawn_points.get_children():
 		if (spawn_point is Marker2D):
 			markers.append(spawn_point)
@@ -36,3 +37,6 @@ func spawn_xp(sealLocation: Vector2, xp_resource: ExperienceResource) -> void:
 	collectables.call_deferred("add_child", xp)
 	xp.set_deferred("collectable_resource", xp_resource)
 	xp.set_deferred("global_position", sealLocation)
+
+func on_update_current_level_label(value : int)-> void:
+	timer.wait_time = (1 / value) * 20 + 7

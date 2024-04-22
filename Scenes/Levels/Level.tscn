@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://v0wxmchyy8hw"]
+[gd_scene load_steps=16 format=3 uid="uid://v0wxmchyy8hw"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Level.gd" id="1_mxhe7"]
 [ext_resource type="PackedScene" uid="uid://bw72hruorpjco" path="res://Scenes/Player/Player.tscn" id="1_siijq"]
@@ -9,12 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://qatsyxql6wdw" path="res://Graphics/Spritesheets/HUD UI/ProgressBarUnder_1.png" id="6_p8w0s"]
 [ext_resource type="Script" path="res://Scenes/Levels/XpProgressBar.gd" id="7_02coe"]
 [ext_resource type="PackedScene" uid="uid://dhmrco02nc2e4" path="res://Scenes/UpgradeMenu/UpgradeMenu.tscn" id="7_3woya"]
-[ext_resource type="Resource" uid="uid://dlu4iepn2un0m" path="res://Scenes/Resources/Upgrades/UpgradeResources/Damage_Up.tres" id="7_7302l"]
 [ext_resource type="Texture2D" uid="uid://d4cc3eyopu7vx" path="res://Graphics/Spritesheets/HUD UI/ProgressBarProgress_1.png" id="7_yn16o"]
-[ext_resource type="Resource" uid="uid://bn63e5dqdx27l" path="res://Scenes/Resources/Upgrades/UpgradeResources/Health_Up.tres" id="8_6yn8a"]
-[ext_resource type="Resource" uid="uid://c0ap5oj088sf0" path="res://Scenes/Resources/Upgrades/UpgradeResources/Speed_Up.tres" id="9_1lsrj"]
 [ext_resource type="PackedScene" uid="uid://dfmw6h4velbkk" path="res://Scenes/OptionsMenu/options_menu.tscn" id="9_e5sju"]
-[ext_resource type="Resource" uid="uid://bb5u40u156s3r" path="res://Scenes/Resources/Upgrades/UpgradeResources/XP_Up.tres" id="10_wotyx"]
 [ext_resource type="PackedScene" uid="uid://xgs1q0wrl51a" path="res://Scenes/HUD/Player_Level_UI.tscn" id="11_3iven"]
 [ext_resource type="PackedScene" uid="uid://dkunpj14gq1t0" path="res://Scenes/Managers/collectable_manager.tscn" id="11_b0gdw"]
 [ext_resource type="Script" path="res://Scenes/Levels/EnemySpawner.gd" id="15_6hlx1"]
@@ -101,7 +97,6 @@ offset_left = 271.456
 offset_top = -52.712
 offset_right = -489.0
 offset_bottom = -9.51202
-upgradeList = Array[Resource("res://Scenes/Resources/Upgrades/base_upgrade_resource.gd")]([ExtResource("7_7302l"), ExtResource("8_6yn8a"), ExtResource("9_1lsrj"), ExtResource("10_wotyx")])
 
 [node name="XpProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
 visible = false

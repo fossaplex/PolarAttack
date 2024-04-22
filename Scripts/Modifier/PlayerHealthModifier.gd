@@ -13,6 +13,7 @@ var base_total_health_by: int
 
 func _ready() -> void:
 	player.base_total_health += base_total_health_by
+	player.health += base_total_health_by
 
 func get_type() -> ModifierType.Type:
 	return ModifierType.Type.PLAYER

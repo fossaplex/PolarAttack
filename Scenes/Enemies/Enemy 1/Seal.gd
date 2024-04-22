@@ -16,6 +16,7 @@ static func instanciate_seal(
 	(seal.attackable as Attackable).update(_base_damage, _damage_multiplier)
 	seal.global_position = _global_position
 	seal.on_death.connect(_on_death)
+	seal.base_speed = 50
 	return seal
 
 const SMALL_EXPERIENCE = preload("res://Scenes/Resources/collectable/CollectableResources/smallExperience.tres")

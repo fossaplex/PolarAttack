@@ -34,6 +34,7 @@ var orbs: Array:
 			var i := orbs.find(orb)
 			orb.angle_offset = 0
 			orb.angle_offset = i * (360.0 / orbs.size())
+
 func _ready() -> void:
 	super()
 	count = count

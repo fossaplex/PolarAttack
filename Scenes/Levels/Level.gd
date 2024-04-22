@@ -1,7 +1,7 @@
 class_name Level
 extends Node2D
 
-const ModifierData = preload("res://Constants/ModifierData.gd")
+const ModifierData := preload("res://Constants/ModifierData.gd")
 
 signal toggle_game_paused(is_paused : bool)
 @onready var player := $Player as Player
@@ -20,8 +20,8 @@ var game_paused : bool = false:
 func _ready() -> void:
 	player.on_dead.connect(_on_player_on_dead)
 	upgrade_menu.on_upgrade_pressed.connect(add_modifier)
-	player.weapon_handler.add_weapon(WeaponType.WEAPON_TYPE.ORB)
-	player.weapon_handler.add_weapon(WeaponType.WEAPON_TYPE.BEAM)
+
+	player.weapon_handler.add_weapon(WeaponType.WEAPON_TYPE.BEAM, 100, 1)
 	SignalBus.on_update_current_level_label.connect(ModifierData.on_update_current_level_label)
 
 func _input(event : InputEvent) -> void:
