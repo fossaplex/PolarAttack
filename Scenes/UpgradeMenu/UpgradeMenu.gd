@@ -43,7 +43,7 @@ func _on_v_box_container_gui_input(_event: InputEvent) -> void:
 	print("This is a test")
 
 func _on_upgrade_menu_button_menu_button_pressed() -> void:
-	var button = option_buttons[0] as UpgradeMenuButton
+	var button := option_buttons[0] as UpgradeMenuButton
 	var modifer_data := possible_upgrads[button.key] as ModifierData.ModifierData
 	print("button 1 : " + str(modifer_data.title))
 	on_upgrade_pressed.emit(modifer_data.key)
@@ -51,7 +51,7 @@ func _on_upgrade_menu_button_menu_button_pressed() -> void:
 	hide()
 
 func _on_upgrade_menu_button_2_menu_button_pressed() -> void:
-	var button = option_buttons[1] as UpgradeMenuButton
+	var button := option_buttons[1] as UpgradeMenuButton
 	var modifer_data := possible_upgrads[button.key] as ModifierData.ModifierData
 	print("button 2 : " + str(modifer_data.title))
 	on_upgrade_pressed.emit(modifer_data.key)
@@ -59,7 +59,7 @@ func _on_upgrade_menu_button_2_menu_button_pressed() -> void:
 	hide()
 
 func _on_upgrade_menu_button_3_menu_button_pressed() -> void:
-	var button = option_buttons[2] as UpgradeMenuButton
+	var button := option_buttons[2] as UpgradeMenuButton
 	var modifer_data := possible_upgrads[button.key] as ModifierData.ModifierData
 	print("button 3 : " + str(modifer_data.title))
 	on_upgrade_pressed.emit(modifer_data.key)

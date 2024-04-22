@@ -39,4 +39,4 @@ func spawn_xp(sealLocation: Vector2, xp_resource: ExperienceResource) -> void:
 	xp.set_deferred("global_position", sealLocation)
 
 func on_update_current_level_label(value : int)-> void:
-	timer.wait_time = (1 / value) * 20 + 7
+	timer.wait_time = (1.0 / value) * 20 + 7
