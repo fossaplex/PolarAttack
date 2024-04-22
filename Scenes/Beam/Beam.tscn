@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://diy85w135sgrw"]
+
+[ext_resource type="Script" path="res://Scenes/Beam/Beam.gd" id="1_21hkr"]
+[ext_resource type="Texture2D" uid="uid://bj8ol0k6rlypm" path="res://Graphics/beam/Beam.png" id="2_tfvpq"]
+[ext_resource type="Texture2D" uid="uid://bl4pfj6lrl0lk" path="res://Graphics/beam/Begin.png" id="3_7ekqn"]
+[ext_resource type="Script" path="res://Scripts/Attackable/Attackable.gd" id="4_vjaoj"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rhksx"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2miau"]
+resource_local_to_scene = true
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_02bc6"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3dcmm"]
+gradient = SubResource("Gradient_02bc6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f7fn1"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.3
+scale_max = 0.3
+color_ramp = SubResource("GradientTexture1D_3dcmm")
+
+[node name="Beam" type="Node2D"]
+modulate = Color(0.929412, 0, 0.0235294, 1)
+script = ExtResource("1_21hkr")
+
+[node name="Beam" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.741176)
+z_index = 1
+y_sort_enabled = true
+material = SubResource("CanvasItemMaterial_rhksx")
+scale = Vector2(1, -0.15)
+texture = ExtResource("2_tfvpq")
+centered = false
+offset = Vector2(0, -12)
+region_enabled = true
+region_rect = Rect2(0, 0, 200, 24)
+
+[node name="Begin" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_2miau")
+position = Vector2(-4.76837e-07, 4.76837e-07)
+scale = Vector2(0.32, 0.32)
+texture = ExtResource("3_7ekqn")
+
+[node name="End" type="Node2D" parent="."]
+position = Vector2(100, 0)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="End"]
+process_material = SubResource("ParticleProcessMaterial_f7fn1")
+texture = ExtResource("3_7ekqn")
+lifetime = 0.25
+preprocess = 0.25
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(100, 0)
+collision_mask = 36
+collide_with_areas = true
+
+[node name="Attackable" type="Node" parent="."]
+script = ExtResource("4_vjaoj")
