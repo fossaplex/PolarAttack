@@ -7,7 +7,7 @@ const GROUPS = preload("res://Constants/Groups.gd")
 @export var speed: float = 200
 @export var angle_offset := 0.0
 
-@onready var attackable := $Attackable as Attackable
+@export var attackable : Attackable
 @onready var audio_stream_player_2d := $AudioStreamPlayer2D as AudioStreamPlayer2D
 @onready var audio_stream_player := $AudioStreamPlayer as AudioStreamPlayer
 

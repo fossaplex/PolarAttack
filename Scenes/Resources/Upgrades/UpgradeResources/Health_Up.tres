@@ -7,5 +7,5 @@
 script = ExtResource("1_m2vac")
 texture = ExtResource("2_5kpgi")
 title = "Health Up"
-description = "+10 Health"
-value = 10
+description = "+10 Health 1"
+value = 1

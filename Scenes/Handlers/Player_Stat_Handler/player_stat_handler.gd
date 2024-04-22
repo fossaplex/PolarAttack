@@ -14,7 +14,7 @@ extends Node2D
 
 func _ready() -> void:
 	CollectableSignalBus.xp_collected.connect(xp_collected)
-	
+
 func xp_collected(resource : BaseCollectableResource) -> void:
 	current_xp += resource.experienceValue
 	if current_xp >= max_xp:
@@ -22,6 +22,5 @@ func xp_collected(resource : BaseCollectableResource) -> void:
 		current_xp -= max_xp
 		max_xp += int(max_xp_intervel) * int(max_xp)
 		SignalBus.emit_player_leveled_up(max_xp, current_level)
-		
+
 	CollectableSignalBus.emit_update_xp_bar(current_xp)
-	

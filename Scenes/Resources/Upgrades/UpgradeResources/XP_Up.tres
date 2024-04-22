@@ -7,5 +7,5 @@
 script = ExtResource("1_qqghd")
 texture = ExtResource("2_f0jws")
 title = "Xp up"
-description = "+10 xp"
-value = 10
+description = "+10 xp 3"
+value = 3

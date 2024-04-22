@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBase
 
+const ModifierData = preload("res://Constants/ModifierData.gd")
+
 @onready var sprite := $Sprite2D as Sprite2D
 @onready var animation_player := $AnimationPlayer as AnimationPlayer
 @onready var finite_state_machine := $SingleFiniteStateMachine as SingleFiniteStateMachine
@@ -10,39 +12,20 @@ extends CharacterBase
 @onready var idle_state := $SingleFiniteStateMachine/IdleState as PlayerIdleState
 @onready var walk_state := $SingleFiniteStateMachine/WalkState as PlayerWalkState
 
-@onready var projectiles := $Projectiles
-@onready var orbs := $Projectiles/Orbs as Orbs
-@onready var beam := $Projectiles/Beam as Beam
 @onready var progress_bar := $ProgressBar as ProgressBar
 
-#region Orb damamge
-@export var base_orb_damage := 10
-@export var orb_damage_multiplier := 1
-var orb_damage: float = 10:
-	get: return base_orb_damage * orb_damage_multiplier
-#endregion
+@onready var weapon_handler := $WeaponHandler as WeaponHandler
+@onready var modifiers: Node = $Modifiers
 
-#region beam damage
-@export var base_beam_damage: float = 10
-@export var beam_damage_multiplier := 1
-var beam_damage: float = 10:
-	get: return base_beam_damage * beam_damage_multiplier
-#endregion
-
+#region lifecycle
 func _ready() -> void:
 	super()
-	on_dead.connect(_on_dead)
 	fsm = finite_state_machine
-	beam.visible = false
 	hit_box.character = self
 	fsm.transition(idle_state)
-	
-func _process(delta: float) -> void:
-	super(delta)
-	if !beam or !orbs: return
-	beam.attackable.damage = beam_damage
-	orbs.damage = orb_damage
+#endregion
 
+#region setter getter
 func _set_total_health(value: int) -> void:
 	super(value)
 	if progress_bar: progress_bar.max_value = value
@@ -58,7 +41,22 @@ func _set_speed(value: int) -> void:
 	super(value)
 	if !is_node_ready(): return
 	walk_state.speed = speed
-
 #endregion
-func _on_dead(_prev_health: int) -> void:
-	projectiles.queue_free()
+
+func on_beam_active(is_active: bool,  horizontal_direction: int) -> void:
+	if (is_active):
+		speed_multiplier = 0.2
+		sprite.flip_h = horizontal_direction < 0
+	else:
+		speed_multiplier = 1
+
+func add_modifier(modifier_data: ModifierData.ModifierData) -> void:
+	var modifier_type := modifier_data.type
+	match modifier_type:
+		ModifierType.Type.PLAYER:
+			var modifier := modifier_data.create_modifier_callable.call(self) as Modifier
+			modifiers.add_child(modifier)
+		ModifierType.Type.WEAPON:
+			weapon_handler.add_modifier(modifier_data)
+		ModifierType.Type.ORBS:
+			weapon_handler.add_modifier(modifier_data)

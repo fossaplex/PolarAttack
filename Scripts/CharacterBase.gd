@@ -1,7 +1,7 @@
 class_name CharacterBase
 extends CharacterBody2D
 
-#region Base Stat
+#region base stat
 @export var base_total_health: int = 100
 @export var base_speed: int = 100
 #endregion

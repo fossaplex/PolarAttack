@@ -7,11 +7,12 @@ const GROUPS = preload("res://Constants/Groups.gd")
 @onready var seal := $"../.." as Seal
 @onready var target: CharacterBase = seal.target:
 	get: return seal.target
+@onready var attackable: Attackable = seal.attackable:
+	get: return seal.attackable
 @export var speed: int = 100:
 	get: return seal.speed
 @onready var hit_box := $"../../HitBox" as CharacterHitbox
 var _is_damaging := false
-@onready var attackable := $Attackable as Attackable
 
 func _ready() -> void:
 	hit_box.area_entered.connect(_on_hit_box_area_entered)

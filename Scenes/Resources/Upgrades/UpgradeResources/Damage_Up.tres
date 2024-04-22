@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_e76pi")
 texture = ExtResource("2_7k7pp")
-title = "Damage Up"
-description = "+10 damge"
-value = 10
+title = "Damage Up "
+description = "+10 damge 0"
+value = 0
