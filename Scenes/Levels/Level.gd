@@ -18,6 +18,7 @@ var game_paused : bool = false:
 func _ready() -> void:
 	player.on_dead.connect(_on_player_on_dead)
 	player.weapon_handler.add_weapon(WeaponType.WEAPON_TYPE.ORB)
+	player.weapon_handler.add_weapon(WeaponType.WEAPON_TYPE.BEAM)
 
 func _input(event : InputEvent) -> void:
 	if event.is_action_pressed("esc"):

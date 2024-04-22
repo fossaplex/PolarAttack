@@ -6,4 +6,3 @@ class_name BaseUpgradeResource
 @export var title: String
 @export var description: String
 @export var value: int
-

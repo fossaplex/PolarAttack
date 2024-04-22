@@ -1,8 +1,5 @@
 extends TextureProgressBar
 
-
-
-
 func _ready() -> void:
 	visible = true
 	CollectableSignalBus.on_update_xp_bar.connect(update_xp_bar)

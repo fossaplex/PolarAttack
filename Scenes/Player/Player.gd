@@ -10,8 +10,6 @@ extends CharacterBase
 @onready var idle_state := $SingleFiniteStateMachine/IdleState as PlayerIdleState
 @onready var walk_state := $SingleFiniteStateMachine/WalkState as PlayerWalkState
 
-@onready var weapons: Node2D = $WeaponHandler/Weapons
-
 @onready var progress_bar := $ProgressBar as ProgressBar
 
 @onready var weapon_handler := $WeaponHandler as WeaponHandler

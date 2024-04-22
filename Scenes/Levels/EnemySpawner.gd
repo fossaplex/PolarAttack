@@ -36,4 +36,3 @@ func spawn_xp(sealLocation: Vector2, xp_resource: ExperienceResource) -> void:
 	collectables.call_deferred("add_child", xp)
 	xp.set_deferred("collectable_resource", xp_resource)
 	xp.set_deferred("global_position", sealLocation)
-
