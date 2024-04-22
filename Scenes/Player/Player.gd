@@ -10,35 +10,21 @@ extends CharacterBase
 @onready var idle_state := $SingleFiniteStateMachine/IdleState as PlayerIdleState
 @onready var walk_state := $SingleFiniteStateMachine/WalkState as PlayerWalkState
 
-@onready var projectiles := $Projectiles
-@onready var orbs := $Projectiles/Orbs as Orbs
-@onready var beam := $Projectiles/Beam as Beam
+@onready var weapons: Node2D = $WeaponHandler/Weapons
+
 @onready var progress_bar := $ProgressBar as ProgressBar
 
-#region Orb damamge
-@export var base_orb_damage := 10
-@export var orb_damage_multiplier := 1
-#endregion
+@onready var weapon_handler := $WeaponHandler as WeaponHandler
 
-#region beam damage
-@export var base_beam_damage: float = 10
-@export var beam_damage_multiplier := 1
-#endregion
-
+#region lifecycle
 func _ready() -> void:
 	super()
-	on_dead.connect(_on_dead)
 	fsm = finite_state_machine
-	beam.visible = false
 	hit_box.character = self
 	fsm.transition(idle_state)
+#endregion
 
-func _process(delta: float) -> void:
-	super(delta)
-	if !beam or !orbs: return
-	beam.attackable.update(base_beam_damage, beam_damage_multiplier)
-	orbs.attackable.update(base_orb_damage, orb_damage_multiplier)
-
+#region setter getter
 func _set_total_health(value: int) -> void:
 	super(value)
 	if progress_bar: progress_bar.max_value = value
@@ -54,7 +40,11 @@ func _set_speed(value: int) -> void:
 	super(value)
 	if !is_node_ready(): return
 	walk_state.speed = speed
-
 #endregion
-func _on_dead(_prev_health: int) -> void:
-	projectiles.queue_free()
+
+func on_beam_active(is_active: bool,  horizontal_direction: int) -> void:
+	if (is_active):
+		speed_multiplier = 0.2
+		sprite.flip_h = horizontal_direction < 0
+	else:
+		speed_multiplier = 1

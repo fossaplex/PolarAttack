@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://diy85w135sgrw"]
 
-[ext_resource type="Script" path="res://Scenes/Beam/beam.gd" id="1_8ffcn"]
-[ext_resource type="Texture2D" uid="uid://bl4pfj6lrl0lk" path="res://Graphics/beam/Begin.png" id="1_hhywt"]
-[ext_resource type="Texture2D" uid="uid://bj8ol0k6rlypm" path="res://Graphics/beam/Beam.png" id="2_2s5hh"]
-[ext_resource type="Script" path="res://Scripts/Attackable/Attackable.gd" id="4_usy04"]
+[ext_resource type="Script" path="res://Scenes/Beam/Beam.gd" id="1_21hkr"]
+[ext_resource type="Texture2D" uid="uid://bj8ol0k6rlypm" path="res://Graphics/beam/Beam.png" id="2_tfvpq"]
+[ext_resource type="Texture2D" uid="uid://bl4pfj6lrl0lk" path="res://Graphics/beam/Begin.png" id="3_7ekqn"]
+[ext_resource type="Script" path="res://Scripts/Attackable/Attackable.gd" id="4_vjaoj"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rhksx"]
 
@@ -28,7 +28,7 @@ color_ramp = SubResource("GradientTexture1D_3dcmm")
 
 [node name="Beam" type="Node2D"]
 modulate = Color(0.929412, 0, 0.0235294, 1)
-script = ExtResource("1_8ffcn")
+script = ExtResource("1_21hkr")
 
 [node name="Beam" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.741176)
@@ -36,7 +36,7 @@ z_index = 1
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_rhksx")
 scale = Vector2(1, -0.15)
-texture = ExtResource("2_2s5hh")
+texture = ExtResource("2_tfvpq")
 centered = false
 offset = Vector2(0, -12)
 region_enabled = true
@@ -46,14 +46,14 @@ region_rect = Rect2(0, 0, 200, 24)
 material = SubResource("CanvasItemMaterial_2miau")
 position = Vector2(-4.76837e-07, 4.76837e-07)
 scale = Vector2(0.32, 0.32)
-texture = ExtResource("1_hhywt")
+texture = ExtResource("3_7ekqn")
 
 [node name="End" type="Node2D" parent="."]
 position = Vector2(100, 0)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="End"]
 process_material = SubResource("ParticleProcessMaterial_f7fn1")
-texture = ExtResource("1_hhywt")
+texture = ExtResource("3_7ekqn")
 lifetime = 0.25
 preprocess = 0.25
 
@@ -63,4 +63,4 @@ collision_mask = 36
 collide_with_areas = true
 
 [node name="Attackable" type="Node" parent="."]
-script = ExtResource("4_usy04")
+script = ExtResource("4_vjaoj")

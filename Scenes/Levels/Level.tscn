@@ -55,8 +55,6 @@ process_mode = 1
 z_index = 1
 y_sort_enabled = true
 position = Vector2(44, -26)
-orb_damage_multiplier = 5
-beam_damage_multiplier = 10
 base_total_health = 100
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
