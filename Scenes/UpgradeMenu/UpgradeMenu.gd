@@ -1,3 +1,4 @@
+class_name UpgradeMenu
 extends Control
 
 
@@ -9,6 +10,8 @@ extends Control
 @export var upgradeList: Array[BaseUpgradeResource] = []
 
 signal toggle_game_paused(is_paused : bool)
+signal on_upgrade_pressed(key: int)
+
 var upgradeCount := 3
 var upgradeOptions := []
 
@@ -40,16 +43,19 @@ func get_random_upgrades(_upgradeCount: int) -> Array:
 
 func _on_option_1_button_up() -> void:
 	print("button 1 : " + str(upgradeOptions[1].upgrade_title))
+	on_upgrade_pressed.emit(upgradeOptions[1].value)
 	get_tree().paused = false
 	hide()
 
 func _on_option_2_button_up() -> void:
 	print("button 2 : " + str(upgradeOptions[2].upgrade_title))
+	on_upgrade_pressed.emit(upgradeOptions[2].value)
 	get_tree().paused = false
 	hide()
 
 func _on_option_3_button_up() -> void:
 	print("button 1 : " + str(upgradeOptions[1].upgrade_title))
+	on_upgrade_pressed.emit(upgradeOptions[2].value)
 	get_tree().paused = false
 	hide()
 
@@ -58,15 +64,18 @@ func _on_v_box_container_gui_input(_event: InputEvent) -> void:
 
 func _on_upgrade_menu_button_menu_button_pressed() -> void:
 	print("button 1 : " + str(upgradeOptions[0].title))
+	on_upgrade_pressed.emit(upgradeOptions[0].value)
 	get_tree().paused = false
 	hide()
 
 func _on_upgrade_menu_button_2_menu_button_pressed() -> void:
 	print("button 2 : " + str(upgradeOptions[1].title))
+	on_upgrade_pressed.emit(upgradeOptions[1].value)
 	get_tree().paused = false
 	hide()
 
 func _on_upgrade_menu_button_3_menu_button_pressed() -> void:
 	print("button 3 : " + str(upgradeOptions[2].title))
+	on_upgrade_pressed.emit(upgradeOptions[2].value)
 	get_tree().paused = false
 	hide()

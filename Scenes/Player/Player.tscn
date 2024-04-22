@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bw72hruorpjco"]
+[gd_scene load_steps=23 format=3 uid="uid://bw72hruorpjco"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_ty1sm"]
 [ext_resource type="Texture2D" uid="uid://j72r5deby7vj" path="res://Graphics/Spritesheets/Penguin/Idle.png" id="2_8ii8i"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://Scenes/Player/IdleState.gd" id="11_6wq3b"]
 [ext_resource type="Script" path="res://Scenes/Player/WalkState.gd" id="12_xaajb"]
 [ext_resource type="Script" path="res://Scenes/Player/DeathState.gd" id="14_216an"]
+[ext_resource type="Script" path="res://Scenes/Player/Label.gd" id="15_u3eai"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wfubi"]
 radius = 8.0
@@ -318,6 +319,8 @@ position = Vector2(0, -12)
 [node name="OrbMarker" type="Marker2D" parent="WeaponHandler/WeaponPositionMarkers"]
 position = Vector2(0, -7)
 
+[node name="Modifiers" type="Node" parent="WeaponHandler"]
+
 [node name="SingleFiniteStateMachine" type="Node" parent="."]
 script = ExtResource("10_3mdsy")
 
@@ -331,3 +334,15 @@ script = ExtResource("12_xaajb")
 
 [node name="DeathState" type="Node" parent="SingleFiniteStateMachine"]
 script = ExtResource("14_216an")
+
+[node name="Modifiers" type="Node" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_left = -15.0
+offset_top = -41.0
+offset_right = 25.0
+offset_bottom = -18.0
+theme_override_colors/font_color = Color(0.882353, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "assdasd"
+script = ExtResource("15_u3eai")

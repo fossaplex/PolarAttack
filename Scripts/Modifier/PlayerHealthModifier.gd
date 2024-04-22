@@ -1,12 +1,18 @@
-class_name WeaponModifier
+class_name PlayerHealthModifier
 extends Modifier
 
+static func createPlayerHealthModifier(_player:Player, _base_total_health_by: int) -> PlayerHealthModifier:
+	var modifier := PlayerHealthModifier.new()
+	modifier.player = _player
+	modifier.base_total_health_by = _base_total_health_by
+	return modifier
+	
 
-# Called when the node enters the scene tree for the first time.
+var player: Player
+var base_total_health_by: int
+
 func _ready() -> void:
-	pass # Replace with function body.
+	player.base_total_health += base_total_health_by
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func get_type() -> ModifierType.Type:
+	return ModifierType.Type.PLAYER

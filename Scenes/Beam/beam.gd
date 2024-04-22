@@ -10,7 +10,7 @@ const MAX_LENGTH := 2000
 @onready var end := $End as Node2D
 @onready var raycast := $RayCast2D as RayCast2D
 
-var active_last_frame = false
+var active_last_frame := false
 func _ready() -> void:
 	super()
 	visible = false

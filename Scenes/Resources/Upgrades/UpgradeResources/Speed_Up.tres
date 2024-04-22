@@ -7,5 +7,5 @@
 script = ExtResource("1_elpqg")
 texture = ExtResource("2_opjc6")
 title = "Speed Up"
-description = "+10 Speed"
-value = 10
+description = "+10 Speed 2"
+value = 2

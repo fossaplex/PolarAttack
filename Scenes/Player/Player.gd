@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBase
 
+const ModifierData = preload("res://Constants/ModifierData.gd")
+
 @onready var sprite := $Sprite2D as Sprite2D
 @onready var animation_player := $AnimationPlayer as AnimationPlayer
 @onready var finite_state_machine := $SingleFiniteStateMachine as SingleFiniteStateMachine
@@ -13,6 +15,7 @@ extends CharacterBase
 @onready var progress_bar := $ProgressBar as ProgressBar
 
 @onready var weapon_handler := $WeaponHandler as WeaponHandler
+@onready var modifiers: Node = $Modifiers
 
 #region lifecycle
 func _ready() -> void:
@@ -46,3 +49,14 @@ func on_beam_active(is_active: bool,  horizontal_direction: int) -> void:
 		sprite.flip_h = horizontal_direction < 0
 	else:
 		speed_multiplier = 1
+
+func add_modifier(modifier_data: ModifierData.ModifierData) -> void:
+	var modifier_type := modifier_data.type
+	match modifier_type:
+		ModifierType.Type.PLAYER:
+			var modifier := modifier_data.create_modifier_callable.call(self) as Modifier
+			modifiers.add_child(modifier)
+		ModifierType.Type.WEAPON:
+			weapon_handler.add_modifier(modifier_data)
+		ModifierType.Type.ORBS:
+			weapon_handler.add_modifier(modifier_data)
