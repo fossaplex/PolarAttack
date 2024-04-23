@@ -1,11 +1,35 @@
-[gd_scene load_steps=9 format=3 uid="uid://3asuopfcmplq"]
+[gd_scene load_steps=12 format=3 uid="uid://3asuopfcmplq"]
 
 [ext_resource type="PackedScene" uid="uid://buvcadcpwrabx" path="res://Scenes/OptionsMenu/AudioSettings/audio_slider_settings.tscn" id="1_6lfa0"]
 [ext_resource type="Script" path="res://Scenes/OptionsMenu/settings_tab_container.gd" id="1_dj1iy"]
 [ext_resource type="PackedScene" uid="uid://x0v7xw2whipr" path="res://Scenes/OptionsMenu/GraphicsSettings/window_mode_button.tscn" id="1_t4oju"]
 [ext_resource type="PackedScene" uid="uid://box3qopvvcx2h" path="res://Scenes/OptionsMenu/ControlsSettings/hotkey_rebind_button.tscn" id="1_wiyyd"]
+[ext_resource type="Texture2D" uid="uid://c7ucjperh3coy" path="res://Graphics/Backgrounds/Tab_container.png" id="2_4qkya"]
 [ext_resource type="PackedScene" uid="uid://chao0bdsbluv7" path="res://Scenes/OptionsMenu/GraphicsSettings/ResolutionSettings/resolution_mode_button.tscn" id="3_t82e4"]
 [ext_resource type="PackedScene" uid="uid://dv8kad2y88ov1" path="res://Scenes/OptionsMenu/AccessibilitySettings/subtitles_toggle_button.tscn" id="5_etbil"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbwv5"]
+content_margin_left = 6.0
+content_margin_top = 5.0
+content_margin_right = 6.0
+content_margin_bottom = 4.0
+bg_color = Color(0.109093, 0.1754, 0.311963, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_color = Color(0.317525, 0.556909, 0.976547, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4ckdn"]
+texture = ExtResource("2_4qkya")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p8xkq"]
 
@@ -32,6 +56,8 @@ offset_right = -100.0
 offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_hbwv5")
+theme_override_styles/panel = SubResource("StyleBoxTexture_4ckdn")
 tab_alignment = 1
 
 [node name="Sound" type="TabBar" parent="TabContainer"]
