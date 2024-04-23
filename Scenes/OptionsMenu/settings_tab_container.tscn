@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://3asuopfcmplq"]
+[gd_scene load_steps=14 format=3 uid="uid://3asuopfcmplq"]
 
 [ext_resource type="PackedScene" uid="uid://buvcadcpwrabx" path="res://Scenes/OptionsMenu/AudioSettings/audio_slider_settings.tscn" id="1_6lfa0"]
 [ext_resource type="Script" path="res://Scenes/OptionsMenu/settings_tab_container.gd" id="1_dj1iy"]
@@ -8,7 +8,39 @@
 [ext_resource type="PackedScene" uid="uid://chao0bdsbluv7" path="res://Scenes/OptionsMenu/GraphicsSettings/ResolutionSettings/resolution_mode_button.tscn" id="3_t82e4"]
 [ext_resource type="PackedScene" uid="uid://dv8kad2y88ov1" path="res://Scenes/OptionsMenu/AccessibilitySettings/subtitles_toggle_button.tscn" id="5_etbil"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbwv5"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t22kb"]
+bg_color = Color(0.423089, 0.550042, 0.802487, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.388373, 0.607706, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u0wcl"]
+bg_color = Color(0.313967, 0.440512, 0.697184, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.388373, 0.607706, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ux0vl"]
 content_margin_left = 6.0
 content_margin_top = 5.0
 content_margin_right = 6.0
@@ -22,6 +54,9 @@ corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
 expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4ckdn"]
@@ -56,7 +91,9 @@ offset_right = -100.0
 offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_hbwv5")
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_t22kb")
+theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_u0wcl")
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_ux0vl")
 theme_override_styles/panel = SubResource("StyleBoxTexture_4ckdn")
 tab_alignment = 1
 

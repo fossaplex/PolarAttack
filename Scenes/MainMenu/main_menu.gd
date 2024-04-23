@@ -13,7 +13,7 @@ func _ready() -> void:
 	handle_connecting_signals()
 
 func on_start_pressed() -> void:
-	get_tree().change_scene_to_packed(start_level)
+	SceneTransition.change_scene(start_level, "packed")
 
 func on_options_pressed() -> void:
 	margin_container.visible = false

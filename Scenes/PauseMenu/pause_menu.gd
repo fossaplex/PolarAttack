@@ -30,7 +30,7 @@ func _on_options_button_pressed() -> void:
 
 func _on_main_menu_button_pressed() -> void:
 	level.game_paused = false
-	get_tree().change_scene_to_file("res://Scenes/MainMenu/main_menu.tscn")
+	SceneTransition.change_scene("res://Scenes/MainMenu/main_menu.tscn", "file")
 
 func _on_options_menu_exit_options_menu() -> void:
 	options_menu.visible = false
