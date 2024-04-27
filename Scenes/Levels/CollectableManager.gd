@@ -11,7 +11,4 @@ func on_entity_collected(collectable_resource: BaseCollectableResource) -> void:
 		"":
 			return
 		"experience":
-			#current_experience_count += collectable_resource.experienceValue
-			CollectableSignalBus.emit_on_xp_collected(collectable_resource)
-
-			
+			CollectableSignalBus.xp_collected.emit(collectable_resource)

@@ -1,26 +1,39 @@
 extends Node
 
 #region current values
-@export var current_xp : int = 0
-@export var current_level : int = 1
+@export var current_xp : int = 0:
+	set(value):
+		if current_xp == value: return
+		var prev_xp := current_xp
+		current_xp = value
+		PlayerXpSignalBus.on_xp_increment.emit(current_xp, prev_xp, max_xp)
+
+@export var current_level : int = 1:
+	set(value):
+		if current_level == value: return
+		var prev_level := current_level
+		current_level = value
+		current_xp = 0
+		PlayerXpSignalBus.on_level_change.emit(current_level, prev_level)
 #endregion
 
-#region max values
-@export var max_xp : int = 100
+#region 
+@export var max_xp : int:
+	get: return xp_function()
+@export var base_xp : int = 100
+@export var increments: int = 20
 #endregion
-
-#The amount max xp increases everytime you level up
-@export_range(0.0, 1.0, .01) var max_xp_intervel : float = .05
 
 func _ready() -> void:
 	CollectableSignalBus.xp_collected.connect(xp_collected)
+	current_level = current_level
+	current_xp = current_xp
 
 func xp_collected(resource : BaseCollectableResource) -> void:
 	current_xp += resource.experienceValue
 	if current_xp >= max_xp:
 		current_level += 1
-		current_xp -= max_xp
-		max_xp += int(max_xp_intervel) * int(max_xp)
-		SignalBus.emit_player_leveled_up(max_xp, current_level)
 
-	CollectableSignalBus.emit_update_xp_bar(current_xp)
+func xp_function() -> int:
+	return base_xp + (current_level - 1) * increments
+		

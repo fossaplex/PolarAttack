@@ -259,8 +259,9 @@ _data = {
 collision_layer = 2
 collision_mask = 128
 script = ExtResource("1_ty1sm")
-base_total_health = 100000
 base_speed = 150
+speed_multiplier = null
+total_health_multiplier = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -283,7 +284,7 @@ shape = SubResource("RectangleShape2D_1ion7")
 script = ExtResource("4_ym2nj")
 
 [node name="CollectableHitBox" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 256
 collision_mask = 16
 script = ExtResource("6_m38tu")
 

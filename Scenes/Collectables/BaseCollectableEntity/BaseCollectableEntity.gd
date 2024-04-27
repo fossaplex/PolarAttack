@@ -8,15 +8,8 @@ class_name BaseCollectableEntity
 			animated_sprite_2d.sprite_frames = collectable_resource.collectable_texture
 			animated_sprite_2d.play()
 
-
 @onready var animated_sprite_2d := $AnimatedSprite2D
 
-signal collect_entity
-
-func _ready() -> void:
-	collect_entity.connect(on_collect)
-
 func on_collect() -> void:
-	CollectableSignalBus.emit_collect_entity(collectable_resource)
+	CollectableSignalBus.collect_entity.emit(collectable_resource)
 	queue_free()
-	

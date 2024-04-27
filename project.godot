@@ -16,12 +16,12 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 
 [autoload]
 
-SignalBus="*res://autoloads/SignalBus.gd"
 SettingsDataContainer="*res://autoloads/SettingsDataContainer.gd"
 SettingsSignalBus="*res://autoloads/SettingsSignalBus.gd"
 SaveManager="*res://autoloads/SaveManager.gd"
 CollectableSignalBus="*res://autoloads/CollectableSignalBus.gd"
 SceneTransition="*res://Scenes/SceneTransition/SceneTransition.tscn"
+PlayerXpSignalBus="*res://Scenes/Player/SignalBus/PlayerXpSignalBus.gd"
 
 [debug]
 
@@ -81,3 +81,4 @@ esc={
 2d_physics/layer_6="enemy hitbox"
 2d_physics/layer_7="enemy walk"
 2d_physics/layer_8="wall walk"
+2d_physics/layer_9="collectable hitbox"

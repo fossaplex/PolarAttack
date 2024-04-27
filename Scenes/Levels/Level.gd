@@ -22,7 +22,7 @@ func _ready() -> void:
 	upgrade_menu.on_upgrade_pressed.connect(add_modifier)
 
 	player.weapon_handler.add_weapon(WeaponType.WEAPON_TYPE.BEAM, 100, 1)
-	SignalBus.on_update_current_level_label.connect(ModifierData.on_update_current_level_label)
+	PlayerXpSignalBus.on_level_change.connect(ModifierData.on_level_change)
 
 func _input(event : InputEvent) -> void:
 	if event.is_action_pressed("esc"):

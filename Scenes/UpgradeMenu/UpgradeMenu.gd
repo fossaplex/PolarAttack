@@ -15,9 +15,10 @@ var upgrade_options_keys := []
 
 func _ready() -> void:
 	hide()
-	SignalBus.on_open_upgrade_menu.connect(open_upgrade_menu)
+	PlayerXpSignalBus.on_level_change.connect(open_upgrade_menu)
 
-func open_upgrade_menu() -> void:
+func open_upgrade_menu(level: int, _prev_level: int) -> void:
+	if (level == 1): return
 	get_tree().paused = true
 	pick_upgrades()
 	show()

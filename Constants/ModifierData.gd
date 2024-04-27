@@ -29,8 +29,8 @@ static func get_modifier_data(key: int) -> ModifierData:
 	if key not in DATA: return
 	return DATA[key]
 
-static func on_update_current_level_label(value : int) -> void:
-	level = value
+static func on_level_change(_level: int, _prev_level: int) -> void: 
+	level = _level
 
 static var DATA := {
 	-1: ModifierData.new(

@@ -19,9 +19,9 @@ static func instanciate_seal(
 	seal.base_speed = 50
 	return seal
 
-const SMALL_EXPERIENCE = preload("res://Scenes/Resources/collectable/CollectableResources/smallExperience.tres")
-const GOLD_XP_ANIMATION = preload("res://Graphics/coins/Gold_Xp_Animation.tres")
-const SILVER_XP_ANIMATION = preload("res://Graphics/coins/Silver_Xp_Animation.tres")
+const SMALL_EXPERIENCE := preload("res://Scenes/Resources/collectable/CollectableResources/smallExperience.tres")
+const GOLD_XP_ANIMATION := preload("res://Graphics/coins/Gold_Xp_Animation.tres")
+const SILVER_XP_ANIMATION := preload("res://Graphics/coins/Silver_Xp_Animation.tres")
 
 #region Members
 @onready var ap: AnimationPlayer = $AnimationPlayer
@@ -69,19 +69,16 @@ func _ready() -> void:
 	attackable.damage = damage
 	fsm.transition(walk_state if target else wander_state)
 
-func _set_total_health(value: int) -> void:
-	super(value)
-	texture_progress_bar.max_value = value
-
 func _set_health(value: int) -> void:
 	super(value)
 	texture_progress_bar.value = value
+	texture_progress_bar.max_value = total_health
 	if (fsm and value <= 0):
 		if fsm.transition(death_state):
 			SMALL_EXPERIENCE.collectable_texture = GOLD_XP_ANIMATION
 			SMALL_EXPERIENCE.collectable_type = "experience"
 			SMALL_EXPERIENCE.experienceValue = 20
-			on_death.emit(self.global_position, SMALL_EXPERIENCE)
+			on_death.emit(global_position, SMALL_EXPERIENCE)
 #endregion
 
 func flip_sprite(horizontal_direction: float) -> void:

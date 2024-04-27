@@ -2,12 +2,13 @@ class_name CharacterBase
 extends CharacterBody2D
 
 #region base stat
-@export var base_total_health: int = 100
+@export var base_total_health: int = 100: set = _base_total_health
 @export var base_speed: int = 100
 #endregion
 
 #region stats
-var total_health: int = 100 : set = _set_total_health, get = _get_total_health
+var total_health: int = 100 :
+	get: return int(base_total_health) * int(total_health_multiplier)
 var speed: int = 200: set = _set_speed, get = _get_speed
 var health: int = total_health : set = _set_health
 #endregion
@@ -25,6 +26,7 @@ signal on_dead(prev_health: int)
 signal on_speed_change(speed: int, prev_spreed: int)
 
 func _ready() -> void:
+	base_total_health = base_total_health
 	total_health = total_health
 	health = total_health
 	speed = speed
@@ -42,17 +44,8 @@ func character_queue_free() -> void:
 	fsm = null
 	queue_free()
 
-func _set_total_health(value: int) -> void:
-	var prev := total_health
-	total_health = value
-
-	if prev != total_health:
-		on_total_health_change.emit(prev, total_health)
-	if health > total_health:
-		health = total_health
-
-func _get_total_health() -> int:
-	return int(base_total_health) * int(total_health_multiplier)
+func _base_total_health(value: int) -> void:
+	base_total_health = value
 
 func _set_health(value: int) -> void:
 	var prev := health

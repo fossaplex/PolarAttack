@@ -27,7 +27,7 @@ func _ready() -> void:
 #endregion
 
 #region setter getter
-func _set_total_health(value: int) -> void:
+func _base_total_health(value: int) -> void:
 	super(value)
 	if progress_bar: progress_bar.max_value = value
 
