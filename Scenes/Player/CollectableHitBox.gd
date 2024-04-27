@@ -1,4 +1,3 @@
-class_name CollectionHandler
 extends Area2D
 
 func _ready() -> void:
@@ -6,5 +5,4 @@ func _ready() -> void:
 
 func on_area_entered(area: Area2D) -> void:
 	if area is BaseCollectableEntity:
-		area.emit_signal("collect_entity")
-	
+		area.collect_entity.emit()

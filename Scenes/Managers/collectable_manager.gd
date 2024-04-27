@@ -3,8 +3,6 @@ class_name CollectableManager
 
 var current_experience_count: int = 0
 
-
-
 func _ready() -> void:
 	CollectableSignalBus.collect_entity.connect(on_entity_collected)
 

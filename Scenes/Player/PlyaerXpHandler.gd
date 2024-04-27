@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 #region current values
 @export var current_xp : int = 0
