@@ -15,7 +15,8 @@ const ModifierData = preload("res://Constants/ModifierData.gd")
 @onready var progress_bar := $ProgressBar as ProgressBar
 
 @onready var weapon_handler := $WeaponHandler as WeaponHandler
-@onready var modifiers: Node = $Modifiers
+@onready var modifiers := $Modifiers
+@onready var is_beam_active := false
 
 #region lifecycle
 func _ready() -> void:
@@ -43,8 +44,9 @@ func _set_speed(value: int) -> void:
 	walk_state.speed = speed
 #endregion
 
-func on_beam_active(is_active: bool,  horizontal_direction: int) -> void:
-	if (is_active):
+func on_beam_active(is_active: bool,  horizontal_direction: float) -> void:
+	is_beam_active = is_active
+	if (is_beam_active):
 		speed_multiplier = 0.2
 		sprite.flip_h = horizontal_direction < 0
 	else:

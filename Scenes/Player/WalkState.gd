@@ -4,7 +4,7 @@ extends State
 @onready var animation_player := $"../../AnimationPlayer" as AnimationPlayer
 @onready var sprite := $"../../Sprite2D" as Sprite2D
 @onready var idle_state := $"../IdleState" as PlayerIdleState
-@onready var player := $"../.." as CharacterBase
+@onready var player := $"../.." as Player
 @onready  var speed: float = player.speed:
 	get: return player.speed
 @onready var sound_walk := $"../../SoundWalk" as AudioStreamPlayer2D
@@ -35,8 +35,8 @@ func process_physics(_delta: float) -> void:
 	player.move_and_slide()
 
 func flip_sprite(horizontal_direction: float) -> void:
-	if horizontal_direction != 0: sprite.flip_h = horizontal_direction == 1
-
+	if !player.is_beam_active and horizontal_direction != 0:
+		sprite.flip_h = horizontal_direction == 1
 
 func _on_timer_timeout() -> void:
 	sound_walk.play()
