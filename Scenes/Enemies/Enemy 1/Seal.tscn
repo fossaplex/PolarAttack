@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cpt0kgd14pang" path="res://Graphics/Spritesheets/Enemies/seal/walk.png" id="2_4rlea"]
 [ext_resource type="Script" path="res://Scripts/CharacterHitbox.gd" id="3_pvdk6"]
 [ext_resource type="Script" path="res://Scenes/Enemies/Enemy 1/FiniteStateMachine.gd" id="4_0a1vn"]
-[ext_resource type="Texture2D" uid="uid://ciq5w8m5ovb6t" path="res://Graphics/Spritesheets/shadow.png" id="4_3y2ne"]
 [ext_resource type="Texture2D" uid="uid://d4cc3eyopu7vx" path="res://Graphics/Spritesheets/HUD UI/ProgressBarProgress_1.png" id="4_ftjl7"]
+[ext_resource type="Texture2D" uid="uid://ciq5w8m5ovb6t" path="res://Graphics/shadow.png" id="4_lobi2"]
 [ext_resource type="Script" path="res://Scenes/Enemies/Enemy 1/WalkState.gd" id="5_on3pn"]
 [ext_resource type="Script" path="res://Scenes/Enemies/Enemy 1/WanderState.gd" id="6_obm77"]
 [ext_resource type="Script" path="res://Scenes/Enemies/Enemy 1/DeathState.gd" id="7_53hjw"]
@@ -157,7 +157,7 @@ shape = SubResource("RectangleShape2D_5qem2")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 position = Vector2(0, 1)
-texture = ExtResource("4_3y2ne")
+texture = ExtResource("4_lobi2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -6)

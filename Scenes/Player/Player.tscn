@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bw72hruorpjco"]
+[gd_scene load_steps=25 format=3 uid="uid://bw72hruorpjco"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_ty1sm"]
 [ext_resource type="Texture2D" uid="uid://j72r5deby7vj" path="res://Graphics/Spritesheets/Penguin/Idle.png" id="2_8ii8i"]
@@ -13,8 +13,9 @@
 [ext_resource type="Script" path="res://Scenes/Player/IdleState.gd" id="11_6wq3b"]
 [ext_resource type="Script" path="res://Scenes/Player/WalkState.gd" id="12_xaajb"]
 [ext_resource type="Script" path="res://Scenes/Player/DeathState.gd" id="14_216an"]
-[ext_resource type="Texture2D" uid="uid://ciq5w8m5ovb6t" path="res://Graphics/Spritesheets/shadow.png" id="15_174c8"]
+[ext_resource type="Texture2D" uid="uid://ciq5w8m5ovb6t" path="res://Graphics/shadow.png" id="15_174c8"]
 [ext_resource type="Script" path="res://Scenes/Player/Label.gd" id="15_u3eai"]
+[ext_resource type="Texture2D" uid="uid://1fivtnit1ogv" path="res://Graphics/light.png" id="16_n22st"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wfubi"]
 radius = 8.0
@@ -358,3 +359,11 @@ theme_override_colors/font_color = Color(0.882353, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
 text = "assdasd"
 script = ExtResource("15_u3eai")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.3
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 6.1
+texture = ExtResource("16_n22st")
+texture_scale = 0.5
