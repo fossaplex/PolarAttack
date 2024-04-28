@@ -238,7 +238,7 @@ z_index = 1
 y_sort_enabled = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.879076, 0.889558, 0.927838, 1)
+color = Color(0.117647, 0.129412, 0.180392, 1)
 script = ExtResource("16_ip13u")
 
 [connection signal="exit_options_menu" from="CanvasLayer/PauseMenu/OptionsMenu" to="CanvasLayer/PauseMenu" method="_on_options_menu_exit_options_menu"]

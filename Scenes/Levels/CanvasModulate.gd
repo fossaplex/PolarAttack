@@ -2,7 +2,7 @@ extends CanvasModulate
 
 const NIGHT_COLOR = Color("#1e212e")
 const DAY_COLOR = Color("#e0e3ed")
-const TIME_SCALE = 0.1
+const TIME_SCALE = 0.01
 
 var time := 0.0
 
