@@ -361,7 +361,7 @@ text = "assdasd"
 script = ExtResource("15_u3eai")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-energy = 0.3
+energy = 0.1
 shadow_enabled = true
 shadow_filter = 2
 shadow_filter_smooth = 6.1

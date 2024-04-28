@@ -3,7 +3,7 @@ extends Weapon
 
 const GROUPS := preload("res://Constants/Groups.gd")
 
-const MAX_LENGTH := 2000
+const MAX_LENGTH := 100.0
 
 @onready var beam := $Beam as Sprite2D
 @onready var begin := $Begin as Sprite2D 
@@ -25,7 +25,7 @@ func _physics_process(_delta: float) -> void:
 	if raycast.is_colliding():
 		end.global_position = raycast.get_collision_point()
 	else:
-		end.global_position = raycast.target_position
+		end.position = raycast.target_position
 	beam.rotation = raycast.target_position.angle()
 	beam.region_rect.end.x = end.position.length()
 
