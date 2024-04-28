@@ -9,6 +9,7 @@ const MAX_LENGTH := 100.0
 @onready var begin := $Begin as Sprite2D 
 @onready var end := $End as Node2D
 @onready var raycast := $RayCast2D as RayCast2D
+@onready var point_light_2d: PointLight2D = $PointLight2D
 
 var active_last_frame := false
 func _ready() -> void:
@@ -27,6 +28,8 @@ func _physics_process(_delta: float) -> void:
 	else:
 		end.position = raycast.target_position
 	beam.rotation = raycast.target_position.angle()
+	point_light_2d.rotation = raycast.target_position.angle()
+	point_light_2d.scale.x = 4.17 * end.position.length() / 100.215
 	beam.region_rect.end.x = end.position.length()
 
 func _process(delta: float) -> void:
