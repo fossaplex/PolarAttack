@@ -13,6 +13,7 @@ const MAX_LENGTH := 2000
 var active_last_frame := false
 func _ready() -> void:
 	super()
+	raycast.collide_with_areas = false
 	visible = false
 
 signal on_beam_active(is_active: bool, horizontal_direction: float)

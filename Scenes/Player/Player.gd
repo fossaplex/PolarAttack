@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBase
 
-const ModifierData = preload("res://Constants/ModifierData.gd")
+const Modifiers = preload("res://Constants/Modifiers.gd")
 
 @onready var sprite := $Sprite2D as Sprite2D
 @onready var animation_player := $AnimationPlayer as AnimationPlayer
@@ -52,13 +52,13 @@ func on_beam_active(is_active: bool,  horizontal_direction: float) -> void:
 	else:
 		speed_multiplier = 1
 
-func add_modifier(modifier_data: ModifierData.ModifierData) -> void:
-	var modifier_type := modifier_data.type
+func add_modifier(modifier: Modifier) -> void:
+	var modifier_type := modifier.get_type()
 	match modifier_type:
 		ModifierType.Type.PLAYER:
-			var modifier := modifier_data.create_modifier_callable.call(self) as Modifier
+			modifier.add_dependecies(self)
 			modifiers.add_child(modifier)
 		ModifierType.Type.WEAPON:
-			weapon_handler.add_modifier(modifier_data)
+			weapon_handler.add_modifier(modifier)
 		ModifierType.Type.ORBS:
-			weapon_handler.add_modifier(modifier_data)
+			weapon_handler.add_modifier(modifier)

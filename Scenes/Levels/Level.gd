@@ -1,7 +1,7 @@
 class_name Level
 extends Node2D
 
-const ModifierData := preload("res://Constants/ModifierData.gd")
+const Modifiers := preload("res://Constants/Modifiers.gd")
 
 signal toggle_game_paused(is_paused : bool)
 @onready var player := $Player as Player
@@ -21,8 +21,8 @@ func _ready() -> void:
 	player.on_dead.connect(_on_player_on_dead)
 	upgrade_menu.on_upgrade_pressed.connect(add_modifier)
 
-	player.weapon_handler.add_weapon(WeaponType.WEAPON_TYPE.BEAM, 100, 1)
-	PlayerXpSignalBus.on_level_change.connect(ModifierData.on_level_change)
+	player.weapon_handler.add_weapon(WeaponType.WEAPON_TYPE.BEAM, 10000, 1)
+	PlayerXpSignalBus.on_level_change.connect(Modifiers.on_level_change)
 
 func _input(event : InputEvent) -> void:
 	if event.is_action_pressed("esc"):
@@ -34,15 +34,13 @@ func _on_player_on_dead(_prev_health: int) -> void:
 		if seal is Seal:
 			seal.target = null
 
-func add_modifier(id: int) -> void:
-	var modifier_data := ModifierData.get_modifier_data(id)
-	if !modifier_data: return
-	var modifier_type := modifier_data.type
+func add_modifier(modifier: Modifier) -> void:
+	var modifier_type := modifier.get_type()
 	match modifier_type:
 		ModifierType.Type.PLAYER:
-			player.add_modifier(modifier_data)
+			player.add_modifier(modifier)
 		ModifierType.Type.WEAPON:
-			player.add_modifier(modifier_data)
+			player.add_modifier(modifier)
 		ModifierType.Type.ORBS:
-			player.add_modifier(modifier_data)
+			player.add_modifier(modifier)
 
