@@ -283,7 +283,7 @@ position = Vector2(0, -1)
 scale = Vector2(3.035, 1.313)
 shape = SubResource("RectangleShape2D_1ion7")
 
-[node name="PlyaerXpHandler" type="Node" parent="."]
+[node name="PlayerXpHandler" type="Node" parent="."]
 script = ExtResource("4_ym2nj")
 
 [node name="CollectableHitBox" type="Area2D" parent="."]
