@@ -259,10 +259,7 @@ _data = {
 collision_layer = 2
 collision_mask = 128
 script = ExtResource("1_ty1sm")
-base_total_health = null
 base_speed = 150
-speed_multiplier = null
-total_health_multiplier = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

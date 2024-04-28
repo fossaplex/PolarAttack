@@ -1,9 +1,8 @@
 class_name AddWeaponModifier
-extends Modifier
+extends WeaponModifier
 
 const ICON = preload("res://Graphics/Icons/icon.svg")
 
-var weapons_handler: WeaponHandler
 var weapon_type: WeaponType.WEAPON_TYPE
 
 func _init(
@@ -13,9 +12,6 @@ func _init(
 
 func _ready() -> void:
 	weapons_handler.add_weapon(weapon_type, 35, 1)
-
-func add_dependecies(_weapons_handler: WeaponHandler) -> void:
-	weapons_handler = _weapons_handler
 
 func get_title() -> String:
 	match weapon_type:
@@ -31,9 +27,6 @@ func get_description() -> String:
 
 func get_texture() -> Resource:
 	return ICON
-
-func get_type() -> ModifierType.Type:
-	return ModifierType.Type.WEAPON
 
 func get_key() -> int:
 	return 0

@@ -35,12 +35,9 @@ func _on_player_on_dead(_prev_health: int) -> void:
 			seal.target = null
 
 func add_modifier(modifier: Modifier) -> void:
-	var modifier_type := modifier.get_type()
-	match modifier_type:
-		ModifierType.Type.PLAYER:
-			player.add_modifier(modifier)
-		ModifierType.Type.WEAPON:
-			player.add_modifier(modifier)
-		ModifierType.Type.ORBS:
-			player.add_modifier(modifier)
-
+	if modifier is PlayerModifier:
+		player.add_modifier(modifier)
+	elif modifier is WeaponModifier:
+		player.add_modifier(modifier)
+	elif modifier is OrbsModifier:
+		player.add_modifier(modifier)

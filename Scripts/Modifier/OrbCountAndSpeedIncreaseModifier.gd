@@ -1,9 +1,8 @@
 class_name OrbCountAndSpeedIncreaseModifier
-extends Modifier
+extends OrbsModifier
 
 const ICON = preload("res://Graphics/Icons/icon.svg")
 
-var orbs: Orbs
 var increase_count_by: int
 var increase_speed_by: int
 
@@ -13,9 +12,6 @@ func _init(
 ) -> void:
 	increase_count_by = _increase_count_by
 	increase_speed_by = _increase_speed_by
-
-func add_dependecies(_orbs: Orbs) -> void:
-	orbs = _orbs
 
 func _ready() -> void:
 	orbs.count += increase_count_by
@@ -29,9 +25,6 @@ func get_description() -> String:
 
 func get_texture() -> Resource:
 	return ICON
-
-func get_type() -> ModifierType.Type:
-	return ModifierType.Type.ORBS
 
 func get_key() -> int:
 	return 1

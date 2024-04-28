@@ -1,9 +1,8 @@
 class_name WeaponBaseDamageIncreaseModifier
-extends Modifier
+extends WeaponModifier
 
 const ICON = preload("res://Graphics/Icons/icon.svg")
 
-var weapons: Array
 var increase_base_damage_by: int
 
 func _init(
@@ -12,11 +11,8 @@ func _init(
 	increase_base_damage_by = _increase_base_damage_by
 
 func _ready() -> void:
-	for weapon: Weapon in weapons:
+	for weapon: Weapon in weapons_handler.weapons.get_children():
 		weapon.attackable.base_damage += increase_base_damage_by
-
-func add_dependecies(_weapons: Array,) -> void:
-	weapons = _weapons
 
 func get_title() -> String:
 	return "+ base damage"
@@ -26,9 +22,6 @@ func get_description() -> String:
 
 func get_texture() -> Resource:
 	return ICON
-
-func get_type() -> ModifierType.Type:
-	return ModifierType.Type.WEAPON
 
 func get_key() -> int:
 	return 2

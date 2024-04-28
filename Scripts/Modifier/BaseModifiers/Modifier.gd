@@ -10,8 +10,6 @@ func get_description() -> String:
 func get_texture() -> Resource:
 	return null
 
-func get_type() -> ModifierType.Type:
-	return ModifierType.Type.PLAYER
 
 func get_key() -> int:
 	return 0

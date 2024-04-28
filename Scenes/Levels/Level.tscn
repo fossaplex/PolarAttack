@@ -52,9 +52,6 @@ process_mode = 1
 z_index = 1
 y_sort_enabled = true
 position = Vector2(44, -26)
-base_total_health = 100
-speed_multiplier = 1.0
-total_health_multiplier = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 z_index = 2
@@ -126,6 +123,34 @@ visible = false
 level = NodePath("../..")
 
 [node name="OptionsMenu" parent="CanvasLayer/PauseMenu" instance=ExtResource("9_e5sju")]
+visible = false
+layout_mode = 1
+offset_left = -1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = 1.0
+
+[node name="PauseMenu" parent="CanvasLayer/PauseMenu" node_paths=PackedStringArray("level") instance=ExtResource("6_30ok4")]
+process_mode = 2
+visible = false
+layout_mode = 1
+level = NodePath("../../..")
+
+[node name="OptionsMenu" parent="CanvasLayer/PauseMenu/PauseMenu" instance=ExtResource("9_e5sju")]
+visible = false
+layout_mode = 1
+offset_left = -1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = 1.0
+
+[node name="PauseMenu" parent="CanvasLayer/PauseMenu/PauseMenu" node_paths=PackedStringArray("level") instance=ExtResource("6_30ok4")]
+process_mode = 2
+visible = false
+layout_mode = 1
+level = NodePath("../../../..")
+
+[node name="OptionsMenu" parent="CanvasLayer/PauseMenu/PauseMenu/PauseMenu" instance=ExtResource("9_e5sju")]
 visible = false
 layout_mode = 1
 offset_left = -1.0
@@ -212,3 +237,5 @@ z_index = 1
 y_sort_enabled = true
 
 [connection signal="exit_options_menu" from="CanvasLayer/PauseMenu/OptionsMenu" to="CanvasLayer/PauseMenu" method="_on_options_menu_exit_options_menu"]
+[connection signal="exit_options_menu" from="CanvasLayer/PauseMenu/PauseMenu/OptionsMenu" to="CanvasLayer/PauseMenu/PauseMenu" method="_on_options_menu_exit_options_menu"]
+[connection signal="exit_options_menu" from="CanvasLayer/PauseMenu/PauseMenu/PauseMenu/OptionsMenu" to="CanvasLayer/PauseMenu/PauseMenu/PauseMenu" method="_on_options_menu_exit_options_menu"]

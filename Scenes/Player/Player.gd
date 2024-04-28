@@ -53,12 +53,10 @@ func on_beam_active(is_active: bool,  horizontal_direction: float) -> void:
 		speed_multiplier = 1
 
 func add_modifier(modifier: Modifier) -> void:
-	var modifier_type := modifier.get_type()
-	match modifier_type:
-		ModifierType.Type.PLAYER:
-			modifier.add_dependecies(self)
-			modifiers.add_child(modifier)
-		ModifierType.Type.WEAPON:
-			weapon_handler.add_modifier(modifier)
-		ModifierType.Type.ORBS:
-			weapon_handler.add_modifier(modifier)
+	if modifier is PlayerModifier:
+		modifier.add_dependecies(self)
+		modifiers.add_child(modifier)
+	elif modifier is WeaponModifier:
+		weapon_handler.add_modifier(modifier)
+	elif modifier is OrbsModifier:
+		weapon_handler.add_modifier(modifier)

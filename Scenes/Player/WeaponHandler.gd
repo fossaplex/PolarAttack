@@ -37,22 +37,15 @@ func on_dead(_prev_health: int) -> void:
 	weapons.queue_free()
 
 func add_modifier(modifier: Modifier) -> void:
-	var modifier_type := modifier.get_type()
-	match modifier_type:
-		ModifierType.Type.WEAPON:
-			match  modifier.get_tag():
-				"WeaponBaseDamageIncreaseModifier":
-					modifier.add_dependecies(weapons.get_children())
-					modifiers.add_child(modifier)
-				"AddWeaponModifier":
-					modifier.add_dependecies(self)
-					modifiers.add_child(modifier)
-		ModifierType.Type.ORBS:
-			var orbs :Orbs = null
-			for weapon: Weapon in weapons.get_children():
-				if weapon is Orbs:
-					orbs = weapon
-					break
-			if !orbs: return
-			modifier.add_dependecies(orbs)
-			modifiers.add_child(modifier)
+	if modifier is WeaponModifier:
+		modifier.add_dependecies(self)
+		modifiers.add_child(modifier)
+	elif modifier is OrbsModifier:
+		var orbs :Orbs = null
+		for weapon: Weapon in weapons.get_children():
+			if weapon is Orbs:
+				orbs = weapon
+				break
+		if !orbs: return
+		modifier.add_dependecies(orbs)
+		modifiers.add_child(modifier)
