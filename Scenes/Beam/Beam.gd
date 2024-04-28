@@ -42,7 +42,7 @@ func _input(_event: InputEvent) -> void:
 		active_last_frame = true
 		visible = true
 		raycast.collide_with_areas = true
-		var direction := raycast.target_position.direction_to(begin.global_position).normalized()
+		var direction := raycast.target_position.direction_to(begin.position).normalized()
 		on_beam_active.emit(true, direction.x)
 	elif active_last_frame:
 		active_last_frame = false
