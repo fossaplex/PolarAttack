@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bw72hruorpjco"]
+[gd_scene load_steps=24 format=3 uid="uid://bw72hruorpjco"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_ty1sm"]
 [ext_resource type="Texture2D" uid="uid://j72r5deby7vj" path="res://Graphics/Spritesheets/Penguin/Idle.png" id="2_8ii8i"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://Scenes/Player/IdleState.gd" id="11_6wq3b"]
 [ext_resource type="Script" path="res://Scenes/Player/WalkState.gd" id="12_xaajb"]
 [ext_resource type="Script" path="res://Scenes/Player/DeathState.gd" id="14_216an"]
+[ext_resource type="Texture2D" uid="uid://ciq5w8m5ovb6t" path="res://Graphics/Spritesheets/shadow.png" id="15_174c8"]
 [ext_resource type="Script" path="res://Scenes/Player/Label.gd" id="15_u3eai"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wfubi"]
@@ -256,13 +257,16 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
+texture_filter = 1
 collision_layer = 2
 collision_mask = 128
 script = ExtResource("1_ty1sm")
 base_speed = 150
 
+[node name="Shadow" type="Sprite2D" parent="."]
+texture = ExtResource("15_174c8")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
 texture = ExtResource("2_8ii8i")
 hframes = 2
 
@@ -345,6 +349,7 @@ script = ExtResource("14_216an")
 [node name="Modifiers" type="Node" parent="."]
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = -15.0
 offset_top = -41.0
 offset_right = 25.0
