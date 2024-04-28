@@ -8,9 +8,7 @@ var orbs: Array:
 @export var count := 4:
 	set(value):
 		if !is_node_ready(): return
-		print("i",count, value)
 		if value >= count:
-			print("-",max(0, orbs.size()), value)
 			for i in range(max(0, orbs.size()), value):
 				var orb := orb_scenes.instantiate()
 				add_child(orb)

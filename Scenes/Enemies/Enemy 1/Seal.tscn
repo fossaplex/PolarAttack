@@ -1,16 +1,18 @@
-[gd_scene load_steps=17 format=3 uid="uid://bcx3a8idecdv0"]
+[gd_scene load_steps=19 format=3 uid="uid://bcx3a8idecdv0"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/Enemy 1/Seal.gd" id="1_snkuk"]
 [ext_resource type="Texture2D" uid="uid://cpt0kgd14pang" path="res://Graphics/Spritesheets/Enemies/seal/walk.png" id="2_4rlea"]
 [ext_resource type="Script" path="res://Scripts/CharacterHitbox.gd" id="3_pvdk6"]
 [ext_resource type="Script" path="res://Scenes/Enemies/Enemy 1/FiniteStateMachine.gd" id="4_0a1vn"]
 [ext_resource type="Texture2D" uid="uid://d4cc3eyopu7vx" path="res://Graphics/Spritesheets/HUD UI/ProgressBarProgress_1.png" id="4_ftjl7"]
+[ext_resource type="Texture2D" uid="uid://ciq5w8m5ovb6t" path="res://Graphics/shadow.png" id="4_lobi2"]
 [ext_resource type="Script" path="res://Scenes/Enemies/Enemy 1/WalkState.gd" id="5_on3pn"]
 [ext_resource type="Script" path="res://Scenes/Enemies/Enemy 1/WanderState.gd" id="6_obm77"]
 [ext_resource type="Script" path="res://Scenes/Enemies/Enemy 1/DeathState.gd" id="7_53hjw"]
 [ext_resource type="AudioStream" uid="uid://wv21kwdqr8rb" path="res://Sounds/tempdeathsound.wav" id="8_7pct6"]
 [ext_resource type="Script" path="res://Scenes/Enemies/Enemy 1/Label.gd" id="11_63ft7"]
 [ext_resource type="Script" path="res://Scripts/Attackable/Attackable.gd" id="11_enj1v"]
+[ext_resource type="Texture2D" uid="uid://1fivtnit1ogv" path="res://Graphics/light.png" id="13_cs7nq"]
 
 [sub_resource type="Animation" id="Animation_gko4g"]
 length = 0.001
@@ -129,6 +131,7 @@ size = Vector2(14, 14)
 
 [node name="Seal" type="CharacterBody2D"]
 z_index = 1
+texture_filter = 1
 position = Vector2(0, -1)
 collision_layer = 64
 collision_mask = 192
@@ -153,8 +156,11 @@ script = ExtResource("3_pvdk6")
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_5qem2")
 
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+texture = ExtResource("4_lobi2")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
 position = Vector2(0, -6)
 texture = ExtResource("2_4rlea")
 hframes = 4
@@ -169,6 +175,7 @@ scale = Vector2(0.32, 0.32)
 value = 100.0
 texture_progress = ExtResource("4_ftjl7")
 tint_progress = Color(1, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="FiniteStateMachine" type="Node" parent="."]
 script = ExtResource("4_0a1vn")
@@ -202,3 +209,10 @@ script = ExtResource("11_63ft7")
 
 [node name="Attackable" type="Node" parent="."]
 script = ExtResource("11_enj1v")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.05
+shadow_filter = 2
+shadow_filter_smooth = 6.1
+texture = ExtResource("13_cs7nq")
+texture_scale = 0.2

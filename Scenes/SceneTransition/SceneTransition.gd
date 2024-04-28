@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-func change_scene(givenScene, typeOfSceneChange : String) -> void:
+func change_scene(givenScene: Variant, typeOfSceneChange: String) -> void:
 	
 	$AnimationPlayer.play('dissolve')
 	await $AnimationPlayer.animation_finished

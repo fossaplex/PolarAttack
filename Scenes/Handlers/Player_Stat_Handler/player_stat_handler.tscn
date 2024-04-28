@@ -1,4 +1,0 @@
-[gd_scene format=3 uid="uid://cxgowuwg7ndyx"]
-
-[node name="Player_Stat_Handler" type="Node2D"]
-position = Vector2(0, -6)

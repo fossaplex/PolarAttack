@@ -1,6 +1,6 @@
 class_name WeaponHandler
 extends Node2D
-const ModifierData = preload("res://Constants/ModifierData.gd")
+const Modifiers = preload("res://Constants/Modifiers.gd")
 const BEAM := preload("res://Scenes/Beam/Beam.tscn") as PackedScene
 const ORB := preload("res://Scenes/Orbs/Orbs.tscn") as PackedScene
 
@@ -36,23 +36,16 @@ func add_weapon(type: WeaponType.WEAPON_TYPE, base_damage: float = 1000, damage_
 func on_dead(_prev_health: int) -> void:
 	weapons.queue_free()
 
-func add_modifier(modifier_data: ModifierData.ModifierData) -> void:
-	var modifier_type := modifier_data.type
-	match modifier_type:
-		ModifierType.Type.WEAPON:
-			match  modifier_data.key:
-				1:
-					var modifier := modifier_data.create_modifier_callable.call(weapons.get_children()) as Modifier
-					modifiers.add_child(modifier)
-				-1:
-					var modifier := modifier_data.create_modifier_callable.call(self) as Modifier
-					modifiers.add_child(modifier)
-		ModifierType.Type.ORBS:
-			var orbs :Orbs = null
-			for weapon: Weapon in weapons.get_children():
-				if weapon is Orbs:
-					orbs = weapon
-					break
-			if !orbs: return
-			var modifier := modifier_data.create_modifier_callable.call(orbs) as Modifier
-			modifiers.add_child(modifier)
+func add_modifier(modifier: Modifier) -> void:
+	if modifier is WeaponModifier:
+		modifier.add_dependecies(self)
+		modifiers.add_child(modifier)
+	elif modifier is OrbsModifier:
+		var orbs :Orbs = null
+		for weapon: Weapon in weapons.get_children():
+			if weapon is Orbs:
+				orbs = weapon
+				break
+		if !orbs: return
+		modifier.add_dependecies(orbs)
+		modifiers.add_child(modifier)
