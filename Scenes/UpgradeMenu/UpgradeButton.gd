@@ -1,9 +1,9 @@
 class_name UpgradeButton
 extends Button
 
-@onready var texture_rect: TextureRect = $MarginContainer/VBoxContainer/HBoxContainer/TextureRect
-@onready var title: Label = $MarginContainer/VBoxContainer/HBoxContainer/CenterContainer/Title
-@onready var description: Label = $MarginContainer/VBoxContainer/Description
+@onready var texture_rect: TextureRect = $MarginContainer/Control/HBoxContainer/TextureRect
+@onready var title: Label = $MarginContainer/Control/HBoxContainer/CenterContainer/Title
+@onready var description: Label = $MarginContainer/Control/Description
 
 var modifier : Modifier:
 	set(value):
