@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8a237hvh5skj"]
+
+[ext_resource type="Script" path="res://Scenes/UpgradeMenu/UpgradeButton.gd" id="1_8gnre"]
+[ext_resource type="Texture2D" uid="uid://cra551251lbfb" path="res://Graphics/Icons/FSMSprite.png" id="2_aed1d"]
+
+[sub_resource type="FontVariation" id="FontVariation_6047m"]
+variation_embolden = 1.0
+
+[node name="UpgradeButton" type="Button"]
+texture_filter = 1
+custom_minimum_size = Vector2(355, 100)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -797.0
+offset_bottom = -548.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8gnre")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("2_aed1d")
+expand_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_6047m")
+theme_override_font_sizes/font_size = 15
+text = "asdsd"
+uppercase = true
+
+[node name="Description" type="Label" parent="MarginContainer/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(326, 48)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "sdsghdasd sagdsdg hsadhgashgd sagdh shgd ashgd ashg dsag sdgsa dhgs sda sds dasd asd sad asd asd sad asd sd asd sad s dsa dsd asd asd asd asds ds ds adas da sd asd s dsa ds das ds ad sd asd"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
