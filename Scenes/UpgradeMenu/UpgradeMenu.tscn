@@ -1,49 +1,68 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhmrco02nc2e4"]
+[gd_scene load_steps=6 format=3 uid="uid://dhmrco02nc2e4"]
 
 [ext_resource type="Script" path="res://Scenes/UpgradeMenu/UpgradeMenu.gd" id="1_nuqpw"]
-[ext_resource type="PackedScene" uid="uid://cxt6k5uhkvmd7" path="res://Scenes/UpgradeMenu/UpgradeMenuButton.tscn" id="2_a3iln"]
+[ext_resource type="StyleBox" uid="uid://b6ta2nmpo2r2y" path="res://Resource/background_style.tres" id="2_j06ys"]
+[ext_resource type="PackedScene" uid="uid://c8a237hvh5skj" path="res://Scenes/UpgradeMenu/UpgradeButton.tscn" id="3_yfpyi"]
+
+[sub_resource type="FontVariation" id="FontVariation_268mw"]
+variation_embolden = 1.0
+
+[sub_resource type="Theme" id="Theme_doprk"]
+default_font = SubResource("FontVariation_268mw")
 
 [node name="UpgradeMenu" type="Control"]
 process_mode = 2
+custom_minimum_size = Vector2(379, 359)
+layout_direction = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 327.0
-offset_top = 66.0
-offset_right = -590.0
-offset_bottom = -222.0
+offset_right = -773.0
+offset_bottom = -289.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nuqpw")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_j06ys")
+
+[node name="Control" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 2
 alignment = 1
 
-[node name="UpgradeLabal" type="Label" parent="VBoxContainer"]
+[node name="UpgradeLabal" type="Label" parent="Control/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+theme = SubResource("Theme_doprk")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Level Up!"
 horizontal_alignment = 1
+uppercase = true
 
-[node name="UpgradeMenuButton" parent="VBoxContainer" instance=ExtResource("2_a3iln")]
-custom_minimum_size = Vector2(0, 110)
+[node name="UpgradeButton" parent="Control/VBoxContainer" instance=ExtResource("3_yfpyi")]
 layout_mode = 2
 
-[node name="UpgradeMenuButton2" parent="VBoxContainer" instance=ExtResource("2_a3iln")]
-custom_minimum_size = Vector2(0, 110)
+[node name="UpgradeButton2" parent="Control/VBoxContainer" instance=ExtResource("3_yfpyi")]
 layout_mode = 2
 
-[node name="UpgradeMenuButton3" parent="VBoxContainer" instance=ExtResource("2_a3iln")]
-custom_minimum_size = Vector2(0, 110)
+[node name="UpgradeButton3" parent="Control/VBoxContainer" instance=ExtResource("3_yfpyi")]
 layout_mode = 2
-
-[connection signal="menuButtonPressed" from="VBoxContainer/UpgradeMenuButton" to="." method="_on_upgrade_menu_button_menu_button_pressed"]
-[connection signal="menuButtonPressed" from="VBoxContainer/UpgradeMenuButton2" to="." method="_on_upgrade_menu_button_2_menu_button_pressed"]
-[connection signal="menuButtonPressed" from="VBoxContainer/UpgradeMenuButton3" to="." method="_on_upgrade_menu_button_3_menu_button_pressed"]
