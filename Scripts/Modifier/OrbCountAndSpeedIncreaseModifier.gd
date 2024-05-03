@@ -8,8 +8,10 @@ var increase_speed_by: int
 
 func _init(
 	_increase_count_by: int,
-	_increase_speed_by: int
+	_increase_speed_by: int,
+	_level: int
 ) -> void:
+	super._init(_level)
 	increase_count_by = _increase_count_by
 	increase_speed_by = _increase_speed_by
 

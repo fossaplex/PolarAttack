@@ -5,18 +5,22 @@ const ICON = preload("res://Graphics/Icons/icon.svg")
 
 var base_total_health_by: int
 
-func _init(_base_total_health_by: int) -> void:
+func _init(
+	_base_total_health_by: int,
+	_level: int
+) -> void:
+	super._init(_level)
 	base_total_health_by = _base_total_health_by
 
 func _ready() -> void:
-	player.base_total_health += base_total_health_by
-	player.health += base_total_health_by
+	player.base_total_health += base_total_health_by * level
+	player.health += base_total_health_by * level
 
 func get_title() -> String:
 	return "+ + health"
 
 func get_description() -> String:
-	return "add +" + str(base_total_health_by) + " to base health"
+	return "add +" + str(base_total_health_by * level) + " to base health"
 
 func get_texture() -> Resource:
 	return ICON

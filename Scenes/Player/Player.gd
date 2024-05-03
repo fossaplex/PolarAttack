@@ -7,13 +7,14 @@ const Modifiers = preload("res://Constants/Modifiers.gd")
 @onready var animation_player := $AnimationPlayer as AnimationPlayer
 @onready var finite_state_machine := $SingleFiniteStateMachine as SingleFiniteStateMachine
 @onready var hit_box := $HitBox as CharacterHitbox
+@onready var player_xp_handler:= $PlayerXpHandler as PlayerXpHandler
 
 @onready var death_state := $SingleFiniteStateMachine/DeathState as PlayerDeathState
 @onready var idle_state := $SingleFiniteStateMachine/IdleState as PlayerIdleState
 @onready var walk_state := $SingleFiniteStateMachine/WalkState as PlayerWalkState
 
 @onready var progress_bar := $ProgressBar as ProgressBar
-
+ 
 @onready var weapon_handler := $WeaponHandler as WeaponHandler
 @onready var modifiers := $Modifiers
 @onready var is_beam_active := false

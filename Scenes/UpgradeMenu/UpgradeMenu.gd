@@ -2,7 +2,7 @@ class_name UpgradeMenu
 extends Control
 
 const Modifiers = preload("res://Constants/Modifiers.gd")
-var possible_upgrads := Modifiers.DATA
+var possible_upgrads := Modifiers.MODIFIER_DATUM
 
 @onready var upgrade_button: UpgradeButton = $Control/VBoxContainer/UpgradeButton
 @onready var upgrade_button_2: UpgradeButton = $Control/VBoxContainer/UpgradeButton2
@@ -35,21 +35,14 @@ func open_upgrade_menu(level: int, _prev_level: int) -> void:
 	show()
 
 func pick_upgrades() -> void:
-	upgrade_options = get_random_upgrades()
-	for i in range(option_buttons.size()):
+	var button_count := option_buttons.size()
+	upgrade_options = Modifiers.get_modifiers(button_count)
+	for i in range(upgrade_options.size()):
 		var modifier := upgrade_options[i]
 		var option_button := option_buttons[i] as UpgradeButton
 		option_button.modifier = modifier
-
-func get_random_upgrades() -> Array[Modifier]:
-	var picked_upgrade: Array[Modifier] = []
-	for i in range(option_buttons.size()):
-		var modifier_creator := Modifiers.DATA.pick_random() as Callable
-		var modifier := modifier_creator.call() as Modifier
-		picked_upgrade.append(modifier)
-
-	return picked_upgrade
-
+	for i in range(upgrade_options.size(), button_count):
+		option_buttons[i].visible = false
 func _on_upgrade_menu_button_menu_button_pressed(modifier: Modifier) -> void:
 	on_button_clicked(modifier)
 

@@ -50,7 +50,7 @@ layer_2/tile_data = PackedInt32Array()
 process_mode = 1
 z_index = 1
 y_sort_enabled = true
-position = Vector2(44, -26)
+position = Vector2(-17, -21)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 z_index = 2

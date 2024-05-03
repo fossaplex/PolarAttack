@@ -1,3 +1,4 @@
+class_name PlayerXpHandler
 extends Node
 
 #region current values
