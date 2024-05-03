@@ -8,6 +8,8 @@ signal toggle_game_paused(is_paused : bool)
 @onready var timer := $EnemySpawner/Timer as Timer
 @onready var seals := $Seals
 @onready var upgrade_menu := $CanvasLayer/UpgradeMenu as UpgradeMenu
+var player_level : int = 1:
+	get: return player.player_xp_handler.current_level
 
 var game_paused : bool = false:
 	get:
@@ -20,9 +22,9 @@ var game_paused : bool = false:
 func _ready() -> void:
 	player.on_dead.connect(_on_player_on_dead)
 	upgrade_menu.on_upgrade_pressed.connect(add_modifier)
-
 	player.weapon_handler.add_weapon(WeaponType.WEAPON_TYPE.BEAM, 10000, 1)
-	PlayerXpSignalBus.on_level_change.connect(Modifiers.on_level_change)
+	Modifiers.level = self
+	PlayerXpSignalBus.on_level_change.connect(on_level_change)
 
 func _input(event : InputEvent) -> void:
 	if event.is_action_pressed("esc"):
@@ -41,3 +43,6 @@ func add_modifier(modifier: Modifier) -> void:
 		player.add_modifier(modifier)
 	elif modifier is OrbsModifier:
 		player.add_modifier(modifier)
+
+func on_level_change(_level: int, _prev_level: int) -> void: 
+	player_level = _level

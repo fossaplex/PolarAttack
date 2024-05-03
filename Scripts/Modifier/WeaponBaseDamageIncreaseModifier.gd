@@ -6,8 +6,10 @@ const ICON = preload("res://Graphics/Icons/icon.svg")
 var increase_base_damage_by: int
 
 func _init(
-	_increase_base_damage_by: int
+	_increase_base_damage_by: int,
+	_level: int
 ) -> void:
+	super._init(_level)
 	increase_base_damage_by = _increase_base_damage_by
 
 func _ready() -> void:
