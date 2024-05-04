@@ -6,7 +6,8 @@ extends State
 @onready var timer := $Timer as Timer
 @onready var speed: int = seal.speed:
 	get: return seal.speed
-	
+@onready var sprite: Sprite2D = $"../../Sprite2D"
+
 var velocity := Vector2.ZERO
 
 func enter() -> void:
@@ -17,8 +18,12 @@ func enter() -> void:
 func exit() -> void:
 	timer.timeout.disconnect(_on_timer_timeout)
 
+func process_frame(delta: float) -> void:
+	if seal.velocity.x != 0:
+		sprite.flip_h = seal.velocity.x > 0
+
 func process_physics(_delta: float) -> void:
-	seal.velocity = velocity 
+	seal.velocity = velocity
 	seal.move_and_slide()
 
 func _on_timer_timeout() -> void:

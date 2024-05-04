@@ -14,17 +14,20 @@ const Modifiers = preload("res://Constants/Modifiers.gd")
 @onready var walk_state := $SingleFiniteStateMachine/WalkState as PlayerWalkState
 
 @onready var progress_bar := $ProgressBar as ProgressBar
- 
+
 @onready var weapon_handler := $WeaponHandler as WeaponHandler
 @onready var modifiers := $Modifiers
 @onready var is_beam_active := false
+@onready var i_frame: IFrame = $IFrame
 
 #region lifecycle
 func _ready() -> void:
 	super()
 	fsm = finite_state_machine
 	hit_box.character = self
+	i_frame.character = self
 	fsm.transition(idle_state)
+	on_health_change.connect(_on_health_change)
 #endregion
 
 #region setter getter
@@ -33,8 +36,9 @@ func _base_total_health(value: int) -> void:
 	if progress_bar: progress_bar.max_value = value
 
 func _set_health(value: int) -> void:
+	if i_frame.is_invincible and value <= health: return
 	super(value)
-	if progress_bar: progress_bar.value = value
+	if progress_bar: progress_bar.value = health
 	if health <= 0:
 		var concreate_fsm := fsm as FiniteStateMachine
 		concreate_fsm.transition(death_state)
@@ -52,6 +56,9 @@ func on_beam_active(is_active: bool,  horizontal_direction: float) -> void:
 		sprite.flip_h = horizontal_direction < 0
 	else:
 		speed_multiplier = 1
+
+func _on_health_change(health: int, prev_health: int) -> void:
+	i_frame.is_invincible = true
 
 func add_modifier(modifier: Modifier) -> void:
 	if modifier is PlayerModifier:

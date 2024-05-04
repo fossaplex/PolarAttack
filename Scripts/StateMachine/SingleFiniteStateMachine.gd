@@ -24,7 +24,10 @@ func process_physics(delta: float) -> void:
 	_current_state.process_physics(delta)
 
 func process_frame(delta: float) -> void:
+	super(delta) 
 	if !_current_state: return
+	if _current_state is PlayerWalkState:
+		_current_state.process_frame(delta)
 	_current_state.process_frame(delta)
 
 func process_input(event: InputEvent) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bw72hruorpjco"]
+[gd_scene load_steps=26 format=3 uid="uid://bw72hruorpjco"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_ty1sm"]
 [ext_resource type="Texture2D" uid="uid://j72r5deby7vj" path="res://Graphics/Spritesheets/Penguin/Idle.png" id="2_8ii8i"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://ciq5w8m5ovb6t" path="res://Graphics/shadow.png" id="15_174c8"]
 [ext_resource type="Script" path="res://Scenes/Player/Label.gd" id="15_u3eai"]
 [ext_resource type="Texture2D" uid="uid://1fivtnit1ogv" path="res://Graphics/light.png" id="16_n22st"]
+[ext_resource type="Script" path="res://Scenes/Player/IFrame.gd" id="17_4vwaf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wfubi"]
 radius = 8.0
@@ -367,3 +368,12 @@ shadow_filter = 2
 shadow_filter_smooth = 6.1
 texture = ExtResource("16_n22st")
 texture_scale = 0.5
+
+[node name="IFrame" type="Node" parent="."]
+script = ExtResource("17_4vwaf")
+
+[node name="IFrameTimer" type="Timer" parent="IFrame"]
+wait_time = 0.125
+
+[node name="IFrameCdTimer" type="Timer" parent="IFrame"]
+wait_time = 3.0
