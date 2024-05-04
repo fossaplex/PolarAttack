@@ -10,6 +10,7 @@ extends Node
 			return
 		is_invincible = value
 		if is_invincible:
+			start_timer.start()
 			is_iframe_cd_active = true
 			i_frame_timer.start()
 			_on_i_frame_timer_timeout()
@@ -28,14 +29,17 @@ extends Node
 	get: 
 		return i_frame_cd_timer.time_left > 0
 
+@export var i_frame_max_count := 15
+var i_frame_current_count := 0
 @onready var i_frame_timer: Timer = $IFrameTimer
-@export var i_frame_max_count  := 10
-var i_frame_current_count  := 0
 @onready var i_frame_cd_timer: Timer = $IFrameCdTimer
+@onready var start_timer: Timer = $StartTimer
+
+var can_take_damage: bool:
+	get: return not is_invincible or start_timer.time_left > 0
 
 func _ready() -> void:
 	i_frame_timer.timeout.connect(_on_i_frame_timer_timeout)
-	i_frame_cd_timer.timeout.connect(_on_i_frame_cd_timer_timeout)
 
 func _on_i_frame_timer_timeout() -> void:
 	character.modulate.v = 15 if character.modulate.v == 1 else 1
@@ -43,6 +47,3 @@ func _on_i_frame_timer_timeout() -> void:
 	if i_frame_current_count >= i_frame_max_count or character.health <= 0:
 		is_invincible = false
 	i_frame_current_count += 1
-
-func _on_i_frame_cd_timer_timeout() -> void:
-	i_frame_cd_timer.stop()

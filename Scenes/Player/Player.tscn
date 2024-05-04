@@ -391,6 +391,11 @@ wait_time = 0.125
 
 [node name="IFrameCdTimer" type="Timer" parent="IFrame"]
 wait_time = 3.0
+one_shot = true
+
+[node name="StartTimer" type="Timer" parent="IFrame"]
+wait_time = 0.125
+one_shot = true
 
 [node name="ProgressBars" type="Node2D" parent="."]
 
@@ -400,6 +405,7 @@ offset_left = -11.0
 offset_top = -23.0
 offset_right = 11.0
 offset_bottom = -18.0
+value = 50.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 

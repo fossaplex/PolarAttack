@@ -33,7 +33,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var timer_left := i_frame.i_frame_cd_timer.time_left
 	var wait_time :=  i_frame.i_frame_cd_timer.wait_time
-	i_frame_progress_bar.value = (timer_left / wait_time) * i_frame_progress_bar.max_value
+	i_frame_progress_bar.value = (timer_left / wait_time) * i_frame_progress_bar.max_valuesssss
 #endregion
 
 #region setter getter
@@ -42,12 +42,11 @@ func _base_total_health(value: int) -> void:
 	if health_progress_bar: health_progress_bar.max_value = value
 
 func _set_health(value: int) -> void:
-	if i_frame.is_invincible and value <= health: return
+	if not i_frame.can_take_damage: return
 	super(value)
-	if health_progress_bar: health_progress_bar.value = health
-	if health <= 0:
-		var concreate_fsm := fsm as FiniteStateMachine
-		concreate_fsm.transition(death_state)
+	if health_progress_bar:
+		var tween = create_tween()
+		tween.tween_property(self, "health_progress_bar:value", health, 0.25)
 
 func _set_speed(value: int) -> void:
 	super(value)
@@ -64,7 +63,18 @@ func on_beam_active(is_active: bool,  horizontal_direction: float) -> void:
 		speed_multiplier = 1
 
 func _on_health_change(health: int, prev_health: int) -> void:
-	i_frame.is_invincible = true
+	i_frame.is_invincible = health <= prev_health
+
+	if health <= 0:
+		var concreate_fsm := fsm as FiniteStateMachine
+		concreate_fsm.transition(death_state)
+	if health == prev_health: return
+	var tween = create_tween()
+	if health < prev_health:
+		tween.tween_property(self, "health_progress_bar:modulate", Color(1,0,0), 1)
+	elif health > prev_health:
+		tween.tween_property(self, "health_progress_bar:modulate", Color(0,1,0), 1)
+	tween.tween_property(self, "health_progress_bar:modulate", Color(1,1,1), 1)
 
 func add_modifier(modifier: Modifier) -> void:
 	if modifier is PlayerModifier:

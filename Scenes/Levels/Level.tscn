@@ -51,9 +51,6 @@ process_mode = 1
 z_index = 1
 y_sort_enabled = true
 position = Vector2(-17, -21)
-base_total_health = 100
-speed_multiplier = 1.0
-total_health_multiplier = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 z_index = 2

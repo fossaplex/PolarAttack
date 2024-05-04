@@ -52,7 +52,7 @@ func _set_health(value: int) -> void:
 	health = value
 	
 	if prev != health:
-		on_health_change.emit(prev, health)
+		on_health_change.emit(health, prev)
 		if health <= 0: 
 			on_dead.emit(prev)
 
