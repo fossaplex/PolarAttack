@@ -268,7 +268,7 @@ shape = SubResource("CircleShape2D_daph7")
 
 [node name="SleepRange" type="Sprite2D" parent="SleepArea2D"]
 show_behind_parent = true
-z_index = -1
+z_index = 1
 position = Vector2(0, 1)
 scale = Vector2(2, 2)
 texture = ExtResource("3_b0aee")

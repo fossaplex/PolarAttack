@@ -36,6 +36,7 @@ func _ready() -> void:
 	on_total_health_change.connect(_on_total_health_change)
 	texture_progress_bar.max_value = total_health
 	texture_progress_bar.value = health
+	single_finite_state_machine.transition(fox_sleep_state)
 
 func on_area_entered(area: Area2D) -> void:
 	if not area.is_in_group(GROUPS.PLAYER_HITBOX): return
