@@ -10,7 +10,7 @@ extends CharacterBody2D
 var total_health: int = 100 :
 	get: return int(base_total_health) * int(total_health_multiplier)
 var speed: int = 200: set = _set_speed, get = _get_speed
-var health: int = total_health : set = _set_health
+var health: float = total_health : set = _set_health
 #endregion
 
 #region stat multiplier
@@ -21,8 +21,8 @@ var health: int = total_health : set = _set_health
 @export var fsm :State = null
 
 signal on_total_health_change(total_health: int, prev_total_health: int)
-signal on_health_change(health: int, prev_health: int)
-signal on_dead(prev_health: int)
+signal on_health_change(health: float, prev_health: float)
+signal on_dead(prev_health: float)
 signal on_speed_change(speed: int, prev_spreed: int)
 
 func _ready() -> void:
@@ -31,23 +31,17 @@ func _ready() -> void:
 	health = total_health
 	speed = speed
 
-#func _process(delta: float) -> void:
-	#if fsm: fsm.process_frame(delta)
-#
-#func _physics_process(delta: float) -> void:
-	#if fsm: fsm.process_physics(delta)
-#
-#func _input(event: InputEvent) -> void:
-	#if fsm: fsm.process_input(event)
-
 func character_queue_free() -> void:
 	fsm = null
 	queue_free()
 
 func _base_total_health(value: int) -> void:
+	var prev := base_total_health
 	base_total_health = value
+	if prev != base_total_health: 
+		on_total_health_change.emit(base_total_health, prev)
 
-func _set_health(value: int) -> void:
+func _set_health(value: float) -> void:
 	var prev := health
 	health = value
 	
@@ -61,7 +55,7 @@ func _set_speed(value: int) -> void:
 	speed = value
 	
 	if prev != speed:
-		on_speed_change.emit(prev, speed)
+		on_speed_change.emit(speed, prev)
 
 func _get_speed() -> int:
 	return int(base_speed * speed_multiplier)

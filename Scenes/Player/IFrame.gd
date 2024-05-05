@@ -42,8 +42,8 @@ func _ready() -> void:
 	i_frame_timer.timeout.connect(_on_i_frame_timer_timeout)
 
 func _on_i_frame_timer_timeout() -> void:
-	character.modulate.v = 15 if character.modulate.v == 1 else 1
-	character.modulate.a = 0.25 if character.modulate.a == 1 else 1
+	character.modulate.v = 15.0 if character.modulate.v == 1.0 else 1.0
+	character.modulate.a = 0.25 if character.modulate.a == 1.0 else 1.0
 	if i_frame_current_count >= i_frame_max_count or character.health <= 0:
 		is_invincible = false
 	i_frame_current_count += 1

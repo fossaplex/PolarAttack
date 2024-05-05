@@ -56,8 +56,8 @@ static func _select_multiple_unique_indices(probabilities: Array[float], max_siz
 	var working_probabilities := probabilities.duplicate()
 	var selected_indices : Array[int] = []
 	
-	var pickable_size = probabilities.size() - probabilities.count(0)
-	var size = min(max_size, pickable_size)
+	var pickable_size := probabilities.size() - probabilities.count(0)
+	var size := min(max_size, pickable_size) as int
 	for i in range(size):
 		working_probabilities = _normalize_probabilities(working_probabilities)
 		var index := _select_index(working_probabilities)
@@ -70,7 +70,6 @@ static func _select_multiple_unique_indices(probabilities: Array[float], max_siz
 
 # weight overrides
 static func _add_weapon_modifier_weight_override(weapon_type: WeaponType.WEAPON_TYPE) -> float:
-	var  weapons_node := level.player.weapon_handler.weapons
 	if _require_weapon(weapon_type): 
 		return 0.0
 	if (2 >= level.player_level and level.player_level <= 2):

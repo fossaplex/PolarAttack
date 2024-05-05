@@ -2,6 +2,7 @@ extends Node2D
 
 const SEAL_SCENE :=  preload("res://Scenes/Enemies/Enemy 1/Seal.tscn")
 const XP_SCENE := preload("res://Scenes/Collectables/BaseCollectableEntity/BaseCollectableEntity.tscn")
+@onready var fox: Fox = $"../Foxes/Fox"
 
 var markers: Array[Marker2D] = []
 
@@ -19,6 +20,7 @@ func _ready() -> void:
 	for spawn_point in spawn_points.get_children():
 		if (spawn_point is Marker2D):
 			markers.append(spawn_point)
+	fox.on_death.connect(spawn_xp)
 
 func _on_timer_timeout() -> void:
 	for spawn_point in spawn_points.get_children():

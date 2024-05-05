@@ -9,9 +9,11 @@ extends State
 signal is_dead
 
 func enter() -> void:
+	super()
 	animation_player.play("death")
 	is_dead.emit()
 
-func process_physics(_delta: float) -> void:
+func process_physics(delta: float) -> void:
+	super(delta)
 	player.velocity = Vector2.ZERO
 	player.move_and_slide()

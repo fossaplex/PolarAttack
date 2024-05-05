@@ -69,13 +69,13 @@ func _ready() -> void:
 	attackable.damage = damage
 	fsm.transition(walk_state if target else wander_state)
 
-func _set_health(value: int) -> void:
+func _set_health(value: float) -> void:
 	super(value)
 	texture_progress_bar.value = value
 	texture_progress_bar.max_value = total_health
 	if (fsm and value <= 0):
 		if fsm.transition(death_state):
-			SMALL_EXPERIENCE.collectable_texture = GOLD_XP_ANIMATION
+			SMALL_EXPERIENCE.collectable_texture = SILVER_XP_ANIMATION
 			SMALL_EXPERIENCE.collectable_type = "experience"
 			SMALL_EXPERIENCE.experienceValue = 20
 			on_death.emit(global_position, SMALL_EXPERIENCE)
