@@ -1,0 +1,158 @@
+[gd_scene load_steps=9 format=3 uid="uid://dlyuxvg36yqh7"]
+
+[ext_resource type="Script" path="res://Scenes/GameOver/game_over_scene.gd" id="1_8fxhg"]
+[ext_resource type="Texture2D" uid="uid://bs4gv7q1ultpg" path="res://Graphics/Spritesheets/Penguin/Death.png" id="1_xi8l6"]
+[ext_resource type="Script" path="res://Scenes/GameOver/Level.gd" id="3_8d4uv"]
+[ext_resource type="StyleBox" uid="uid://de8bjqr0k8bip" path="res://Resource/menu_button_normal.tres" id="4_yxt3v"]
+[ext_resource type="StyleBox" uid="uid://bn3vfgljfidtm" path="res://Resource/menu_button_hover.tres" id="5_kp413"]
+[ext_resource type="StyleBox" uid="uid://d1gqxxqvj6xoq" path="res://Resource/main_button_pressed.tres" id="6_qfyj5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4wvkh"]
+bg_color = Color(0.122471, 0.16657, 0.185352, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_pht0f"]
+font_size = 90
+outline_size = 7
+outline_color = Color(0.129412, 1, 1, 1)
+shadow_size = 30
+shadow_color = Color(0, 0, 0, 0.603922)
+
+[node name="GameOverScene" type="CanvasLayer"]
+script = ExtResource("1_8fxhg")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4wvkh")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="MainVboxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="GameOverLabel" type="Label" parent="PanelContainer/MarginContainer/MainVboxContainer"]
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_pht0f")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PenguinStatsContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/MainVboxContainer"]
+layout_mode = 2
+
+[node name="Penguin" type="TextureRect" parent="PanelContainer/MarginContainer/MainVboxContainer/PenguinStatsContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "Welp... I tried.."
+texture = ExtResource("1_xi8l6")
+stretch_mode = 5
+
+[node name="StatsContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/MainVboxContainer/PenguinStatsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/MainVboxContainer/PenguinStatsContainer/StatsContainer"]
+layout_mode = 2
+text = "Game Stats"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/MainVboxContainer/PenguinStatsContainer/StatsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="KilledByStats" type="Control" parent="PanelContainer/MarginContainer/MainVboxContainer/PenguinStatsContainer/StatsContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SlainLabel" type="Label" parent="PanelContainer/MarginContainer/MainVboxContainer/PenguinStatsContainer/StatsContainer/VBoxContainer/KilledByStats"]
+layout_mode = 0
+offset_right = 149.0
+offset_bottom = 23.0
+text = "You were slain by..."
+
+[node name="EnemyLabel" type="Label" parent="PanelContainer/MarginContainer/MainVboxContainer/PenguinStatsContainer/StatsContainer/VBoxContainer/KilledByStats"]
+layout_mode = 0
+offset_right = 1.0
+offset_bottom = 23.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/MainVboxContainer/PenguinStatsContainer/StatsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/MainVboxContainer/PenguinStatsContainer/StatsContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Level: "
+
+[node name="Level" type="Label" parent="PanelContainer/MarginContainer/MainVboxContainer/PenguinStatsContainer/StatsContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+script = ExtResource("3_8d4uv")
+
+[node name="KilledStats" type="Control" parent="PanelContainer/MarginContainer/MainVboxContainer/PenguinStatsContainer/StatsContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="EnemiesKilled" type="Label" parent="PanelContainer/MarginContainer/MainVboxContainer/PenguinStatsContainer/StatsContainer/VBoxContainer/KilledStats"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Enemies Killed: "
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/MainVboxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/MainVboxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="NewGameButton" type="Button" parent="PanelContainer/MarginContainer/MainVboxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("4_yxt3v")
+theme_override_styles/hover = ExtResource("5_kp413")
+theme_override_styles/pressed = ExtResource("6_qfyj5")
+text = "NEW GAME"
+
+[node name="MainMenuButton" type="Button" parent="PanelContainer/MarginContainer/MainVboxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("4_yxt3v")
+theme_override_styles/hover = ExtResource("5_kp413")
+theme_override_styles/pressed = ExtResource("6_qfyj5")
+text = "MAIN MENU"
+
+[node name="ExitGameButton" type="Button" parent="PanelContainer/MarginContainer/MainVboxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("4_yxt3v")
+theme_override_styles/hover = ExtResource("5_kp413")
+theme_override_styles/pressed = ExtResource("6_qfyj5")
+text = "EXIT GAME"

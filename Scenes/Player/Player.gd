@@ -61,3 +61,6 @@ func add_modifier(modifier: Modifier) -> void:
 		weapon_handler.add_modifier(modifier)
 	elif modifier is OrbsModifier:
 		weapon_handler.add_modifier(modifier)
+
+func get_player_level() -> int:
+	return player_xp_handler.current_level

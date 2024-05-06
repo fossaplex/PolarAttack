@@ -16,6 +16,10 @@ var health: int = total_health : set = _set_health
 #region stat multiplier
 @export var speed_multiplier: float = 1
 @export var total_health_multiplier: float = 1
+
+#level stats
+@export var current_level : int = 1
+#end region
 #endregions
 
 @export var fsm :State = null
