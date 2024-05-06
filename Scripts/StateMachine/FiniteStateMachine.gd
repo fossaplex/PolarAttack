@@ -1,6 +1,16 @@
 class_name FiniteStateMachine
 extends State
 
+
+func _process(delta: float) -> void:
+	process_frame(delta)
+
+func _physics_process(delta: float) -> void:
+	process_physics(delta)
+
+func _input(event: InputEvent) -> void:
+	process_input(event)
+
 func has_current_state() -> bool:
 	return false
 

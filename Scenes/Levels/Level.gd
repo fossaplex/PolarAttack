@@ -8,6 +8,7 @@ signal toggle_game_paused(is_paused : bool)
 @onready var timer := $EnemySpawner/Timer as Timer
 @onready var seals := $Seals
 @onready var upgrade_menu := $CanvasLayer/UpgradeMenu as UpgradeMenu
+
 var player_level : int = 1:
 	get: return player.player_xp_handler.current_level
 

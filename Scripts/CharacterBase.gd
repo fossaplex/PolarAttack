@@ -31,15 +31,6 @@ func _ready() -> void:
 	health = total_health
 	speed = speed
 
-func _process(delta: float) -> void:
-	if fsm: fsm.process_frame(delta)
-
-func _physics_process(delta: float) -> void:
-	if fsm: fsm.process_physics(delta)
-
-func _input(event: InputEvent) -> void:
-	if fsm: fsm.process_input(event)
-
 func character_queue_free() -> void:
 	fsm = null
 	queue_free()
@@ -52,7 +43,7 @@ func _set_health(value: int) -> void:
 	health = value
 	
 	if prev != health:
-		on_health_change.emit(prev, health)
+		on_health_change.emit(health, prev)
 		if health <= 0: 
 			on_dead.emit(prev)
 
