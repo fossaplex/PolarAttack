@@ -31,15 +31,6 @@ func _ready() -> void:
 	health = total_health
 	speed = speed
 
-#func _process(delta: float) -> void:
-	#if fsm: fsm.process_frame(delta)
-#
-#func _physics_process(delta: float) -> void:
-	#if fsm: fsm.process_physics(delta)
-#
-#func _input(event: InputEvent) -> void:
-	#if fsm: fsm.process_input(event)
-
 func character_queue_free() -> void:
 	fsm = null
 	queue_free()

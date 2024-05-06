@@ -33,7 +33,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var timer_left := i_frame.i_frame_cd_timer.time_left
 	var wait_time :=  i_frame.i_frame_cd_timer.wait_time
-	i_frame_progress_bar.value = (timer_left / wait_time) * i_frame_progress_bar.max_valuesssss
+	i_frame_progress_bar.value = (timer_left / wait_time) * i_frame_progress_bar.max_value
 #endregion
 
 #region setter getter
