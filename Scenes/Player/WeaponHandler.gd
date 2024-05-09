@@ -1,7 +1,7 @@
 class_name WeaponHandler
 extends Node2D
 const Modifiers = preload("res://Constants/Modifiers.gd")
-const BEAM := preload("res://Scenes/Beam/Beam.tscn") as PackedScene
+const BEAM := preload("res://Scenes/Beam/PlayerBeam.tscn") as PackedScene
 const ORB := preload("res://Scenes/Orbs/Orbs.tscn") as PackedScene
 
 @onready var beam_marker: Marker2D = $WeaponPositionMarkers/BeamMarker

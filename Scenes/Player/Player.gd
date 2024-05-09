@@ -30,22 +30,24 @@ func _ready() -> void:
 	fsm.transition(idle_state)
 	on_health_change.connect(_on_health_change)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
+	#print(health)
 	var timer_left := i_frame.i_frame_cd_timer.time_left
 	var wait_time :=  i_frame.i_frame_cd_timer.wait_time
 	i_frame_progress_bar.value = (timer_left / wait_time) * i_frame_progress_bar.max_value
 #endregion
+
 
 #region setter getter
 func _base_total_health(value: int) -> void:
 	super(value)
 	if health_progress_bar: health_progress_bar.max_value = value
 
-func _set_health(value: int) -> void:
+func _set_health(value: float) -> void:
 	if not i_frame.can_take_damage: return
 	super(value)
 	if health_progress_bar:
-		var tween = create_tween()
+		var tween := create_tween()
 		tween.tween_property(self, "health_progress_bar:value", health, 0.25)
 
 func _set_speed(value: int) -> void:
@@ -62,17 +64,17 @@ func on_beam_active(is_active: bool,  horizontal_direction: float) -> void:
 	else:
 		speed_multiplier = 1
 
-func _on_health_change(health: int, prev_health: int) -> void:
-	i_frame.is_invincible = health <= prev_health
+func _on_health_change(_health: int, prev_health: int) -> void:
+	i_frame.is_invincible = _health <= prev_health
 
-	if health <= 0:
+	if _health <= 0:
 		var concreate_fsm := fsm as FiniteStateMachine
 		concreate_fsm.transition(death_state)
-	if health == prev_health: return
-	var tween = create_tween()
-	if health < prev_health:
+	if _health == prev_health: return
+	var tween := create_tween()
+	if _health < prev_health:
 		tween.tween_property(self, "health_progress_bar:modulate", Color(1,0,0), 1)
-	elif health > prev_health:
+	elif _health > prev_health:
 		tween.tween_property(self, "health_progress_bar:modulate", Color(0,1,0), 1)
 	tween.tween_property(self, "health_progress_bar:modulate", Color(1,1,1), 1)
 

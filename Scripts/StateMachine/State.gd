@@ -8,10 +8,15 @@ class_name State
 var fsm: FiniteStateMachine = null:
 	get: return get_parent()
 
+signal on_enter
+signal on_exit
+
 func enter() -> void:
+	on_enter.emit()
 	pass
 
 func exit() -> void:
+	on_exit.emit()
 	pass
 
 func process_physics(_delta: float) -> void:

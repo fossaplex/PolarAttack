@@ -19,19 +19,23 @@ func _ready() -> void:
 	hit_box.area_exited.connect(_on_hit_box_area_exited)
 
 func enter() -> void:
+	super()
 	animation_player.play("walk")
 
 func exit() -> void:
+	super()
 	animation_player.stop()
 	seal.velocity = Vector2.ZERO
 
 func process_frame(delta: float) -> void:
+	super(delta)
 	if seal.velocity.x != 0:
 		sprite.flip_h = seal.velocity.x > 0
 	if _is_damaging:
 		attackable.deal_damange_delta(target, delta)
 
-func process_physics(_delta: float) -> void:
+func process_physics(delta: float) -> void:
+	super(delta)
 	var direction := (target.global_position - seal.global_position).normalized()
 	seal.velocity = direction * speed
 	seal.move_and_slide()
