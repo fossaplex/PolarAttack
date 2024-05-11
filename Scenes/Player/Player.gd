@@ -20,6 +20,7 @@ const Modifiers = preload("res://Constants/Modifiers.gd")
 
 @onready var health_progress_bar: ProgressBar = $ProgressBars/HealthProgressBar
 @onready var i_frame_progress_bar: ProgressBar = $ProgressBars/IFrameProgressBar
+@onready var damage_number: DamageNumber = $DamageNumber
 
 #region lifecycle
 func _ready() -> void:
@@ -65,7 +66,7 @@ func on_beam_active(is_active: bool,  horizontal_direction: float) -> void:
 
 func _on_health_change(_health: int, prev_health: int) -> void:
 	i_frame.is_invincible = _health <= prev_health
-
+	damage_number.display_number(ceil(prev_health - health), health > prev_health)
 	if _health <= 0:
 		var concreate_fsm := fsm as FiniteStateMachine
 		concreate_fsm.transition(death_state)

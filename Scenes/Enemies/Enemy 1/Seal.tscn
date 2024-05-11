@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bcx3a8idecdv0"]
+[gd_scene load_steps=20 format=3 uid="uid://bcx3a8idecdv0"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/Enemy 1/Seal.gd" id="1_snkuk"]
 [ext_resource type="Texture2D" uid="uid://cpt0kgd14pang" path="res://Graphics/Spritesheets/Enemies/seal/walk.png" id="2_4rlea"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://Scenes/Enemies/Enemy 1/Label.gd" id="11_63ft7"]
 [ext_resource type="Script" path="res://Scripts/Attackable/Attackable.gd" id="11_enj1v"]
 [ext_resource type="Texture2D" uid="uid://1fivtnit1ogv" path="res://Graphics/light.png" id="13_cs7nq"]
+[ext_resource type="Script" path="res://Scripts/DamageNumber.gd" id="14_cgb8u"]
 
 [sub_resource type="Animation" id="Animation_gko4g"]
 length = 0.001
@@ -216,3 +217,7 @@ shadow_filter = 2
 shadow_filter_smooth = 6.1
 texture = ExtResource("13_cs7nq")
 texture_scale = 0.2
+
+[node name="DamageNumber" type="Node2D" parent="."]
+position = Vector2(-1, -8)
+script = ExtResource("14_cgb8u")

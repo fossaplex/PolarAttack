@@ -2,12 +2,12 @@ class_name CharacterBase
 extends CharacterBody2D
 
 #region base stat
-@export var base_total_health: int = 100: set = _base_total_health
+@export var base_total_health: int = 1: set = _base_total_health
 @export var base_speed: int = 100
 #endregion
 
 #region stats
-var total_health: int = 100 :
+var total_health: int = 1 :
 	get: return int(base_total_health) * int(total_health_multiplier)
 var speed: int = 200: set = _set_speed, get = _get_speed
 var health: float = total_health : set = _set_health
