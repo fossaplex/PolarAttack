@@ -24,7 +24,7 @@ var game_paused : bool = false:
 func _ready() -> void:
 	player.on_dead.connect(_on_player_on_dead)
 	upgrade_menu.on_upgrade_pressed.connect(add_modifier)
-	player.weapon_handler.add_weapon(WeaponType.WEAPON_TYPE.BEAM, 100, 1)
+	player.weapon_handler.add_weapon(WeaponType.WEAPON_TYPE.BEAM, 50, 1)
 	Modifiers.level = self
 	PlayerXpSignalBus.on_level_change.connect(on_level_change)
 

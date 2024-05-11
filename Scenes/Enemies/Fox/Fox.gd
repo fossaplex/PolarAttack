@@ -7,10 +7,10 @@ const GROUPS = preload("res://Constants/Groups.gd")
 @onready var sleep_area: Area2D = $SleepArea2D
 
 @onready var single_finite_state_machine: SingleFiniteStateMachine = $SingleFiniteStateMachine
-@onready var fox_wake_state: State = $SingleFiniteStateMachine/FoxWakeState
-@onready var fox_sleep_state: State = $SingleFiniteStateMachine/FoxSleepState
-@onready var fox_idle_state: State = $SingleFiniteStateMachine/FoxIdleState
-@onready var fox_chase_state: State = $SingleFiniteStateMachine/FoxChaseState
+@onready var fox_wake_state: FoxWakeState = $SingleFiniteStateMachine/FoxWakeState
+@onready var fox_sleep_state: FoxSleepState = $SingleFiniteStateMachine/FoxSleepState
+@onready var fox_idle_state: FoxIdleState = $SingleFiniteStateMachine/FoxIdleState
+@onready var fox_chase_state: FoxChaseState = $SingleFiniteStateMachine/FoxChaseState
 @onready var texture_progress_bar: TextureProgressBar = $ProgressBar
 @onready var fox_death_state: State = $SingleFiniteStateMachine/FoxDeathState
 @export var target: CharacterBase:

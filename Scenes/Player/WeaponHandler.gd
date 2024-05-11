@@ -44,6 +44,7 @@ func add_weapon(type: WeaponType.WEAPON_TYPE, base_damage: float = 1000, damage_
 			var weapon_scene := SWORDS
 			var weapon := weapon_scene.instantiate() as Swords
 			weapon.count = 1
+			weapon.speed = 200
 			weapons.add_child(weapon)
 			weapon.attackable.update(base_damage, damage_multiplier)
 			weapon.global_position = sword_marker.global_position

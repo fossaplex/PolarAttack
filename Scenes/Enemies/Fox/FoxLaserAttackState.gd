@@ -1,3 +1,4 @@
+class_name FoxLaserAttackState
 extends State
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
@@ -25,7 +26,6 @@ func enter() -> void:
 	if duration_timer.paused:
 		duration_timer.paused = false
 		beam.active = true
-		print("unpaused")
 		return
 	if cool_down_timer.is_stopped():
 		duration_timer.start()

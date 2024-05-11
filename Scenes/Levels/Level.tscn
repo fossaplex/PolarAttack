@@ -234,6 +234,54 @@ position = Vector2(349, 133)
 [node name="Marker2D16" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
 position = Vector2(349, 174)
 
+[node name="Marker2D18" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(-194, -187)
+
+[node name="Marker2D17" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(-256, -187)
+
+[node name="Marker2D19" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(-70, -187)
+
+[node name="Marker2D20" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(-132, -187)
+
+[node name="Marker2D21" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(163, -187)
+
+[node name="Marker2D22" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(101, -187)
+
+[node name="Marker2D23" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(290, -184)
+
+[node name="Marker2D24" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(228, -184)
+
+[node name="Marker2D25" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(-194, 190)
+
+[node name="Marker2D26" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(-256, 190)
+
+[node name="Marker2D27" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(-70, 190)
+
+[node name="Marker2D28" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(-132, 190)
+
+[node name="Marker2D29" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(163, 190)
+
+[node name="Marker2D30" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(101, 190)
+
+[node name="Marker2D31" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(290, 193)
+
+[node name="Marker2D32" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
+position = Vector2(228, 193)
+
 [node name="FoxSpawnPoints" type="Node2D" parent="EnemySpawner"]
 
 [node name="Marker2D4" type="Marker2D" parent="EnemySpawner/FoxSpawnPoints"]

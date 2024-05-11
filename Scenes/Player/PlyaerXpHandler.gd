@@ -21,7 +21,7 @@ extends Node
 #region 
 @export var max_xp : int:
 	get: return xp_function()
-@export var base_xp : int = 100
+@export var base_xp : int = 50
 @export var increments: int = 20
 #endregion
 

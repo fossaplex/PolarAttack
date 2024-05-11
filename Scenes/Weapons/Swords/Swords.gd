@@ -35,15 +35,6 @@ func on_timer() -> void:
 
 	var start_x := minf(start_marker.global_position.x, end_marker.global_position.x)
 	var start_y := minf(start_marker.global_position.y, end_marker.global_position.y)
-	print(
-		"start_x:", start_x, "\n",
-		 "start_y:", start_y, "\n",
-		 "horizontal_distance:", horizontal_distance, "\n",
-		 "vertical_distance:", vertical_distance, "\n",
-		"subdivide_x:", subdivide_x, "\n",
-		"subdivide_y:", subdivide_y, "\n",
-		"=================", "\n"
-		)
 	
 	var mouse_positon := get_global_mouse_position()
 	var direction := middle_marker_2d.global_position.direction_to(mouse_positon)

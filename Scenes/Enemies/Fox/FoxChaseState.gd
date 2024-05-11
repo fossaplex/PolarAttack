@@ -1,3 +1,4 @@
+class_name FoxChaseState
 extends State
 
 @onready var fox: Fox = $"../.."

@@ -31,7 +31,6 @@ func _ready() -> void:
 	on_health_change.connect(_on_health_change)
 
 func _process(_delta: float) -> void:
-	#print(health)
 	var timer_left := i_frame.i_frame_cd_timer.time_left
 	var wait_time :=  i_frame.i_frame_cd_timer.wait_time
 	i_frame_progress_bar.value = (timer_left / wait_time) * i_frame_progress_bar.max_value
