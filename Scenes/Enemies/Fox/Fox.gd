@@ -16,11 +16,13 @@ const GROUPS = preload("res://Constants/Groups.gd")
 @export var target: CharacterBase:
 	set(value):
 		target = value
+		if not is_node_ready(): return
 		if target:
 			single_finite_state_machine.transition(fox_chase_state)
 		else:
 			single_finite_state_machine.transition(fox_idle_state)
-
+@onready var attackable: Attackable = $WeaponHandler/WeaponsNode2D/Beam/Attackable
+var setup_done := false
 
 const SMALL_EXPERIENCE := preload("res://Scenes/Resources/collectable/CollectableResources/smallExperience.tres")
 const GOLD_XP_ANIMATION := preload("res://Graphics/coins/Gold_Xp_Animation.tres")

@@ -2,23 +2,6 @@ class_name Seal
 extends CharacterBase
 const SEAL_SCENE = preload("res://Scenes/Enemies/Enemy 1/Seal.tscn")
 
-static func instanciate_seal(
-	_target: CharacterBase,
-	_base_damage: float,
-	_damage_multiplier: float,
-	_global_position: Vector2,
-	parent: Node,
-	_on_death: Callable
-) -> Seal:
-	var seal := SEAL_SCENE.instantiate() as Seal
-	parent.add_child(seal)
-	seal.target = _target
-	(seal.attackable as Attackable).update(_base_damage, _damage_multiplier)
-	seal.global_position = _global_position
-	seal.on_death.connect(_on_death)
-	seal.base_speed = 50
-	return seal
-
 const SMALL_EXPERIENCE := preload("res://Scenes/Resources/collectable/CollectableResources/smallExperience.tres")
 const GOLD_XP_ANIMATION := preload("res://Graphics/coins/Gold_Xp_Animation.tres")
 const SILVER_XP_ANIMATION := preload("res://Graphics/coins/Silver_Xp_Animation.tres")

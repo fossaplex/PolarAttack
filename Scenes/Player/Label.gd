@@ -1,5 +1,5 @@
 extends Label
-
+const Weapon = preload("res://Scripts/Weapon.gd")
 @onready var player := $".." as Player
 
 func _ready() -> void:

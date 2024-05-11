@@ -378,3 +378,27 @@ volume_db = 24.0
 stream = ExtResource("20_vpaxq")
 volume_db = 18.0
 pitch_scale = 1.22
+
+[node name="Duration" type="TextureProgressBar" parent="."]
+texture_filter = 1
+offset_left = -10.0
+offset_top = 2.0
+offset_right = 54.0
+offset_bottom = 12.0
+scale = Vector2(0.32, 0.32)
+value = 100.0
+texture_progress = ExtResource("4_eso0b")
+tint_progress = Color(0.952941, 0.0901961, 0.0117647, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Cooldown" type="TextureProgressBar" parent="."]
+texture_filter = 1
+offset_left = -10.0
+offset_top = 2.0
+offset_right = 54.0
+offset_bottom = 12.0
+scale = Vector2(0.32, 0.32)
+value = 100.0
+texture_progress = ExtResource("4_eso0b")
+tint_progress = Color(0.305882, 0.745098, 0.968627, 1)
+metadata/_edit_use_anchors_ = true

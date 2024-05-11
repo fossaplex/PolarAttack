@@ -15,12 +15,22 @@ extends State
 @export var max_duration := 3.0
 @export var cooldown := 3.0
 
+@onready var duration_bar: TextureProgressBar = $"../../Duration"
+@onready var cooldown_bar: TextureProgressBar = $"../../Cooldown"
+
+
 func enter() -> void:
 	super()
 	animated_sprite_2d.play("beam")
+	if duration_timer.paused:
+		duration_timer.paused = false
+		beam.active = true
+		print("unpaused")
+		return
 	if cool_down_timer.is_stopped():
 		duration_timer.start()
 		beam.active = true
+		return
 
 func _ready() -> void:
 	duration_timer.timeout.connect(on_duration_timer_timerout)
@@ -29,6 +39,14 @@ func _ready() -> void:
 func exit() -> void:
 	super()
 	beam.active = false
+	if not duration_timer.is_stopped():
+		duration_timer.paused = true
+
+func _process(_delta: float) -> void:
+	duration_bar.value = duration_timer.time_left
+	duration_bar.max_value = max_duration
+	cooldown_bar.value = cool_down_timer.time_left
+	cooldown_bar.max_value = cooldown
 
 func process_frame(delta: float) -> void:
 	super(delta)
@@ -43,12 +61,12 @@ func process_frame(delta: float) -> void:
 
 	if target.global_position.distance_to(fox.global_position) >= 150.0:
 		fsm.transition(fox_chase_state)
-		cool_down_timer.stop()
 
 func on_duration_timer_timerout() -> void:
 	cool_down_timer.start()
 	beam.active = false
 	
 func on_cool_down_timer_timerout() -> void:
+	if fox.single_finite_state_machine._current_state != self: return
 	duration_timer.start()
 	beam.active = true

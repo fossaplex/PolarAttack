@@ -1,2 +1,2 @@
 class_name WeaponType
-enum WEAPON_TYPE { ORB, BEAM }
+enum WEAPON_TYPE { ORB, BEAM, SWORD }

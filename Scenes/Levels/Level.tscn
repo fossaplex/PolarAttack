@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://v0wxmchyy8hw"]
+[gd_scene load_steps=17 format=3 uid="uid://v0wxmchyy8hw"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Level.gd" id="1_mxhe7"]
 [ext_resource type="PackedScene" uid="uid://bw72hruorpjco" path="res://Scenes/Player/Player.tscn" id="1_siijq"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Scenes/Levels/ProgressBar.gd" id="7_xmttv"]
 [ext_resource type="PackedScene" uid="uid://dfmw6h4velbkk" path="res://Scenes/OptionsMenu/options_menu.tscn" id="9_e5sju"]
 [ext_resource type="PackedScene" uid="uid://xgs1q0wrl51a" path="res://Scenes/HUD/Player_Level_UI.tscn" id="11_3iven"]
+[ext_resource type="Script" path="res://Scenes/Levels/FoxMarker2D.gd" id="14_3w4x2"]
 [ext_resource type="Script" path="res://Scenes/Levels/CollectableManager.gd" id="14_agv4b"]
 [ext_resource type="Script" path="res://Scenes/Levels/EnemySpawner.gd" id="15_6hlx1"]
 [ext_resource type="Script" path="res://Scenes/Levels/CanvasModulate.gd" id="16_ip13u"]
@@ -237,27 +238,35 @@ position = Vector2(349, 174)
 
 [node name="Marker2D4" type="Marker2D" parent="EnemySpawner/FoxSpawnPoints"]
 position = Vector2(-248, 127)
+script = ExtResource("14_3w4x2")
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawner/FoxSpawnPoints"]
 position = Vector2(-200, -109)
+script = ExtResource("14_3w4x2")
 
 [node name="Marker2D3" type="Marker2D" parent="EnemySpawner/FoxSpawnPoints"]
 position = Vector2(119, 68)
+script = ExtResource("14_3w4x2")
 
 [node name="Marker2D2" type="Marker2D" parent="EnemySpawner/FoxSpawnPoints"]
 position = Vector2(-26, -161)
+script = ExtResource("14_3w4x2")
 
 [node name="Marker2D5" type="Marker2D" parent="EnemySpawner/FoxSpawnPoints"]
 position = Vector2(-51, 177)
+script = ExtResource("14_3w4x2")
 
 [node name="Marker2D6" type="Marker2D" parent="EnemySpawner/FoxSpawnPoints"]
 position = Vector2(-3, -59)
+script = ExtResource("14_3w4x2")
 
 [node name="Marker2D7" type="Marker2D" parent="EnemySpawner/FoxSpawnPoints"]
 position = Vector2(316, 118)
+script = ExtResource("14_3w4x2")
 
 [node name="Marker2D8" type="Marker2D" parent="EnemySpawner/FoxSpawnPoints"]
 position = Vector2(171, -111)
+script = ExtResource("14_3w4x2")
 
 [node name="Collectables" type="Node2D" parent="."]
 process_mode = 1

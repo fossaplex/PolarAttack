@@ -23,24 +23,43 @@ func _ready() -> void:
 		if (spawn_point is Marker2D):
 			markers.append(spawn_point)
 
-	for spawn_point: Marker2D in fox_spawn_points.get_children():
-		var fox := FOX_SCENE.instantiate() as Fox
-		foxes.add_child(fox)
-		fox.global_position = spawn_point.global_position
-		fox.on_death.connect(spawn_xp)
-
 func _on_timer_timeout() -> void:
 	for spawn_point: Marker2D in spawn_points.get_children():
 		if spawn_point is Marker2D:
-			Seal.instanciate_seal(
-				player,
-				10,
-				1,
-				spawn_point.global_position,
-				seals,
-				spawn_xp
-			)
+			create_seal(spawn_point)
+	var fox_available_spawn_points := fox_spawn_points.get_children().filter(
+		func(node: FoxMarker2D)-> bool:
+			var fox := node.fox
+			if not fox: return true
+			var current_state := fox.single_finite_state_machine._current_state
+			if not current_state: return false
+			return (current_state == FoxWakeState or current_state == FoxIdleState or current_state == FoxSleepState)
+	)
+	for spawn_point: FoxMarker2D in fox_available_spawn_points:
+		create_fox(spawn_point)
+			
 
+func create_seal(spawn_point: Marker2D) -> void:
+	var seal := SEAL_SCENE.instantiate() as Seal
+	seals.add_child(seal)
+	seal.target = player
+	seal.attackable.update(5, 1)
+	seal.base_total_health = 30
+	seal.health = 30 
+	seal.global_position = spawn_point.global_position
+	seal.on_death.connect(spawn_xp)
+	seal.base_speed = 50
+
+func create_fox(spawn_point: FoxMarker2D) -> void:
+	var fox := FOX_SCENE.instantiate() as Fox
+	spawn_point.fox = fox
+	foxes.add_child(fox)
+	fox.attackable.update(5, 1)
+	fox.base_total_health = 30
+	fox.health = 30
+	fox.setup_done = true
+	fox.global_position = spawn_point.global_position
+	fox.on_death.connect(spawn_xp)
 
 func spawn_xp(sealLocation: Vector2, xp_resource: ExperienceResource) -> void:
 	var xp := XP_SCENE.instantiate()

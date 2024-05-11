@@ -1,6 +1,6 @@
 class_name Beam
 extends Weapon
-
+const Weapon = preload("res://Scripts/Weapon.gd")
 const GROUPS := preload("res://Constants/Groups.gd")
 
 var max_length := 100.0
