@@ -5,22 +5,25 @@ const GROUPS = preload("res://Constants/Groups.gd")
 
 @onready var hit_box: CharacterHitbox = $HitBox
 @onready var sleep_area: Area2D = $SleepArea2D
-
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var damage_number: DamageNumber = $DamageNumber
 @onready var single_finite_state_machine: SingleFiniteStateMachine = $SingleFiniteStateMachine
-@onready var fox_wake_state: State = $SingleFiniteStateMachine/FoxWakeState
-@onready var fox_sleep_state: State = $SingleFiniteStateMachine/FoxSleepState
-@onready var fox_idle_state: State = $SingleFiniteStateMachine/FoxIdleState
-@onready var fox_chase_state: State = $SingleFiniteStateMachine/FoxChaseState
+@onready var fox_wake_state: FoxWakeState = $SingleFiniteStateMachine/FoxWakeState
+@onready var fox_sleep_state: FoxSleepState = $SingleFiniteStateMachine/FoxSleepState
+@onready var fox_idle_state: FoxIdleState = $SingleFiniteStateMachine/FoxIdleState
+@onready var fox_chase_state: FoxChaseState = $SingleFiniteStateMachine/FoxChaseState
 @onready var texture_progress_bar: TextureProgressBar = $ProgressBar
 @onready var fox_death_state: State = $SingleFiniteStateMachine/FoxDeathState
 @export var target: CharacterBase:
 	set(value):
 		target = value
+		if not is_node_ready(): return
 		if target:
 			single_finite_state_machine.transition(fox_chase_state)
 		else:
 			single_finite_state_machine.transition(fox_idle_state)
-
+@onready var attackable: Attackable = $WeaponHandler/WeaponsNode2D/Beam/Attackable
+var setup_done := false
 
 const SMALL_EXPERIENCE := preload("res://Scenes/Resources/collectable/CollectableResources/smallExperience.tres")
 const GOLD_XP_ANIMATION := preload("res://Graphics/coins/Gold_Xp_Animation.tres")
@@ -56,6 +59,17 @@ func _on_health_change(_health: float, _prev_health: float) -> void:
 		SMALL_EXPERIENCE.collectable_type = "experience"
 		SMALL_EXPERIENCE.experienceValue = 20
 		on_death.emit(global_position, SMALL_EXPERIENCE)
+	if _health < _prev_health:
+		damage_number.display_number(ceil(_prev_health - _health))
+		animated_sprite_2d.modulate = Color(1,1,1,1)
+		await get_tree().create_timer(0.05).timeout
+		animated_sprite_2d.modulate = Color(3, 3, 3, 1)
+		await get_tree().create_timer(0.05).timeout
+		animated_sprite_2d.modulate = Color(1,1,1,1)
+		await get_tree().create_timer(0.05).timeout
+		animated_sprite_2d.modulate = Color(3, 3, 3, 1)
+		await get_tree().create_timer(0.05).timeout
+		animated_sprite_2d.modulate = Color(1,1,1,1)
 
 func _on_total_health_change(_total_health: float, _prev_total_health: float) -> void:
 	texture_progress_bar.max_value = _total_health

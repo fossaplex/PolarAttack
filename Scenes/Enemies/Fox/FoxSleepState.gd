@@ -1,4 +1,6 @@
+class_name FoxSleepState
 extends State
+
 @onready var fox: Fox = $"../.."
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
@@ -17,6 +19,7 @@ func exit() -> void:
 	sleep_area.activate = false
 
 func _on_health_change(health: int, prev_health: int) -> void:
+	if not fox.setup_done: return
 	if single_finite_state_machine._current_state != self: return
 	if health <= prev_health:
 		single_finite_state_machine.transition(fox_wake_state)

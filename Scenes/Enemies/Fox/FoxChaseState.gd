@@ -1,10 +1,11 @@
+class_name FoxChaseState
 extends State
 
 @onready var fox: Fox = $"../.."
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
 @onready var target: CharacterBase = fox.target:
 	get: return fox.target
-var speed := 200
+var speed := 150
 @onready var fox_laser_attack_state: Node = $"../FoxLaserAttackState"
 @onready var sound_walk: AudioStreamPlayer2D = $"../../SoundWalk"
 

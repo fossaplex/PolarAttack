@@ -2,6 +2,7 @@ class_name AddWeaponModifier
 extends WeaponModifier
 
 const ICON = preload("res://Graphics/Icons/icon.svg")
+const WeaponType = preload("res://Scripts/WeaponType.gd")
 
 var weapon_type: WeaponType.WEAPON_TYPE
 
