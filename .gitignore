@@ -15,6 +15,6 @@ data_*/
 mono_crash.*.json
 
 # Godot temp files
-*.tmp
+
 .idea
 .vscode

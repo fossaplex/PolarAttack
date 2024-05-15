@@ -6,7 +6,8 @@ extends SingleFiniteStateMachine
 @onready var sprite := $"../Sprite2D" as Sprite2D
 @onready var player := $".." as Player
 
-func transition(destination_state : State) -> State:
+
+func transition(destination_state : State, force: bool = false) -> State:
 	if (_current_state == death_state):
 		return null
-	return super(destination_state)
+	return super(destination_state, force)

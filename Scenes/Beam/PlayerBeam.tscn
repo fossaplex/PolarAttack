@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://cg2ag5te0okoa"]
+
+[ext_resource type="PackedScene" uid="uid://diy85w135sgrw" path="res://Scenes/Beam/Beam.tscn" id="1_htn16"]
+[ext_resource type="Script" path="res://Scenes/Beam/PlayerBeam.gd" id="2_3wi6i"]
+[ext_resource type="Script" path="res://Scripts/Attackable/Attackable.gd" id="3_k3llk"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mwnt6"]
+resource_local_to_scene = true
+blend_mode = 1
+
+[node name="Beam" instance=ExtResource("1_htn16")]
+script = ExtResource("2_3wi6i")
+
+[node name="Begin" parent="." index="2"]
+material = SubResource("CanvasItemMaterial_mwnt6")
+
+[node name="Attackable" type="Node" parent="." index="5"]
+script = ExtResource("3_k3llk")

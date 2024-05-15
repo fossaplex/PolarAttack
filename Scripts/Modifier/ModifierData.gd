@@ -16,7 +16,7 @@ func get_weight(level: int, decay_factor:float = 0.95, optimal_range: float = 10
 	if temp_weight >= 0:
 		return temp_weight
 	var range_width := max_level - min_level
-	var base_weight_inside_range = 0.9 * (optimal_range / range_width);
+	var base_weight_inside_range := 0.9 * (optimal_range / range_width);
 	if level >= min_level and level <= max_level:
 		return min(max(base_weight_inside_range, 0.1), 0.9);
 	else:
