@@ -42,5 +42,5 @@ animations = [{
 }],
 "loop": true,
 "name": &"silver_xp_spin",
-"speed": 5.0
+"speed": 10.0
 }]

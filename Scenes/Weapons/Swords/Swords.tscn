@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://ke68bmjejx7i"]
+
+[ext_resource type="Script" path="res://Scenes/Weapons/Swords/Swords.gd" id="1_l4dtf"]
+[ext_resource type="Script" path="res://Scripts/Attackable/Attackable.gd" id="2_g147c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1bgkt"]
+
+[node name="Swords" type="Node2D"]
+script = ExtResource("1_l4dtf")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Markers" type="Node2D" parent="."]
+
+[node name="StartMarker" type="Marker2D" parent="Markers"]
+position = Vector2(-40, 0)
+
+[node name="MiddleMarker2D" type="Marker2D" parent="Markers"]
+
+[node name="EndMarker" type="Marker2D" parent="Markers"]
+position = Vector2(38, 0)
+
+[node name="Area2D" type="Area2D" parent="Markers"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Markers/Area2D"]
+position = Vector2(0, 2)
+scale = Vector2(1.39618, 0.316805)
+shape = SubResource("CircleShape2D_1bgkt")
+
+[node name="Attackable" type="Node" parent="."]
+script = ExtResource("2_g147c")
+
+[node name="SwordsContainer" type="Node" parent="."]

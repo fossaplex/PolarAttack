@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bw72hruorpjco"]
+[gd_scene load_steps=34 format=3 uid="uid://bw72hruorpjco"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_ty1sm"]
 [ext_resource type="Texture2D" uid="uid://j72r5deby7vj" path="res://Graphics/Spritesheets/Penguin/Idle.png" id="2_8ii8i"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://Scenes/Player/Label.gd" id="15_u3eai"]
 [ext_resource type="Texture2D" uid="uid://1fivtnit1ogv" path="res://Graphics/light.png" id="16_n22st"]
 [ext_resource type="Script" path="res://Scenes/Player/IFrame.gd" id="17_4vwaf"]
+[ext_resource type="Script" path="res://Scripts/DamageNumber.gd" id="18_ttamu"]
 
 [sub_resource type="Animation" id="Animation_hdlye"]
 length = 0.001
@@ -347,6 +348,9 @@ position = Vector2(0, -12)
 [node name="OrbMarker" type="Marker2D" parent="WeaponHandler/WeaponPositionMarkers"]
 position = Vector2(0, -7)
 
+[node name="SwordMarker" type="Marker2D" parent="WeaponHandler/WeaponPositionMarkers"]
+position = Vector2(0, -6)
+
 [node name="Modifiers" type="Node" parent="WeaponHandler"]
 
 [node name="SingleFiniteStateMachine" type="Node" parent="."]
@@ -419,3 +423,7 @@ theme_override_styles/background = SubResource("StyleBoxEmpty_xehgg")
 theme_override_styles/fill = SubResource("StyleBoxTexture_t83bj")
 value = 50.0
 show_percentage = false
+
+[node name="DamageNumber" type="Node2D" parent="."]
+position = Vector2(-1, -8)
+script = ExtResource("18_ttamu")

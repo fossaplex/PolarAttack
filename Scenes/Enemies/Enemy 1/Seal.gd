@@ -2,26 +2,10 @@ class_name Seal
 extends CharacterBase
 const SEAL_SCENE = preload("res://Scenes/Enemies/Enemy 1/Seal.tscn")
 
-static func instanciate_seal(
-	_target: CharacterBase,
-	_base_damage: float,
-	_damage_multiplier: float,
-	_global_position: Vector2,
-	parent: Node,
-	_on_death: Callable
-) -> Seal:
-	var seal := SEAL_SCENE.instantiate() as Seal
-	parent.add_child(seal)
-	seal.target = _target
-	(seal.attackable as Attackable).update(_base_damage, _damage_multiplier)
-	seal.global_position = _global_position
-	seal.on_death.connect(_on_death)
-	seal.base_speed = 50
-	return seal
-
 const SMALL_EXPERIENCE := preload("res://Scenes/Resources/collectable/CollectableResources/smallExperience.tres")
 const GOLD_XP_ANIMATION := preload("res://Graphics/coins/Gold_Xp_Animation.tres")
 const SILVER_XP_ANIMATION := preload("res://Graphics/coins/Silver_Xp_Animation.tres")
+@onready var damage_number: DamageNumber = $DamageNumber
 
 #region Members
 @onready var ap: AnimationPlayer = $AnimationPlayer
@@ -67,6 +51,7 @@ func _ready() -> void:
 	fsm = finite_state_machine
 	hit_box.character = self
 	attackable.damage = damage
+	on_health_change.connect(_on_health_change)
 	fsm.transition(walk_state if target else wander_state)
 
 func _set_health(value: float) -> void:
@@ -89,3 +74,17 @@ func update_animation(direction: Vector2) -> void:
 		ap.stop()
 	else:
 		ap.play("walk")
+
+func _on_health_change(health: float, prev_health: float) -> void:
+	if health < prev_health:
+		damage_number.display_number(ceil(prev_health - health))
+		sprite.modulate = Color(1,1,1,1)
+		await get_tree().create_timer(0.05).timeout
+		sprite.modulate = Color(3, 3, 3, 1)
+		await get_tree().create_timer(0.05).timeout
+		sprite.modulate = Color(1,1,1,1)
+		await get_tree().create_timer(0.05).timeout
+		sprite.modulate = Color(3, 3, 3, 1)
+		await get_tree().create_timer(0.05).timeout
+		sprite.modulate = Color(1,1,1,1)
+

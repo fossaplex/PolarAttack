@@ -8,5 +8,3 @@ func _ready() -> void:
 		if !(child is Attackable): continue
 		attackable = child
 		break
-
-

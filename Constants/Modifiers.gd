@@ -1,17 +1,24 @@
 static var level : Level
 
 const Int = preload("res://Constants/Int.gd")
+const WeaponType = preload("res://Scripts/WeaponType.gd")
+const Weapon = preload("res://Scripts/Weapon.gd")
+
 
 static var MODIFIER_DATUM : Array[ModifierData] = [
-	ModifierData.new(2,Int.INT32_MAX,
-		func() -> Modifier: return AddWeaponModifier.new(WeaponType.WEAPON_TYPE.ORB, level.player_level),
-		func () -> float: return _add_weapon_modifier_weight_override(WeaponType.WEAPON_TYPE.ORB)
-	),
+	#ModifierData.new(2,Int.INT32_MAX,
+		#func() -> Modifier: return AddWeaponModifier.new(WeaponType.WEAPON_TYPE.ORB, level.player_level),
+		#func () -> float: return _add_weapon_modifier_weight_override(WeaponType.WEAPON_TYPE.ORB)
+	#),
 	ModifierData.new(2,2,func() -> Modifier: return PlayerHealthModifier.new(10, level.player_level)),
 	ModifierData.new(3,3,func() -> Modifier: return WeaponBaseDamageIncreaseModifier.new(10, level.player_level)),
 	ModifierData.new(4,4,
-		func() -> Modifier: return OrbCountAndSpeedIncreaseModifier.new(2, 100, level.player_level),
-		func () -> float: return _require_weapon_ovrride(WeaponType.WEAPON_TYPE.ORB)
+		func() -> Modifier: return OrbCountIncreaseModifier.new(1, level.player_level),
+		func () -> float:  return 1.0  if not _require_weapon(WeaponType.WEAPON_TYPE.ORB) else -1.0
+	),
+	ModifierData.new(2,Int.INT32_MAX,
+		func() -> Modifier: return AddSwordWeaponModifier.new(1, level.player_level),
+		func () -> float: return 1.0  if not _require_weapon(WeaponType.WEAPON_TYPE.SWORD) else -1.0
 	)
 ]
 
@@ -88,4 +95,5 @@ static func _require_weapon(weapon_type: WeaponType.WEAPON_TYPE) -> bool:
 		match weapon_type:
 			WeaponType.WEAPON_TYPE.ORB: if weapon is Orbs: return true
 			WeaponType.WEAPON_TYPE.BEAM: if weapon is Beam: return true
+			WeaponType.WEAPON_TYPE.SWORD: if weapon is Swords: return true
 	return false
