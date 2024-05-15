@@ -22,7 +22,6 @@ SaveManager="*res://autoloads/SaveManager.gd"
 CollectableSignalBus="*res://autoloads/CollectableSignalBus.gd"
 SceneTransition="*res://Scenes/SceneTransition/SceneTransition.tscn"
 PlayerXpSignalBus="*res://Scenes/Player/SignalBus/PlayerXpSignalBus.gd"
-GameStats="*res://GameStats.gd"
 
 [debug]
 
