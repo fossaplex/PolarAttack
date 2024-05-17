@@ -151,6 +151,8 @@ shape = SubResource("RectangleShape2D_atblq")
 [node name="HitBox" type="Area2D" parent="." groups=["enemy_hitbox"]]
 collision_layer = 32
 collision_mask = 9
+monitoring = false
+monitorable = false
 script = ExtResource("3_pvdk6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
@@ -221,3 +223,7 @@ texture_scale = 0.2
 [node name="DamageNumber" type="Node2D" parent="."]
 position = Vector2(-1, -8)
 script = ExtResource("14_cgb8u")
+
+[node name="CollisionTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true

@@ -33,6 +33,7 @@ const SILVER_XP_ANIMATION := preload("res://Graphics/coins/Silver_Xp_Animation.t
 		else:
 			finite_state_machine.transition(wander_state)
 #endregion
+@onready var collision_timer: Timer = $CollisionTimer
 
 @export var base_damage: float = 10
 @export var damage_multiplier := 1
@@ -53,6 +54,11 @@ func _ready() -> void:
 	attackable.damage = damage
 	on_health_change.connect(_on_health_change)
 	fsm.transition(walk_state if target else wander_state)
+	collision_timer.timeout.connect(
+		func () -> void:
+			hit_box.monitoring = true
+			hit_box.monitorable = true
+	)
 
 func _set_health(value: float) -> void:
 	super(value)
