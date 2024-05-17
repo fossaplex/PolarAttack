@@ -22,7 +22,7 @@ func get_title() -> String:
 	return "+ orb speed"
 
 func get_description() -> String:
-	return "add +" + str(increase_speed_by) + "speed +"
+	return "add +%d orb speed +" % increase_speed_by
 
 func get_texture() -> Resource:
 	return ICON

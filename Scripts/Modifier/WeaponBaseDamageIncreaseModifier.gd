@@ -21,7 +21,7 @@ func get_title() -> String:
 	return "+ base damage"
 
 func get_description() -> String:
-	return "add +" + str(increase_base_damage_by) + "to base damage of all current weapons"
+	return "add + %d to base of all current weapons" % increase_base_damage_by 
 
 func get_texture() -> Resource:
 	return ICON

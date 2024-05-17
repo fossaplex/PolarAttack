@@ -28,7 +28,7 @@ func get_title() -> String:
 	return "+ orb count"
 
 func get_description() -> String:
-	return "add +" + str(increase_count_by) + "orbs"
+	return "add +%d orbs" % increase_count_by
 
 func get_texture() -> Resource:
 	return ICON

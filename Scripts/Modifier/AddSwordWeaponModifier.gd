@@ -27,7 +27,7 @@ func get_title() -> String:
 	return "+ sword count"
 
 func get_description() -> String:
-	return "add +" + str(increase_count_by) + "sword +"
+	return "add +%d sword" % increase_count_by
 
 func get_texture() -> Resource:
 	return ICON

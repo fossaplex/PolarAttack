@@ -13,6 +13,7 @@ var markers: Array[Marker2D] = []
 @onready var collectables := $"../Collectables"
 @onready var fox_spawn_points: Node2D = $FoxSpawnPoints
 @onready var foxes: Node2D = $"../Foxes"
+@onready var enemy_respawn_progress_bar: ProgressBar = $"../CanvasLayer/EnemyRespawnProgressBar"
 
 var _level := 1
 var seal_count: int:
@@ -29,6 +30,10 @@ func _ready() -> void:
 	for spawn_point in spawn_points.get_children():
 		if (spawn_point is Marker2D):
 			markers.append(spawn_point)
+
+func _process(_delta: float) -> void:
+	enemy_respawn_progress_bar.value = timer.time_left
+	enemy_respawn_progress_bar.max_value = timer.wait_time
 
 func _on_timer_timeout() -> void:
 	var seal_spawn_points := spawn_points.get_children()
@@ -82,7 +87,7 @@ func spawn_xp(sealLocation: Vector2, xp_resource: ExperienceResource) -> void:
 
 func on_level_change(level: int, _prev_level: int) -> void:
 	_level = level
-	timer.wait_time = (30.0 / level + 40) * 30.0 + 10.0
+	timer.wait_time = 20
 	if seals.get_children().size() == 0:
 		timer.stop()
 		call_deferred("_on_timer_timeout")

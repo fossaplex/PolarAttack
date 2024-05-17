@@ -29,6 +29,10 @@ static var MODIFIER_DATUM : Array[ModifierData] = [
 		func () -> float: return 1.0  if not _require_weapon(WeaponType.WEAPON_TYPE.SWORD) else -1.0
 	),
 	ModifierData.new(2,Int.INT32_MAX,
+		func() -> Modifier: return IncreaseSwordFireRateModifier.new(0.1, level.player_level),
+		_increase_sword_fire_rate_modifier
+	),
+	ModifierData.new(2,Int.INT32_MAX,
 		func() -> Modifier: return IncreaseSwordSpeedModifier.new(5, level.player_level),
 		func () -> float: return 0.0 if not _require_weapon(WeaponType.WEAPON_TYPE.SWORD) else -1.0
 	),
@@ -108,7 +112,7 @@ static func _add_weapon_modifier_weight_override(weapon_type: WeaponType.WEAPON_
 		return -1.0
 	else:
 		return -1.0
-		
+
 static func _require_weapon_ovrride(weapon_type: WeaponType.WEAPON_TYPE) -> float:
 	if not _require_weapon(weapon_type): 
 		return 0.0
@@ -122,3 +126,12 @@ static func _require_weapon(weapon_type: WeaponType.WEAPON_TYPE) -> bool:
 			WeaponType.WEAPON_TYPE.BEAM: if weapon is Beam: return true
 			WeaponType.WEAPON_TYPE.SWORD: if weapon is Swords: return true
 	return false
+
+static func _increase_sword_fire_rate_modifier() -> float:
+	if not _require_weapon(WeaponType.WEAPON_TYPE.SWORD):
+		return 0.0
+	for weapon: Weapon in  level.player.weapon_handler.weapons.get_children():
+		if weapon is Swords:
+			if weapon.cooldown <= 1: 
+				return 0.0
+	return -1

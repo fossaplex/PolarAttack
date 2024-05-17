@@ -20,7 +20,7 @@ func get_title() -> String:
 	return "+ speed"
 
 func get_description() -> String:
-	return "add +" + str(increase_speed_by * level) + " speed"
+	return "add +%d movement speed" % increase_speed_by 
 
 func get_texture() -> Resource:
 	return ICON

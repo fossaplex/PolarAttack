@@ -22,7 +22,7 @@ func get_title() -> String:
 	return "+ laser length"
 
 func get_description() -> String:
-	return "add +" + str(increase_length_by) + "ti laser length"
+	return "add +%d laser length" % increase_length_by
 
 func get_texture() -> Resource:
 	return ICON

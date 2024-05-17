@@ -1,28 +1,30 @@
-class_name IncreaseSwordSpeedModifier
+class_name IncreaseSwordFireRateModifier
 extends WeaponModifier
+
+static var CAP := 1.0
 
 const ICON = preload("res://Graphics/Icons/icon.svg")
 
-var increase_speed_by: int
+var _increase_fire_rate_by: float
 func _init(
-	_increase_speed_by: int,
+	__increase_fire_rate_by: float,
 	_level: int
 ) -> void:
 	super._init(_level)
-	increase_speed_by = _increase_speed_by
+	_increase_fire_rate_by = __increase_fire_rate_by
 
 func _ready() -> void:
 	var weapons := weapons_handler.weapons.get_children()
 	for weapon: Weapon in weapons:
 		if weapon is Swords:
-			weapon.speed += increase_speed_by
+			weapon.cooldown = maxf(weapon.cooldown - _increase_fire_rate_by, CAP)
 	queue_free()
 
 func get_title() -> String:
-	return "+ sword speed"
+	return "+ sword fire rate"
 
 func get_description() -> String:
-	return "add +%d speed +" % increase_speed_by
+	return "add +%d fire rate +" % _increase_fire_rate_by
 
 func get_texture() -> Resource:
 	return ICON
@@ -31,4 +33,4 @@ func get_key() -> int:
 	return 1
 
 func get_tag() -> String:
-	return "IncreaseSwordSpeedModifier"
+	return "IncreaseSwordFireRateModifier"

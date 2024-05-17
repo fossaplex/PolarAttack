@@ -22,7 +22,7 @@ func get_title() -> String:
 	return "+ sword damage"
 
 func get_description() -> String:
-	return "add +" + str(increase_damage_by) + "damage +"
+	return "add +%d sword damage" % increase_damage_by
 
 func get_texture() -> Resource:
 	return ICON

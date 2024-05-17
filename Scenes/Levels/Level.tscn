@@ -96,6 +96,16 @@ grow_horizontal = 2
 show_percentage = false
 script = ExtResource("7_xmttv")
 
+[node name="EnemyRespawnProgressBar" type="ProgressBar" parent="CanvasLayer"]
+modulate = Color(0, 0, 1, 1)
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 27.0
+offset_bottom = 54.0
+grow_horizontal = 2
+scale = Vector2(1, 0.199999)
+show_percentage = false
+
 [node name="UpgradeMenu" parent="CanvasLayer" instance=ExtResource("7_3woya")]
 visible = false
 anchors_preset = 8
@@ -114,6 +124,30 @@ offset_top = 13.0
 offset_right = -599.0
 offset_bottom = -580.0
 mouse_filter = 2
+
+[node name="LevelLabel" type="Label" parent="CanvasLayer"]
+offset_left = 21.0
+offset_top = 1.0
+offset_right = 132.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+
+[node name="HealthLabel" type="Label" parent="CanvasLayer"]
+offset_left = 48.0
+offset_top = 585.0
+offset_right = 288.0
+offset_bottom = 613.0
+text = "ASADSD"
+horizontal_alignment = 1
+
+[node name="HealthProgressBar" type="ProgressBar" parent="CanvasLayer"]
+modulate = Color(0, 1, 0, 1)
+offset_left = 45.0
+offset_top = 582.0
+offset_right = 177.0
+offset_bottom = 609.0
+scale = Vector2(1.84, 1.2)
+show_percentage = false
 
 [node name="PauseMenu" parent="CanvasLayer" node_paths=PackedStringArray("level") instance=ExtResource("6_30ok4")]
 process_mode = 2
@@ -155,30 +189,6 @@ offset_left = -1.0
 offset_top = 1.0
 offset_right = -1.0
 offset_bottom = 1.0
-
-[node name="LevelLabel" type="Label" parent="CanvasLayer"]
-offset_left = 21.0
-offset_top = 1.0
-offset_right = 132.0
-offset_bottom = 66.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-
-[node name="HealthProgressBar" type="ProgressBar" parent="CanvasLayer"]
-modulate = Color(0, 1, 0, 1)
-offset_left = 45.0
-offset_top = 582.0
-offset_right = 177.0
-offset_bottom = 609.0
-scale = Vector2(1.84, 1.2)
-show_percentage = false
-
-[node name="HealthLabel" type="Label" parent="CanvasLayer"]
-offset_left = 48.0
-offset_top = 585.0
-offset_right = 288.0
-offset_bottom = 613.0
-text = "ASADSD"
-horizontal_alignment = 1
 
 [node name="ManagerContainer" type="Node" parent="."]
 
