@@ -1,32 +1,57 @@
 static var level : Level
 
-const Int = preload("res://Constants/Int.gd")
-const WeaponType = preload("res://Scripts/WeaponType.gd")
-const Weapon = preload("res://Scripts/Weapon.gd")
-
+const Int := preload("res://Constants/Int.gd")
 
 static var MODIFIER_DATUM : Array[ModifierData] = [
-	#ModifierData.new(2,Int.INT32_MAX,
-		#func() -> Modifier: return AddWeaponModifier.new(WeaponType.WEAPON_TYPE.ORB, level.player_level),
-		#func () -> float: return _add_weapon_modifier_weight_override(WeaponType.WEAPON_TYPE.ORB)
-	#),
-	ModifierData.new(2,2,func() -> Modifier: return PlayerHealthModifier.new(10, level.player_level)),
-	ModifierData.new(3,3,func() -> Modifier: return WeaponBaseDamageIncreaseModifier.new(10, level.player_level)),
-	ModifierData.new(4,4,
+	#player
+	ModifierData.new(2,Int.INT32_MAX,func() -> Modifier: return PlayerHealthModifier.new(10, level.player_level)),
+	ModifierData.new(2,Int.INT32_MAX,func() -> Modifier: return PlayerMoveSpeedModifier.new(10, level.player_level)),
+	#weapon
+	ModifierData.new(2,Int.INT32_MAX,func() -> Modifier: return WeaponBaseDamageIncreaseModifier.new(10, level.player_level)),
+
+	#orb
+	ModifierData.new(2,Int.INT32_MAX,
 		func() -> Modifier: return OrbCountIncreaseModifier.new(1, level.player_level),
 		func () -> float:  return 1.0  if not _require_weapon(WeaponType.WEAPON_TYPE.ORB) else -1.0
 	),
 	ModifierData.new(2,Int.INT32_MAX,
+		func() -> Modifier: return IncreaseOrbSpeedModifier.new(5, level.player_level),
+		func () -> float:  return 0.0 if not _require_weapon(WeaponType.WEAPON_TYPE.ORB) else -1.0
+	),
+	ModifierData.new(2,Int.INT32_MAX,
+		func() -> Modifier: return IncreaseOrbDamageModifier.new(5, level.player_level),
+		func () -> float:  return 0.0  if not _require_weapon(WeaponType.WEAPON_TYPE.ORB) else -1.0
+	),
+
+	#sword
+	ModifierData.new(2,Int.INT32_MAX,
 		func() -> Modifier: return AddSwordWeaponModifier.new(1, level.player_level),
 		func () -> float: return 1.0  if not _require_weapon(WeaponType.WEAPON_TYPE.SWORD) else -1.0
-	)
+	),
+	ModifierData.new(2,Int.INT32_MAX,
+		func() -> Modifier: return IncreaseSwordSpeedModifier.new(5, level.player_level),
+		func () -> float: return 0.0 if not _require_weapon(WeaponType.WEAPON_TYPE.SWORD) else -1.0
+	),
+	ModifierData.new(2,Int.INT32_MAX,
+		func() -> Modifier: return IncreaseSwordDamageModifier.new(5, level.player_level),
+		func() -> float: return 0.0 if not _require_weapon(WeaponType.WEAPON_TYPE.SWORD) else -1.0
+	),
+
+	#beam
+	ModifierData.new(2,Int.INT32_MAX,
+		func() -> Modifier: return IncreaseLaserLengthModifier.new(5, level.player_level),
+		func() -> float: return 0.0 if not _require_weapon(WeaponType.WEAPON_TYPE.BEAM) else -1.0
+	),
+	ModifierData.new(2,Int.INT32_MAX,
+		func() -> Modifier: return IncreaseLaserDamageModifier.new(5, level.player_level),
+		func() -> float: return 0.0 if not _require_weapon(WeaponType.WEAPON_TYPE.SWORD) else -1.0
+	),
 ]
 
 static func get_modifiers(max_size: int) -> Array[Modifier]:
 	var probabilities : Array[float] = []
 	for modifier_data in MODIFIER_DATUM:
 		probabilities.append(modifier_data.get_weight(level.player_level))
-
 	var selected_indice := _select_multiple_unique_indices(probabilities, max_size)
 	var modifiers: Array[Modifier] = []
 	for index: int in selected_indice:

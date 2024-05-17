@@ -1,6 +1,6 @@
 class_name Orbs
 extends Weapon
-const Weapon = preload("res://Scripts/Weapon.gd")
+
 const orb_scenes := preload("res://Scenes/Weapons/Orbs/Orb.tscn")
 var orbs: Array:
 	get: return get_children().filter(func(it: Variant) -> bool: return it is Orb)

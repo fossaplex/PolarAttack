@@ -2,7 +2,6 @@ class_name Level
 extends Node2D
 
 const Modifiers := preload("res://Constants/Modifiers.gd")
-const WeaponType = preload("res://Scripts/WeaponType.gd")
 
 signal toggle_game_paused(is_paused : bool)
 @onready var player := $Player as Player
@@ -48,3 +47,5 @@ func add_modifier(modifier: Modifier) -> void:
 
 func on_level_change(_level: int, _prev_level: int) -> void: 
 	player_level = _level
+	player.base_total_health += 50
+	player.health += 50

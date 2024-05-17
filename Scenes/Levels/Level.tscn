@@ -157,11 +157,28 @@ offset_right = -1.0
 offset_bottom = 1.0
 
 [node name="LevelLabel" type="Label" parent="CanvasLayer"]
-offset_left = 14.0
-offset_top = 25.0
-offset_right = 125.0
-offset_bottom = 90.0
+offset_left = 21.0
+offset_top = 1.0
+offset_right = 132.0
+offset_bottom = 66.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+
+[node name="HealthProgressBar" type="ProgressBar" parent="CanvasLayer"]
+modulate = Color(0, 1, 0, 1)
+offset_left = 45.0
+offset_top = 582.0
+offset_right = 177.0
+offset_bottom = 609.0
+scale = Vector2(1.84, 1.2)
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="CanvasLayer"]
+offset_left = 48.0
+offset_top = 585.0
+offset_right = 288.0
+offset_bottom = 613.0
+text = "ASADSD"
+horizontal_alignment = 1
 
 [node name="ManagerContainer" type="Node" parent="."]
 

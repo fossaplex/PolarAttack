@@ -1,7 +1,7 @@
 class_name WeaponBaseDamageIncreaseModifier
 extends WeaponModifier
-const Weapon = preload("res://Scripts/Weapon.gd")
-const ICON = preload("res://Graphics/Icons/icon.svg")
+
+const ICON := preload("res://Graphics/Icons/icon.svg")
 
 var increase_base_damage_by: int
 

@@ -1,6 +1,6 @@
 class_name Swords
 extends Weapon
-const Weapon = preload("res://Scripts/Weapon.gd")
+
 const SWORD_SCENE = preload("res://Scenes/Weapons/Swords/Sword.tscn")
 
 

@@ -75,9 +75,9 @@ func update_animation(direction: Vector2) -> void:
 	else:
 		ap.play("walk")
 
-func _on_health_change(health: float, prev_health: float) -> void:
-	if health < prev_health:
-		damage_number.display_number(ceil(prev_health - health))
+func _on_health_change(_health: float, prev_health: float) -> void:
+	if _health < prev_health:
+		damage_number.display_number(ceil(prev_health - _health))
 		sprite.modulate = Color(1,1,1,1)
 		await get_tree().create_timer(0.05).timeout
 		sprite.modulate = Color(3, 3, 3, 1)

@@ -2,8 +2,6 @@ class_name AddSwordWeaponModifier
 extends WeaponModifier
 
 const ICON = preload("res://Graphics/Icons/icon.svg")
-const WeaponType = preload("res://Scripts/WeaponType.gd")
-const Weapon = preload("res://Scripts/Weapon.gd")
 
 var increase_count_by: int
 func _init(

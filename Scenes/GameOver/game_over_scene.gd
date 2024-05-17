@@ -2,9 +2,9 @@ class_name GameOverScene
 extends CanvasLayer
 
 
-@onready var new_game_button = $PanelContainer/MarginContainer/MainVboxContainer/HBoxContainer/NewGameButton as Button
-@onready var main_menu_button = $PanelContainer/MarginContainer/MainVboxContainer/HBoxContainer/MainMenuButton as Button
-@onready var exit_game_button = $PanelContainer/MarginContainer/MainVboxContainer/HBoxContainer/ExitGameButton as Button
+@onready var new_game_button := $PanelContainer/MarginContainer/MainVboxContainer/HBoxContainer/NewGameButton as Button
+@onready var main_menu_button := $PanelContainer/MarginContainer/MainVboxContainer/HBoxContainer/MainMenuButton as Button
+@onready var exit_game_button := $PanelContainer/MarginContainer/MainVboxContainer/HBoxContainer/ExitGameButton as Button
 
 @onready var start_level := preload("res://Scenes/Levels/Level.tscn") as PackedScene
 
