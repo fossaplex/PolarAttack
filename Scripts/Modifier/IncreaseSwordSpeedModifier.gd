@@ -16,6 +16,8 @@ func _ready() -> void:
 	for weapon: Weapon in weapons:
 		if weapon is Swords:
 			weapon.speed += increase_speed_by
+	queue_free()
+
 func get_title() -> String:
 	return "+ sword speed"
 

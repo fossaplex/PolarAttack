@@ -22,6 +22,7 @@ func _ready() -> void:
 		orbs.count += increase_count_by
 	else:
 		weapons_handler.add_weapon(WeaponType.WEAPON_TYPE.ORB, 20, 1)
+	queue_free()
 
 func get_title() -> String:
 	return "+ orb count"

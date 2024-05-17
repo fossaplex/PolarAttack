@@ -16,6 +16,8 @@ func _ready() -> void:
 	for weapon: Weapon in weapons:
 		if weapon is Orbs:
 			weapon.speed += increase_speed_by
+	queue_free()
+
 func get_title() -> String:
 	return "+ orb speed"
 

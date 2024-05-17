@@ -15,6 +15,7 @@ func _init(
 func _ready() -> void:
 	for weapon: Weapon in weapons_handler.weapons.get_children():
 		weapon.attackable.base_damage += increase_base_damage_by
+	queue_free()
 
 func get_title() -> String:
 	return "+ base damage"

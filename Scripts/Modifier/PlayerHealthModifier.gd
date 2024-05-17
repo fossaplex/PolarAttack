@@ -15,6 +15,7 @@ func _init(
 func _ready() -> void:
 	player.base_total_health += base_total_health_by * level
 	player.health += base_total_health_by * level
+	queue_free()
 
 func get_title() -> String:
 	return "+ + health"

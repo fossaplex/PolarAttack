@@ -1,5 +1,6 @@
 extends Area2D
 class_name BaseCollectableEntity
+@onready var timer: Timer = $Timer
 
 @export var collectable_resource : BaseCollectableResource:
 	set(value):
@@ -13,3 +14,12 @@ class_name BaseCollectableEntity
 func on_collect() -> void:
 	CollectableSignalBus.collect_entity.emit(collectable_resource)
 	queue_free()
+
+func _ready() -> void:
+	timer.timeout.connect(
+		func() -> void: queue_free()
+	)
+
+func _process(_delta: float) -> void:
+	var alpha := timer.time_left/timer.wait_time
+	animated_sprite_2d.modulate.a = alpha

@@ -56,7 +56,7 @@ func create_seal(spawn_point: Marker2D) -> void:
 	seals.add_child(seal)
 	seal.target = player
 	seal.attackable.update(1, _level + 2)
-	seal.base_total_health = 30 + (_level + 10) 
+	seal.base_total_health = 30 + (_level + 2) 
 	seal.health = seal.base_total_health
 	seal.global_position = spawn_point.global_position
 	seal.on_death.connect(spawn_xp)
@@ -67,7 +67,7 @@ func create_fox(spawn_point: FoxMarker2D) -> void:
 	spawn_point.fox = fox
 	foxes.add_child(fox)
 	fox.attackable.update(1, _level + 2)
-	fox.base_total_health = 30 + (_level + 10) 
+	fox.base_total_health = 30 + (_level + 2) 
 	fox.health = fox.base_total_health
 	fox.fox_chase_state.speed =  150 + (_level + 2) 
 	fox.setup_done = true
@@ -82,7 +82,8 @@ func spawn_xp(sealLocation: Vector2, xp_resource: ExperienceResource) -> void:
 
 func on_level_change(level: int, _prev_level: int) -> void:
 	_level = level
-	timer.stop()
 	timer.wait_time = (30.0 / level + 40) * 30.0 + 10.0
-	call_deferred("_on_timer_timeout")
-	timer.start()
+	if seals.get_children().size() == 0:
+		timer.stop()
+		call_deferred("_on_timer_timeout")
+		timer.start()

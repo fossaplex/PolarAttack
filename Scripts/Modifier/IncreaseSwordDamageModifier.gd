@@ -16,6 +16,8 @@ func _ready() -> void:
 	for weapon: Weapon in weapons:
 		if weapon is Swords:
 			weapon.attackable.base_damage += increase_damage_by
+	queue_free()
+
 func get_title() -> String:
 	return "+ sword damage"
 

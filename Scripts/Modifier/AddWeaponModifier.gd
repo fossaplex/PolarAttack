@@ -15,6 +15,7 @@ func _init(
 
 func _ready() -> void:
 	weapons_handler.add_weapon(weapon_type, 35, 1)
+	queue_free()
 
 func get_title() -> String:
 	match weapon_type:

@@ -14,6 +14,7 @@ func _init(
 
 func _ready() -> void:
 	player.speed += increase_speed_by
+	queue_free()
 
 func get_title() -> String:
 	return "+ speed"
