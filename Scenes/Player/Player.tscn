@@ -332,8 +332,9 @@ shape = SubResource("CircleShape2D_mgvc2")
 
 [node name="SoundWalk" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_cxqis")
-volume_db = 18.216
+volume_db = 12.636
 pitch_scale = 1.22
+bus = &"SFX"
 
 [node name="WeaponHandler" type="Node2D" parent="."]
 script = ExtResource("10_2ub6s")
@@ -405,6 +406,7 @@ one_shot = true
 [node name="ProgressBars" type="Node2D" parent="."]
 
 [node name="HealthProgressBar" type="ProgressBar" parent="ProgressBars"]
+visible = false
 texture_filter = 1
 offset_left = -11.0
 offset_top = -23.0

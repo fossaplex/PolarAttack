@@ -94,13 +94,12 @@ modulate = Color(0, 0, 1, 1)
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 5.0
-offset_top = 641.0
-offset_right = -202.0
-offset_bottom = 668.0
+offset_top = 637.0
+offset_right = -9.0
+offset_bottom = 672.0
 grow_horizontal = 2
 scale = Vector2(1, 0.199999)
 show_percentage = false
-metadata/_edit_use_anchors_ = true
 
 [node name="UpgradeMenu" parent="CanvasLayer" instance=ExtResource("7_3woya")]
 visible = false
