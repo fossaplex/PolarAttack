@@ -39,8 +39,6 @@ func _on_timer_timeout() -> void:
 	var seal_spawn_points := spawn_points.get_children()
 	seal_spawn_points.shuffle()
 	for i: int in range(seal_count):
-		print(i)
-		print(i % seal_spawn_points.size())
 		if i % seal_spawn_points.size() == 0:
 			await get_tree().create_timer(0.05).timeout
 		var index := i % seal_spawn_points.size()

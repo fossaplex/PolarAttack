@@ -49,4 +49,3 @@ func add_modifier(modifiers: Array[Modifier]) -> void:
 func on_level_change(_level: int, _prev_level: int) -> void: 
 	player_level = _level
 	player.base_total_health += 10
-	#player.health += 50
