@@ -37,4 +37,6 @@ func _process(delta: float) -> void:
 	sleep_range_2d.modulate.a = 1 - (circle_scale / (sleep_range * SPRITE_MULTIPLER))
 	if circle_scale > sleep_range * 2:
 		circle_scale = 0
+	var shape := collision_shape_2d.shape as CircleShape2D
+	shape.radius = AREA_MULTIPLER * sleep_range
 

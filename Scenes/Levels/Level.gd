@@ -17,7 +17,7 @@ var game_paused : bool = false:
 		return game_paused
 	set(value):
 		game_paused = value
-		if not game_paused and not upgrade_menu.visible:
+		if (not game_paused and not upgrade_menu.visible) or not upgrade_menu.visible:
 			get_tree().paused = game_paused
 		toggle_game_paused.emit(game_paused)
 

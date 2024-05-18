@@ -65,7 +65,7 @@ func create_seal(spawn_point: Marker2D) -> void:
 	seal.base_total_health = 30 + (_level + 3)
 	seal.health = seal.base_total_health
 	seal.on_death.connect(spawn_xp)
-	seal.base_speed = 50 + (_level * 1.5)
+	seal.base_speed = 50 + ceil(_level * 1.5)
 	seal.attackable.update(1, _level * 1.5)
 	seal.collision_timer.start()
 	seal.global_position = spawn_point.global_position
@@ -77,7 +77,7 @@ func create_fox(spawn_point: FoxMarker2D) -> void:
 	fox.attackable.update(1, _level * 1.5)
 	fox.base_total_health = 30 + (_level * 2)
 	fox.health = fox.base_total_health
-	fox.fox_chase_state.speed =  150 + (_level + 1.5)
+	fox.fox_chase_state.speed =  150 + ceil(_level + 1.5)
 	fox.setup_done = true
 	fox.global_position = spawn_point.global_position
 	fox.on_death.connect(spawn_xp)

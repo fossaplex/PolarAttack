@@ -225,5 +225,5 @@ position = Vector2(-1, -8)
 script = ExtResource("14_cgb8u")
 
 [node name="CollisionTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 0.25
 one_shot = true
