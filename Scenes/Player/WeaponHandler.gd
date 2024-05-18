@@ -5,8 +5,7 @@ const Modifiers = preload("res://Constants/Modifiers.gd")
 const BEAM := preload("res://Scenes/Beam/PlayerBeam.tscn") as PackedScene
 const ORB := preload("res://Scenes/Weapons/Orbs/Orbs.tscn") as PackedScene
 const SWORDS = preload("res://Scenes/Weapons/Swords/Swords.tscn")
-const WeaponType = preload("res://Scripts/WeaponType.gd")
-const Weapon = preload("res://Scripts/Weapon.gd")
+
 @onready var beam_marker: Marker2D = $WeaponPositionMarkers/BeamMarker
 @onready var orb_marker: Marker2D = $WeaponPositionMarkers/OrbMarker
 @onready var sword_marker: Marker2D = $WeaponPositionMarkers/SwordMarker

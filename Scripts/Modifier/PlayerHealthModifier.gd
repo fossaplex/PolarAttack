@@ -15,12 +15,13 @@ func _init(
 func _ready() -> void:
 	player.base_total_health += base_total_health_by * level
 	player.health += base_total_health_by * level
+	queue_free()
 
 func get_title() -> String:
-	return "+ + health"
+	return "+ health"
 
 func get_description() -> String:
-	return "add +" + str(base_total_health_by * level) + " to base health"
+	return "add +%d to base health" % (base_total_health_by * level)
 
 func get_texture() -> Resource:
 	return ICON

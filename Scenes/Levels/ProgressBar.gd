@@ -16,7 +16,7 @@ func on_xp_increment(xp: int, _prev_xp: int, max_xp: int) -> void:
 	var tween := create_tween().bind_node(self).set_trans(Tween.TRANS_LINEAR)
 	tween.tween_property(self, "value", float(xp) if xp != 0 else max_value, 1)
 
-func on_upgrade_pressed(_modifier: Modifier) -> void:
+func on_upgrade_pressed(_modifier: Array[Modifier]) -> void:
 	var tween := create_tween().bind_node(self).set_trans(Tween.TRANS_LINEAR)
 	tween.tween_property(self, "value", 0,  1)
 	if (_exp != 0) : tween.tween_property(self, "value", _exp,  1)

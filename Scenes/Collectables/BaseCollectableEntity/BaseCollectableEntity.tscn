@@ -14,15 +14,20 @@ collision_layer = 16
 collision_mask = 2
 script = ExtResource("1_4nf6d")
 
-[node name="Shadow" type="Sprite2D" parent="."]
-position = Vector2(0, 1)
-texture = ExtResource("3_xo6b1")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -5.925)
 sprite_frames = ExtResource("2_6bkiq")
 animation = &"gold_xp_spin"
 
+[node name="Shadow" type="Sprite2D" parent="AnimatedSprite2D"]
+show_behind_parent = true
+position = Vector2(0, 6.925)
+texture = ExtResource("3_xo6b1")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_60e1w")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 15.0
+autostart = true

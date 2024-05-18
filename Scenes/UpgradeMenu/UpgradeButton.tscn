@@ -37,6 +37,7 @@ theme_override_constants/separation = 8
 [node name="HBoxContainer" type="Control" parent="MarginContainer/Control"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Control/HBoxContainer"]
 layout_mode = 1
@@ -46,6 +47,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Title" type="Label" parent="MarginContainer/Control/HBoxContainer/CenterContainer"]
 layout_mode = 2

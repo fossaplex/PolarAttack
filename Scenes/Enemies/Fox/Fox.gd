@@ -57,7 +57,7 @@ func _on_health_change(_health: float, _prev_health: float) -> void:
 		single_finite_state_machine.transition(fox_death_state)
 		SMALL_EXPERIENCE.collectable_texture = GOLD_XP_ANIMATION
 		SMALL_EXPERIENCE.collectable_type = "experience"
-		SMALL_EXPERIENCE.experienceValue = 20
+		SMALL_EXPERIENCE.experienceValue = 40
 		on_death.emit(global_position, SMALL_EXPERIENCE)
 	if _health < _prev_health:
 		damage_number.display_number(ceil(_prev_health - _health))

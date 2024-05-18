@@ -33,6 +33,7 @@ const SILVER_XP_ANIMATION := preload("res://Graphics/coins/Silver_Xp_Animation.t
 		else:
 			finite_state_machine.transition(wander_state)
 #endregion
+@onready var collision_timer: Timer = $CollisionTimer
 
 @export var base_damage: float = 10
 @export var damage_multiplier := 1
@@ -53,6 +54,11 @@ func _ready() -> void:
 	attackable.damage = damage
 	on_health_change.connect(_on_health_change)
 	fsm.transition(walk_state if target else wander_state)
+	collision_timer.timeout.connect(
+		func () -> void:
+			hit_box.monitoring = true
+			hit_box.monitorable = true
+	)
 
 func _set_health(value: float) -> void:
 	super(value)
@@ -75,9 +81,9 @@ func update_animation(direction: Vector2) -> void:
 	else:
 		ap.play("walk")
 
-func _on_health_change(health: float, prev_health: float) -> void:
-	if health < prev_health:
-		damage_number.display_number(ceil(prev_health - health))
+func _on_health_change(_health: float, prev_health: float) -> void:
+	if _health < prev_health:
+		damage_number.display_number(ceil(prev_health - _health))
 		sprite.modulate = Color(1,1,1,1)
 		await get_tree().create_timer(0.05).timeout
 		sprite.modulate = Color(3, 3, 3, 1)

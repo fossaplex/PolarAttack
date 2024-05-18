@@ -15,17 +15,20 @@ func _init(
 
 func _ready() -> void:
 	weapons_handler.add_weapon(weapon_type, 35, 1)
+	queue_free()
 
 func get_title() -> String:
 	match weapon_type:
 		WeaponType.WEAPON_TYPE.ORB: return "** orb **"
 		WeaponType.WEAPON_TYPE.BEAM: return "** beam **"
+		WeaponType.WEAPON_TYPE.SWORD: return "** sword **"
 	return ""
 
 func get_description() -> String:
 	match weapon_type:
 		WeaponType.WEAPON_TYPE.ORB: return "gain spinning orb weapon"
-		WeaponType.WEAPON_TYPE.BEAM: return "gain spinning laser beam"
+		WeaponType.WEAPON_TYPE.BEAM: return "gain laser beam weapon"
+		WeaponType.WEAPON_TYPE.SWORD: return "gain sword weapon"
 	return ""
 
 func get_texture() -> Resource:

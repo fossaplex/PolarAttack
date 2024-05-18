@@ -13,12 +13,13 @@ var markers: Array[Marker2D] = []
 @onready var collectables := $"../Collectables"
 @onready var fox_spawn_points: Node2D = $FoxSpawnPoints
 @onready var foxes: Node2D = $"../Foxes"
+@onready var enemy_respawn_progress_bar: ProgressBar = $"../CanvasLayer/EnemyRespawnProgressBar"
 
 var _level := 1
 var seal_count: int:
 	get: return _level * 2
 
-var fox_count:
+var fox_count: int:
 	get: return _level
 
 func _ready() -> void:
@@ -30,10 +31,16 @@ func _ready() -> void:
 		if (spawn_point is Marker2D):
 			markers.append(spawn_point)
 
+func _process(_delta: float) -> void:
+	enemy_respawn_progress_bar.value = timer.time_left
+	enemy_respawn_progress_bar.max_value = timer.wait_time
+
 func _on_timer_timeout() -> void:
-	var seal_spawn_points = spawn_points.get_children()
+	var seal_spawn_points := spawn_points.get_children()
 	seal_spawn_points.shuffle()
 	for i: int in range(seal_count):
+		if i % seal_count == 0:
+			await get_tree().create_timer(0.05).timeout
 		var index := i % seal_spawn_points.size()
 		var spawn_point := seal_spawn_points[index] as Marker2D
 		create_seal(spawn_point)
@@ -55,21 +62,22 @@ func create_seal(spawn_point: Marker2D) -> void:
 	var seal := SEAL_SCENE.instantiate() as Seal
 	seals.add_child(seal)
 	seal.target = player
-	seal.attackable.update(1, _level + 2)
-	seal.base_total_health = 30 + (_level * 10) 
+	seal.base_total_health = 30 + (_level + 2)
 	seal.health = seal.base_total_health
-	seal.global_position = spawn_point.global_position
 	seal.on_death.connect(spawn_xp)
-	seal.base_speed = 50 + (_level * 2) 
+	seal.base_speed = 50 + (_level + 2)
+	seal.attackable.update(1, _level + 2)
+	seal.collision_timer.start()
+	seal.global_position = spawn_point.global_position
 
 func create_fox(spawn_point: FoxMarker2D) -> void:
 	var fox := FOX_SCENE.instantiate() as Fox
 	spawn_point.fox = fox
 	foxes.add_child(fox)
 	fox.attackable.update(1, _level + 2)
-	fox.base_total_health = 30 + (_level * 10) 
+	fox.base_total_health = 30 + (_level + 2)
 	fox.health = fox.base_total_health
-	fox.fox_chase_state.speed =  150 + (_level + 10) 
+	fox.fox_chase_state.speed =  150 + (_level + 2)
 	fox.setup_done = true
 	fox.global_position = spawn_point.global_position
 	fox.on_death.connect(spawn_xp)
@@ -82,4 +90,8 @@ func spawn_xp(sealLocation: Vector2, xp_resource: ExperienceResource) -> void:
 
 func on_level_change(level: int, _prev_level: int) -> void:
 	_level = level
-	timer.wait_time = (1.0 / level) * 20 + 7
+	timer.wait_time = 20
+	if seals.get_children().size() == 0:
+		timer.stop()
+		call_deferred("_on_timer_timeout")
+		timer.start()

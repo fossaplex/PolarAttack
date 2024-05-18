@@ -1,34 +1,28 @@
-class_name OrbCountIncreaseModifier
+class_name IncreaseLaserLengthModifier
 extends WeaponModifier
 
 const ICON = preload("res://Graphics/Icons/icon.svg")
 
-var increase_count_by: int
+var increase_length_by: int
 
 func _init(
-	_increase_count_by: int,
+	_increase_length_by: int,
 	_level: int
 ) -> void:
 	super._init(_level)
-	increase_count_by = _increase_count_by
+	increase_length_by = _increase_length_by
 
 func _ready() -> void:
 	var weapons := weapons_handler.weapons.get_children()
-	var orbs: Orbs
 	for weapon: Weapon in weapons:
-		if weapon is Orbs:
-			orbs = weapon
-	if orbs:
-		orbs.count += increase_count_by
-	else:
-		weapons_handler.add_weapon(WeaponType.WEAPON_TYPE.ORB, 20, 1)
-	queue_free()
+		if weapon is Beam:
+			weapon.max_length += increase_length_by
 
 func get_title() -> String:
-	return "+ orb count"
+	return "+ laser length"
 
 func get_description() -> String:
-	return "add +%d orbs" % increase_count_by
+	return "add +%d laser length" % increase_length_by
 
 func get_texture() -> Resource:
 	return ICON
@@ -37,4 +31,4 @@ func get_key() -> int:
 	return 1
 
 func get_tag() -> String:
-	return "OrbCountIncreaseModifier"
+	return "IncreaseLaserLengthModifier"

@@ -1,7 +1,7 @@
 class_name WeaponBaseDamageIncreaseModifier
 extends WeaponModifier
-const Weapon = preload("res://Scripts/Weapon.gd")
-const ICON = preload("res://Graphics/Icons/icon.svg")
+
+const ICON := preload("res://Graphics/Icons/icon.svg")
 
 var increase_base_damage_by: int
 
@@ -15,12 +15,13 @@ func _init(
 func _ready() -> void:
 	for weapon: Weapon in weapons_handler.weapons.get_children():
 		weapon.attackable.base_damage += increase_base_damage_by
+	queue_free()
 
 func get_title() -> String:
 	return "+ base damage"
 
 func get_description() -> String:
-	return "add +" + str(increase_base_damage_by) + "to base damage of all current weapons"
+	return "add + %d to base of all current weapons" % increase_base_damage_by 
 
 func get_texture() -> Resource:
 	return ICON
