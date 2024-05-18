@@ -82,3 +82,8 @@ esc={
 2d_physics/layer_7="enemy walk"
 2d_physics/layer_8="wall walk"
 2d_physics/layer_9="collectable hitbox"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
