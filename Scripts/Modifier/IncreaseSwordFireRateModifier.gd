@@ -24,7 +24,7 @@ func get_title() -> String:
 	return "+ sword fire rate"
 
 func get_description() -> String:
-	return "add +%d fire rate +" % _increase_fire_rate_by
+	return "add +%.1f fire rate +" % _increase_fire_rate_by
 
 func get_texture() -> Resource:
 	return ICON
