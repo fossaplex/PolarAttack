@@ -100,6 +100,7 @@ offset_bottom = 668.0
 grow_horizontal = 2
 scale = Vector2(1, 0.199999)
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="UpgradeMenu" parent="CanvasLayer" instance=ExtResource("7_3woya")]
 visible = false
