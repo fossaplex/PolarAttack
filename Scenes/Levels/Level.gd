@@ -17,13 +17,14 @@ var game_paused : bool = false:
 		return game_paused
 	set(value):
 		game_paused = value
-		get_tree().paused = game_paused
+		if not game_paused and not upgrade_menu.visible:
+			get_tree().paused = game_paused
 		toggle_game_paused.emit(game_paused)
 
 func _ready() -> void:
 	player.on_dead.connect(_on_player_on_dead)
 	upgrade_menu.on_upgrade_pressed.connect(add_modifier)
-	player.weapon_handler.add_weapon(WeaponType.WEAPON_TYPE.BEAM, 50, 1)
+	player.weapon_handler.add_weapon(WeaponType.WEAPON_TYPE.BEAM, 40, 1)
 	Modifiers.level = self
 	PlayerXpSignalBus.on_level_change.connect(on_level_change)
 
@@ -48,5 +49,4 @@ func add_modifier(modifiers: Array[Modifier]) -> void:
 
 func on_level_change(_level: int, _prev_level: int) -> void: 
 	player_level = _level
-	player.base_total_health += 50
-	player.health += 50
+	player.base_total_health += 10

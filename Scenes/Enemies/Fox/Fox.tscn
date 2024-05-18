@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://c7m4h2fhl31aw"]
+[gd_scene load_steps=53 format=3 uid="uid://c7m4h2fhl31aw"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/Fox/Fox.gd" id="1_13xdi"]
 [ext_resource type="Script" path="res://Scenes/Enemies/Fox/SleepArea.gd" id="2_0f6lk"]
@@ -19,7 +19,6 @@
 [ext_resource type="Script" path="res://Scenes/Beam/FoxBeam.gd" id="16_ph1h0"]
 [ext_resource type="Script" path="res://Scripts/Attackable/Attackable.gd" id="18_2altm"]
 [ext_resource type="AudioStream" uid="uid://wv21kwdqr8rb" path="res://Sounds/tempdeathsound.wav" id="18_l05ee"]
-[ext_resource type="AudioStream" uid="uid://cribpqi2ab5in" path="res://Sounds/step_1.mp3" id="20_vpaxq"]
 [ext_resource type="Script" path="res://Scripts/DamageNumber.gd" id="21_k00v7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_daph7"]
@@ -373,11 +372,6 @@ position = Vector2(14, -10)
 position = Vector2(0, -6)
 stream = ExtResource("18_l05ee")
 volume_db = 24.0
-
-[node name="SoundWalk" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("20_vpaxq")
-volume_db = 18.0
-pitch_scale = 1.22
 
 [node name="Duration" type="TextureProgressBar" parent="."]
 texture_filter = 1

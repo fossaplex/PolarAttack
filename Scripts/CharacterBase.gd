@@ -43,7 +43,7 @@ func _base_total_health(value: int) -> void:
 
 func _set_health(value: float) -> void:
 	var prev := health
-	health = value
+	health = minf(value, total_health)
 	
 	if prev != health:
 		on_health_change.emit(health, prev)
