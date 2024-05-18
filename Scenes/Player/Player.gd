@@ -44,7 +44,7 @@ func _base_total_health(value: int) -> void:
 	if health_progress_bar: health_progress_bar.max_value = value
 
 func _set_health(value: float) -> void:
-	if not i_frame.can_take_damage: return
+	if value < health and not i_frame.can_take_damage: return
 	super(value)
 	if health_progress_bar:
 		var tween := create_tween()

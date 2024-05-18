@@ -11,7 +11,7 @@ func enter() -> void:
 		animated_sprite_2d.play("idle")
 		if not fox.target:
 			sleep_area_2d.activate =  true
-			sleep_area_2d.sleep_range = 3
+			sleep_area_2d.sleep_range = 1
 
 func exit() -> void:
 	super()
