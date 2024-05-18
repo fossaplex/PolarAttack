@@ -16,7 +16,15 @@ func on_collect() -> void:
 	queue_free()
 
 func _ready() -> void:
+	var tween = create_tween()
+	var tween_duration := .4
+	
+	tween.tween_property(self, "position", Vector2(0, -10), tween_duration).as_relative().set_trans(Tween.TRANS_BOUNCE)
+	tween.tween_property(self, "position", Vector2(0, 10), tween_duration).as_relative()
+	
+
 	timer.timeout.connect(
+		
 		func() -> void: queue_free()
 	)
 

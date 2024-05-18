@@ -20,7 +20,7 @@ func get_title() -> String:
 	return "+ health"
 
 func get_description() -> String:
-	return "add +%d to base health" % (base_total_health_by * level)
+	return "heal for +%d health" % (base_total_health_by * level)
 
 func get_texture() -> Resource:
 	return ICON

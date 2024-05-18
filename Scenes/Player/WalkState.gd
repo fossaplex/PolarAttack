@@ -13,7 +13,7 @@ extends State
 func enter() -> void:
 	super()
 	timer.timeout.connect(_on_timer_timeout)
-	timer.wait_time = .2
+	timer.wait_time = .24
 	sound_walk.play()
 	animation_player.play("walk")
 	timer.start()

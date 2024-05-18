@@ -1,6 +1,6 @@
 extends ProgressBar
 
-@onready var progress_bar: ProgressBar = $"."
+@onready var progress_bar: ProgressBar = $"../ProgressBar"
 @onready var upgrade_menu: UpgradeMenu = $"../UpgradeMenu"
 var _exp := 0
 
