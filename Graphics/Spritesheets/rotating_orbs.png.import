@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://e4hxlcuau0ik"
-path="res://.godot/imported/orb.jpg-0d0dff51060ad4160da82d13d2214c30.ctex"
+uid="uid://dgkn2g6h1fvv2"
+path="res://.godot/imported/rotating_orbs.png-7d64c8360337b81b9fe9cad59bbc6ae7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Spritesheets/Bullets/orb.jpg"
-dest_files=["res://.godot/imported/orb.jpg-0d0dff51060ad4160da82d13d2214c30.ctex"]
+source_file="res://Graphics/Spritesheets/rotating_orbs.png"
+dest_files=["res://.godot/imported/rotating_orbs.png-7d64c8360337b81b9fe9cad59bbc6ae7.ctex"]
 
 [params]
 

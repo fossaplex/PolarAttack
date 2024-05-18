@@ -10,12 +10,14 @@ const GROUPS = preload("res://Constants/Groups.gd")
 @export var attackable : Attackable
 @onready var audio_stream_player_2d := $AudioStreamPlayer2D as AudioStreamPlayer2D
 @onready var audio_stream_player := $AudioStreamPlayer as AudioStreamPlayer
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 const pitch_variation_range := 0.3
 const base_pitch := 1.0
 var angle_degrees := 0.0
 
 func _ready() -> void:
+	animated_sprite_2d.play("rotate")
 	area_entered.connect(_on_area_entered)
 
 func _process(delta: float) -> void:

@@ -1,30 +1,69 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5naqof73cu32"]
+[gd_scene load_steps=11 format=3 uid="uid://b5naqof73cu32"]
 
 [ext_resource type="Script" path="res://Scenes/Weapons/Orbs/Orb.gd" id="1_2r46a"]
-[ext_resource type="Texture2D" uid="uid://e4hxlcuau0ik" path="res://Graphics/Spritesheets/Bullets/orb.jpg" id="2_rltpo"]
+[ext_resource type="Texture2D" uid="uid://dgkn2g6h1fvv2" path="res://Graphics/Spritesheets/rotating_orbs.png" id="2_dxlr4"]
 [ext_resource type="AudioStream" uid="uid://yn48i4i55pcx" path="res://Sounds/pop 3.wav" id="3_xy0js"]
 [ext_resource type="Texture2D" uid="uid://1fivtnit1ogv" path="res://Graphics/light.png" id="4_u2pvg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bonfd"]
+atlas = ExtResource("2_dxlr4")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7s1u2"]
+atlas = ExtResource("2_dxlr4")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pggbb"]
+atlas = ExtResource("2_dxlr4")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22xwk"]
+atlas = ExtResource("2_dxlr4")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2ylry"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bonfd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7s1u2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pggbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22xwk")
+}],
+"loop": true,
+"name": &"rotate",
+"speed": 8.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kjkp5"]
 
 [node name="Orb" type="Area2D"]
 z_index = 1
+texture_filter = 1
 position = Vector2(0, -1)
 scale = Vector2(0.2, 0.2)
 collision_layer = 8
 collision_mask = 32
 script = ExtResource("1_2r46a")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 5)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_2ylry")
+animation = &"rotate"
+autoplay = "rotate"
+frame_progress = 0.764794
+
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
+scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_kjkp5")
-
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(0, 5)
-scale = Vector2(0.035, 0.035)
-texture = ExtResource("2_rltpo")
-region_enabled = true
-region_rect = Rect2(112, 112, 776, 776)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 autoplay = true
