@@ -74,6 +74,7 @@ bus = &"SFX"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_xy0js")
+bus = &"SFX"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(1, 0.192157, 1, 1)
