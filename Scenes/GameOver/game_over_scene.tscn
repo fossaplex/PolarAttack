@@ -124,14 +124,3 @@ theme_override_styles/normal = ExtResource("4_yxt3v")
 theme_override_styles/hover = ExtResource("5_kp413")
 theme_override_styles/pressed = ExtResource("6_qfyj5")
 text = "MAIN MENU"
-
-[node name="ExitGameButton" type="Button" parent="PanelContainer/MarginContainer/MainVboxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(200, 80)
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_normal_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = ExtResource("4_yxt3v")
-theme_override_styles/hover = ExtResource("5_kp413")
-theme_override_styles/pressed = ExtResource("6_qfyj5")
-text = "EXIT GAME"

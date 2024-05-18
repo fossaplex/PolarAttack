@@ -30,5 +30,4 @@ func on_exit_options_menu() -> void:
 func handle_connecting_signals() -> void:
 	start_game_button.button_down.connect(on_start_pressed)
 	options_game_button.button_down.connect(on_options_pressed)
-	exit_game_button.button_down.connect(on_exit_pressed)
 	options_menu.exit_options_menu.connect(on_exit_options_menu)

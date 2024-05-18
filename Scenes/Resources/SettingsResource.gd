@@ -3,7 +3,7 @@ extends Resource
 
 #Default Variables
 #Graphics
-const DEFAULT_WINDOW_MODE_INDEX: int = 1
+const DEFAULT_WINDOW_MODE_INDEX: int = 0
 const DEFAULT_RESOLUTION_INDEX: int = 0
 
 #Volume

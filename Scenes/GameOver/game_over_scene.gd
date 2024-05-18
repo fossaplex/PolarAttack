@@ -23,4 +23,3 @@ func on_main_menu_pressed() -> void:
 func handle_connecting_signals() -> void:
 	new_game_button.button_down.connect(on_start_pressed)
 	main_menu_button.button_down.connect(on_main_menu_pressed)
-	exit_game_button.button_down.connect(on_exit_pressed)
