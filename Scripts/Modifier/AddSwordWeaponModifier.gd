@@ -20,7 +20,7 @@ func _ready() -> void:
 	if swords:
 		swords.count += increase_count_by
 	else:
-		weapons_handler.add_weapon(WeaponType.WEAPON_TYPE.SWORD, 30, 1)
+		weapons_handler.add_weapon(WeaponType.WEAPON_TYPE.SWORD, 20, 1)
 	queue_free()
 
 func get_title() -> String:

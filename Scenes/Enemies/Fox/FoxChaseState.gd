@@ -7,22 +7,14 @@ extends State
 	get: return fox.target
 var speed := 150
 @onready var fox_laser_attack_state: Node = $"../FoxLaserAttackState"
-@onready var sound_walk: AudioStreamPlayer2D = $"../../SoundWalk"
 
 func enter() -> void:
 	super()
 	animated_sprite_2d.play("run")
-	sound_walk.play()
-	sound_walk.finished.connect(
-		func() -> void:
-			if (fsm as SingleFiniteStateMachine)._current_state == self:
-				sound_walk.play()
-	)
 
 func exit() -> void:
 	super()
 	animated_sprite_2d.stop()
-	sound_walk.stop()
 	fox.velocity = Vector2.ZERO
 
 func process_frame(delta: float) -> void:

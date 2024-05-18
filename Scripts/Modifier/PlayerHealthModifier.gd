@@ -13,7 +13,7 @@ func _init(
 	base_total_health_by = _base_total_health_by
 
 func _ready() -> void:
-	player.base_total_health += base_total_health_by * level
+	#player.base_total_health += base_total_health_by * level
 	player.health += base_total_health_by * level
 	queue_free()
 
