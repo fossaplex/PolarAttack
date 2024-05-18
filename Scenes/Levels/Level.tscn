@@ -90,7 +90,7 @@ trail_section_subdivisions = 16
 script = ExtResource("6_e5v61")
 
 [node name="EnemyRespawnProgressBar" type="ProgressBar" parent="CanvasLayer"]
-modulate = Color(0, 0, 1, 1)
+modulate = Color(0.388235, 0.607843, 1, 1)
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 5.0
@@ -123,28 +123,32 @@ mouse_filter = 2
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 texture_filter = 3
 texture_repeat = 1
-offset_left = -6.0
-offset_top = 409.0
-offset_right = 388.0
-offset_bottom = 726.0
+offset_left = 3.0
+offset_top = 460.0
+offset_right = 397.0
+offset_bottom = 777.0
 rotation = 0.13439
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("11_0ywsi")
 flip_h = true
 
 [node name="HealthProgressBar" type="ProgressBar" parent="CanvasLayer"]
 modulate = Color(0, 1, 0, 1)
-offset_left = 54.0
-offset_top = 503.0
-offset_right = 185.0
-offset_bottom = 530.0
-scale = Vector2(1.84, 1.2)
+offset_left = 53.0
+offset_top = 529.0
+offset_right = 653.0
+offset_bottom = 556.0
+rotation = 0.0349066
+scale = Vector2(0.292, 0.7)
 show_percentage = false
 
 [node name="HealthLabel" type="Label" parent="CanvasLayer"]
-offset_left = 54.0
-offset_top = 506.0
-offset_right = 294.0
-offset_bottom = 534.0
+offset_left = 53.0
+offset_top = 529.0
+offset_right = 286.0
+offset_bottom = 554.0
+rotation = 0.0349066
+scale = Vector2(0.75, 0.75)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.0954608, 0.468291, 0.482676, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -157,21 +161,24 @@ horizontal_alignment = 1
 modulate = Color(1, 0.372549, 1, 1)
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 54.0
-offset_top = 550.0
-offset_right = -966.0
-offset_bottom = 577.0
+offset_left = 53.0
+offset_top = 561.0
+offset_right = -499.0
+offset_bottom = 588.0
 grow_horizontal = 2
-scale = Vector2(1.84, 1.2)
+rotation = 0.0349066
+scale = Vector2(0.292, 0.7)
 theme_override_font_sizes/font_size = 1
 show_percentage = false
 script = ExtResource("7_xmttv")
 
 [node name="LevelLabel" type="Label" parent="CanvasLayer"]
-offset_left = 54.0
-offset_top = 553.0
-offset_right = 294.0
-offset_bottom = 581.0
+offset_left = 53.0
+offset_top = 561.0
+offset_right = 286.0
+offset_bottom = 586.0
+rotation = 0.0349066
+scale = Vector2(0.75, 0.75)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.0941176, 0.466667, 0.482353, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
