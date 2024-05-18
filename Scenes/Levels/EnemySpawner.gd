@@ -60,12 +60,12 @@ func _on_timer_timeout() -> void:
 
 func create_seal(spawn_point: Marker2D) -> void:
 	var seal := SEAL_SCENE.instantiate() as Seal
+	seals.add_child(seal)
 	seal.target = player
 	seal.base_total_health = 30 + (_level + 2)
 	seal.health = seal.base_total_health
 	seal.on_death.connect(spawn_xp)
 	seal.base_speed = 50 + (_level + 2)
-	seals.add_child(seal)
 	seal.attackable.update(1, _level + 2)
 	seal.collision_timer.start()
 	seal.global_position = spawn_point.global_position
