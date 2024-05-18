@@ -248,13 +248,15 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 50
 
-[node name="HSeparator" type="HSeparator" parent="TabContainer/Credits/MarginContainer/ScrollContainer/VBoxContainer"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-theme_override_constants/separation = 0
-
 [node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/Credits/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 32
-text = "Penguin Sprites - DevHive"
+theme_override_font_sizes/normal_font_size = 26
+text = "Penguin Sprites - DevHive
+Seal Sprites - wiz4158
+Fox Sprites - Admurin
+Sword Sprites - CatDev
+Background Tiles - SciGho
+Main Menu Background - Vicente Nitti
+Developers - dognet2000017, PBHotdog, Morkbork, gman0987123
+"
 fit_content = true
