@@ -372,6 +372,7 @@ position = Vector2(14, -10)
 position = Vector2(0, -6)
 stream = ExtResource("18_l05ee")
 volume_db = 24.0
+bus = &"SFX"
 
 [node name="Duration" type="TextureProgressBar" parent="."]
 texture_filter = 1

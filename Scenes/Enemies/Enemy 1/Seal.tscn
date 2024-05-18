@@ -198,6 +198,7 @@ script = ExtResource("7_53hjw")
 position = Vector2(0, -6)
 stream = ExtResource("8_7pct6")
 volume_db = 24.0
+bus = &"SFX"
 
 [node name="Label" type="Label" parent="."]
 visible = false
